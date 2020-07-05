@@ -1,2 +1,1 @@
-# ucchalfashion-admin-ui
-
+# ucchal-b2c-mvp-admin
