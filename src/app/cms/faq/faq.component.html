@@ -1,0 +1,118 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Settings / FAQ / Add</p>
+    </div>
+<div class="pageBoxLg">
+  <div class="container topAlignContainer ">
+    <form [formGroup]="FAQForm">
+        <div>
+            <label class="pageBoxLg-label">Create FAQ</label>
+          </div>
+          <div class="col-md-12 text-right">
+              <h1 >
+                  <button class="addButton" mat-flat-button color="primary" (click)="addForm()"> <i
+                      class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> <a style="padding-left: 10px;">Add More</a>  </button>
+              </h1>
+              <h1 *ngFor="let account of faqForms.controls; let i=index">
+                  <button mat-flat-button color="primary"  type="button"
+                  (click)="deleteFAQs(i)">Cancel</button>
+              </h1>
+            </div>
+     
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="FAQ Title" formControlName="faqHeading"></textarea>
+            </mat-form-field>
+          </div>
+          <div formArrayName="faqs">
+            <div *ngFor="let account of faqForms.controls; let i=index" [formGroupName]="faqs">
+              <div class="col-md-12">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="FAQ Questions " formControlName="faqQuestion"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="FAQ Answers" formControlName="faqAnswers"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+              <div>
+                 
+                <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-2">
+                    <button   mat-flat-button color="primary" type="button"  (click)="createFAQ(FAQForm)" > Save </button>
+
+                  </div>
+             
+                  
+                  <div class="col-md-2">
+                   
+                      <button   mat-flat-button color="primary" type="button"
+                        (click)="cancel()">Cancel</button>
+                
+                  </div>
+                </div>
+              </div>
+           
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="pageBoxLg">
+  <div class="container topAlignContainer ">
+    <form [formGroup]="FAQForm">
+      <div>
+        <label class="pageBoxLg-label">Create FAQ</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="FAQ Title" formControlName="faqHeading"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12" formArrayName="faqs">
+          <div *ngFor="let account of faqForms.controls; let i=index" [formGroupName]="i">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="FAQ Questions " formControlName="faqQuestion"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="FAQ Answers" formControlName="faqAnswers"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <a (click)="deleteFAQs(i)">
+                  <mat-icon>clear</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <a (click)="addForm()">
+            <mat-icon class="gridEdit">add_box</mat-icon>
+          </a>
+          <p>Add New</p>
+        </div>
+        <div>
+          <button mat-raised-button mat-button type="button" (click)="cancel()">Cancel</button>
+          <span></span>
+          <span></span>
+          <button mat-raised-button type="button" (click)="createFAQ(FAQForm)">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->

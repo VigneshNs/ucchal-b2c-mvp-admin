@@ -1,0 +1,172 @@
+<div class="row container-fluid">
+<div class="col-md-12 text-right">
+  <h1 >
+      <button class="addButton" mat-flat-button color="primary"  [routerLink]="['/cms/seventhrow']"> <i
+          class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> <a style="padding-left: 10px;">Add </a>  </button>
+  </h1>
+</div>
+
+
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Tag Name :</td>
+        <td> {{seventhModel?.title}}</td>
+      </tr>
+      <tr>
+        <td>Tag Description :</td>
+        <td> {{seventhModel?.description}}</td>
+        
+      </tr>
+      <tr>
+        <td>Number of Product :</td>
+        <td>{{productLength}}</td>
+      </tr>
+
+      <tr>
+        <td>Status :</td>
+        <td>  {{seventhModel?.publish === true ? 'Publish': 'UnPublish'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="col-md-2">
+    <div class="form-group">
+        <label class="switch ">
+            <input type="checkbox" (change)="changeStatus($event, seventhModel?._id)" [checked]="seventhModel?.publish === true">
+            <span class="slider round"></span>
+          </label>
+    </div>
+  </div>
+  <div class="row col-md-12">
+      <div class="col-md-5"></div>
+  <div class="col-md-1">
+    <div class="form-group">
+        <button class="addButton" mat-flat-button color="primary" (click)="editRow(seventhModel?._id)">Edit  </button>
+    
+    </div>
+  </div>
+  <div class="col-md-1">
+    <div class="form-group">
+        <button class="addButton" mat-flat-button color="primary" (click)="openDialog(seventhModel?._id)">Delete  </button>
+    </div>
+  </div>
+</div>  
+</div> 
+ 
+ 
+ 
+ <!-- <div class="row container-fluid">
+      <div class="col-md-12">
+        <div class="form-group text-right">
+            <button type="button" [routerLink]="['/cms/seventhrow']" class="btn btn-light">Add</button>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+            <button matTooltip="Edit" (click)="editRow(seventhModel?._id)" mat-mini-fab color="primary"><mat-icon style="color: #fff"> edit </mat-icon>
+            </button>
+
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group text-right">
+          <button type="button" (click)="deleteRow(seventhModel?._id)" class="btn btn-light">Delete</button>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+  
+        </div>
+      </div>
+      <div class="col-md-3 ">
+        <div class="form-group">
+        <label>
+        Tag Name :
+      </label>
+    </div>
+      </div>
+      <div class="col-md-5 ">
+        <div class="form-group">
+        {{seventhModel?.title}}
+      </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+  
+        </div>
+      </div>
+  
+      <div class="col-md-2">
+        <div class="form-group">
+  
+        </div>
+      </div>
+      <div class="col-md-3 ">
+          <div class="form-group">
+          <label>
+          Tag Description :
+        </label>
+      </div>
+        </div>
+        <div class="col-md-5 ">
+          <div class="form-group">
+          {{seventhModel?.description}}
+        </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+              <label class="switch ">
+                  <input type="checkbox" (change)="changeStatus($event, seventhModel?._id)" [checked]="seventhModel?.publish === true">
+                  <span class="slider round"></span>
+                </label>
+          </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+              
+            </div>
+          </div>
+          <div class="col-md-3 ">
+              <div class="form-group">
+              <label>
+              Number of Product :
+            </label>
+          </div>
+            </div>
+            <div class="col-md-5 ">
+              <div class="form-group">
+              {{productLength}}
+            </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                
+              </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-md-3 ">
+                  <div class="form-group">
+                  <label>
+                  Status :
+                </label>
+              </div>
+                </div>
+                <div class="col-md-5 ">
+                  <div class="form-group">
+                  {{seventhModel?.publish === true ? 'Publish': 'UnPublish'}}
+                </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    
+                  </div>
+                </div>
+    </div> -->

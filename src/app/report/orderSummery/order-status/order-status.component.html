@@ -1,0 +1,36 @@
+<div class="col-md-12" *ngIf="isOrderStatusDownload ? download(newData.length, confrimData.length, cancelData.length,
+newTotal, confrimTotal, cancelTotal): false">
+  <!-- <button class="btn" (click)="download(newData.length, confrimData.length, cancelData.length,
+          newTotal, confrimTotal, cancelTotal)">Download</button> -->
+</div>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><h5>#</h5></th>
+      <th scope="col"><h5>Status</h5></th>
+      <th scope="col"><h5>No of Order</h5></th>
+      <th scope="col"><h5>Revenue</h5></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>New</td>
+      <td>{{newData.length}}</td>
+      <td>&#x20B9; {{newTotal | number:'3.2-5'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Confirmed</td>
+      <td>{{confrimData.length}}</td>
+      <td>&#x20B9; {{confrimTotal | number:'3.2-5'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Order Cancelled</td>
+      <td>{{cancelData.length}}</td>
+      <td>&#x20B9; {{cancelTotal | number:'3.2-5'}}</td>
+    </tr>
+  </tbody>
+</table>

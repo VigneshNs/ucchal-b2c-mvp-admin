@@ -1,0 +1,84 @@
+<div class="container">
+ <!--  <div class="row pt-5">
+   
+      <div class="col-md-12 form-group">
+          <h4> Price Rate</h4>
+        <div class="row">
+          <div class="col-md-6 form-group">
+          
+        <input type="number" #rate class="form-control"> 
+          </div>
+        <div class="col-md-4 form-group">
+            <button class="btn btn-primary" (click)="addRate(rate.value)">Add</button>
+          </div>
+          </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <label>Price </label> <br>
+    {{holder?.priceRate}} 
+    </div>
+    
+    <div class="col-md-4 form-group">
+      <label>Date</label> <br>
+  
+      {{holder?.addedDate | date}}
+    </div>
+    <div class="col-md-3 form-group"></div>
+ 
+  </div>      -->
+  <div class="row">
+    <div class="col-md-6 form-group pt-5">
+      <button class="btn btn-primary" (click)="onNewCurrency()">New Currency</button>
+    </div>
+    <div class="col-md-6 form-group">
+      <div class="row">
+    
+        <div class="col-md-12 pt-5 form-group"> <label>Price Rate Change </label></div>
+            <div class="col-md-4 form-group">
+                <select class="browser-default custom-select" (change)="getCountry($event)" #gen>
+                    <option selected>Select Country</option>
+                    <option *ngFor="let data of holder" >{{data.currencyCode}}</option>
+                  </select>
+            </div>
+            <div class="col-md-4 form-group">
+             <!--  <input type="text" disabled class="form-control" [value]="selectedCode || null"> -->
+            </div>
+            <div class="col-md-4 form-group"></div>
+            <div class="col-md-6 form-group">
+              <input type="number" placeholder="0" #priceRate  class="form-control">
+            </div>
+            <div class="col-md-2 form-group">
+              <button class="btn btn-primary form-control" (click)="onSubmit(priceRate.value)">Submit</button>
+            </div>
+    
+      </div>
+    </div>
+    <div class="col-md-12 form-group pt-5">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Country Name</th>
+                <th scope="col">Country Code</th>
+                <th scope="col">Currency Code</th>
+                <th scope="col">Currency Symbol</th>
+                <th scope="col">Price</th>
+                <th scope="col">Added Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let data of holder; let i = index">
+              <tr>
+                <th scope="row">{{ i + 1}}</th>
+                <td> {{ data.countryName}} </td>
+                <td>{{data.countryCode}}</td>
+                <td>{{data.currencyCode}}</td>
+                <td>{{data.currencySymbol}}</td>
+                <td>1 {{data.currencyCode}} = {{data.amount === undefind ? '----' : data.amount }} Rs</td>
+                <td>{{data.addedDate | date}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+   
+  </div>
+</div>

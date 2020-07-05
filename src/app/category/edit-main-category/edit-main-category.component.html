@@ -1,0 +1,567 @@
+
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+
+    <mat-card class="newNow">
+        <p style="padding-top: 21px;padding-left: 20px"> Category > Main Category > Edit </p>
+      </mat-card>
+ 
+  </div>
+<mat-card class="pageBoxLg ">
+<!-- <label  class="pageBoxLg-label pblabel">Edit Main Category</label> -->
+
+<form [formGroup]="categoryForm" style="padding-top:30px">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="categoryField Categoryimage col-md-6">
+            <div class="card" style="padding: 10px;">
+          <!-- <h5 class="detailsNow">Details</h5> -->
+        <div class="form-group col-md-12">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="mainCategoryName" [ngModel]="holder.mainCategoryName || null" 
+                placeholder="Main Category Name">
+              </mat-form-field>
+          
+
+        </div>
+        <div class="form-group col-md-12">
+            <mat-form-field class="full-width">
+                <textarea matInput formControlName="mainCategoryDescription" 
+                [ngModel]="holder.mainCategoryDescription || null" placeholder="Main Category Description"></textarea>
+              </mat-form-field>
+          
+
+        </div>
+        <div class="form-group col-md-12">
+          <mat-form-field>
+            <mat-select placeholder="Status" formControlName="status" [ngModel]="holder.status">
+              <mat-option *ngFor="let data of activeStatus;let i = index " [value]="data.active">
+                <a>{{data.active}}</a>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-12">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="metaTagTitle" [ngModel]="holder.metaTagTitle" placeholder="Meta Tag Title">
+              </mat-form-field>
+      
+          
+        </div>
+        <div class="form-group col-md-12">
+            <mat-form-field class="full-width">
+                <textarea matInput formControlName="metaTagDescription" [ngModel]="holder.metaTagDescription" placeholder="Meta Tag Description"></textarea>
+              </mat-form-field>
+         
+        </div>
+    
+       
+        <div class="form-group col-md-12">
+          
+            <button mat-raised-button  (click)="updateMainCategory(categoryForm)"
+            class="addButtons">Update</button>
+          
+          <button mat-flat-button type="reset" class="addButtons"
+           (click)="cancelCategoryEdit()">Cancel</button>
+          <br>
+        </div>
+        </div>
+          </div>          
+
+      <div class="form-group col-md-6 text-center">
+          <div class="form-group">
+               
+              <div  *ngIf="!isChangeImage">
+                  <div> <label class="chooseimages" ><h5><b>Edit (images)</b></h5> </label></div>
+                  <img class="img-fluid" [src]="categoryImageUrl + holder._id + '/' + holder.mainCategoryImageName" height="auto" width="300px" />
+                  <button mat-mini-fab class="iconBtn">
+                  <mat-icon class="selectValue" (click)="changeImage()">edit</mat-icon>
+                </button>
+              </div>
+              <div  *ngIf="isChangeImage">
+                  <div> <label class="chooseimages" ><h5><b>Choose (images)</b></h5> </label></div>
+                  <label>
+                      <input type="file" (change)="handleFileInput($event.target.files)" >
+                    </label>
+                    <label *ngFor="let url of urls">
+                        <img class="img-fluid" [src]="url" width="300px" height="300px" />
+                    </label>
+                    <mat-icon (click)="cancelImageUpdate()">cancel</mat-icon>
+                  <!--   <button class="btn" (click)="uploadImages()">Save</button> -->
+              </div>
+
+
+
+
+            </div>
+
+
+        
+      </div>
+    </div>
+  </div>
+  <div class="grid" formArrayName="attribute">
+      <div class="row gridRow">
+        <div class="col-md-6">
+          <div class="form-group p-2">
+            <input class="btn btn-sm btn-danger"
+             (click)="addForm()" type="button" value="Add Field" class="btn addButtons">
+          </div>
+        </div>
+         <div class="col-md-6">
+            <div class="pull-right">
+              <button  mat-flat-button class="addButtons" (click)="addAttribute()">Save</button>
+              <!-- <input (click)="addAttribute()" mat-flat-button color="primary"
+
+                type="submit" value="Save"> -->
+            </div>
+          </div>
+      </div>
+      <div class="row gridRow" 
+      *ngFor="let fie of categoryForm['controls'].attribute['controls']; let i=index"
+        [formGroupName]="i">
+        <div class="col-md-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Field Name</mat-label>
+              <input matInput formControlName="fieldName" placeholder="Field Name">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <mat-radio-group (change)="selectDropdownControl($event, i)"
+              [(value)]="categoryForm['controls'].attribute['controls'][i].value.fieldType"
+              aria-labelledby="example-radio-group-label" class="example-radio-group">
+              <mat-radio-button class="example-radio-button" *ngFor="let field of fieldType"
+               [value]="field">
+                {{field}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <mat-radio-group (change)="selectTypeSetting($event, i)"
+              [(value)]="categoryForm['controls'].attribute['controls'][i].value.fieldSetting"
+              aria-labelledby="example-radio-group-label" class="example-radio-group">
+              <mat-radio-button class="example-radio-button" 
+              *ngFor="let def of fieldSettingType" [value]="def">
+                {{def}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="col-md-1">
+      <section class="example-section">
+        <mat-slide-toggle formControlName="fieldEnable" [required]="false">
+        </mat-slide-toggle>
+      </section>
+    </div>
+    <div class="col-md-1">
+        <section class="example-section">
+          <mat-slide-toggle formControlName="fieldEnableValue" [required]="false">
+          </mat-slide-toggle>
+        </section>
+      </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12"
+              *ngIf="categoryForm['controls'].attribute['controls'][i].value.fieldType !== 'Text'">
+              <!--   <div class="col-md-6">
+                    <div class="pull-right">
+                      
+                    </div>
+                  </div> -->
+
+              
+              <div formArrayName="fieldValue">
+                <div class="row" *ngFor="let Y of fie['controls'].fieldValue['controls']; let iy=index">
+                  <div class="col-md-9" formGroupName="{{iy}}">
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Field Value</mat-label>
+                      <input matInput formControlName="fieldAttributeValue" placeholder="Field Value">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <a (click)="removeFiledValue(i, iy)">
+                      <mat-icon>clear</mat-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <input class="btn btn-sm btn-danger" (click)="addFiledValue(i)" type="button" value="Field Search Value">
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-2" style="padding: 10px;">
+          <div class="form-group">
+            <a (click)="deleteAttribute(i)">
+              <mat-icon>clear</mat-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- </form>
+</mat-card>
+
+
+
+<form [formGroup]="categoryForm"> -->
+<!-- <mat-card class="matCtrl">
+
+  <div class="row container">
+    <div class="col-md-12 text-center">
+        <h5 class="hfive">Edit Main Category</h5>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+            <mat-form-field class="full-width">
+                <input matInput formControlName="mainCategoryName" [ngModel]="holder.mainCategoryName" placeholder="Main Category Name">
+              </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="full-width">
+                <textarea matInput formControlName="mainCategoryDescription" [ngModel]="holder.mainCategoryDescription" placeholder="Main Category Description"></textarea>
+              </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" *ngIf="!isChangeImage">
+    
+        <img class="img-fluid" [src]="categoryImageUrl + holder._id + '/' + holder.mainCategoryImageName" height="auto" width="100px" />
+        <mat-icon class="selectValue" (click)="changeImage()">edit</mat-icon>
+    </div>
+    <div class="col-md-4" *ngIf="isChangeImage">
+        <label>
+            <input type="file" (change)="handleFileInput($event.target.files)" >
+          </label>
+          <label *ngFor="let url of urls">
+              <img class="img-fluid" [src]="url" width="100px" height="100px" />
+          </label>
+          <mat-icon (click)="cancelImageUpdate()">cancel</mat-icon>
+    </div>
+    <div class="col-md-6">
+        <mat-form-field class="full-width">
+            <input matInput formControlName="metaTagTitle" [ngModel]="holder.metaTagTitle" placeholder="Meta Tag Title">
+          </mat-form-field>
+    </div>
+    <div class="col-md-6">
+        <mat-form-field class="full-width">
+            <textarea matInput formControlName="metaTagDescription" [ngModel]="holder.metaTagDescription" placeholder="Meta Tag Description"></textarea>
+          </mat-form-field>
+    </div> 
+
+    <div class="col-md-5"></div>
+
+      <div class="col-md-12 text-center">
+        <label>
+          <h5>Add Attribute</h5>
+        </label>
+      </div>
+    
+  </div>
+  <div class="grid" formArrayName="attribute">
+    <div class="row gridRow">
+      <div class="col-md-6">
+        <div class="form-group p-2">
+          <input class="btn btn-sm btn-danger" (click)="addForm()" type="button" value="Add Field">
+        </div>
+      </div>
+       <div class="col-md-6">
+          <div class="pull-right">
+            <input (click)="addAttribute()"  class="btn btn-danger"
+              type="mainmit" value="Save">
+          </div>
+        </div>
+    </div>
+    <div class="row gridRow" 
+    *ngFor="let fie of categoryForm['controls'].attribute['controls']; let i=index"
+      [formGroupName]="i">
+      <div class="col-md-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Field Name</mat-label>
+            <input matInput formControlName="fieldName" placeholder="Field Name">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <mat-radio-group (change)="selectDropdownControl($event, i)"
+            [(value)]="categoryForm['controls'].attribute['controls'][i].value.fieldType"
+            aria-labelledby="example-radio-group-label" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let field of fieldType"
+             [value]="field">
+              {{field}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <mat-radio-group (change)="selectTypeSetting($event, i)"
+            [(value)]="categoryForm['controls'].attribute['controls'][i].value.fieldSetting"
+            aria-labelledby="example-radio-group-label" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let def of fieldSettingType" [value]="def">
+              {{def}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12"
+            *ngIf="categoryForm['controls'].attribute['controls'][i].value.fieldType !== 'Text'">
+          
+
+            
+            <div formArrayName="fieldValue">
+              <div class="row" *ngFor="let Y of fie['controls'].fieldValue['controls']; let iy=index">
+                <div class="col-md-9" formGroupName="{{iy}}">
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Field Value</mat-label>
+                    <input matInput formControlName="fieldAttributeValue" placeholder="Field Value">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <a (click)="removeFiledValue(i, iy)">
+                    <mat-icon>clear</mat-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <input class="btn btn-sm btn-danger" (click)="addFiledValue(i)" type="button" value="Field Search Value">
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-2" style="padding: 10px;">
+        <div class="form-group">
+          <a (click)="deleteAttribute(i)">
+            <mat-icon>clear</mat-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card> -->
+
+<mat-card class="ctrlCard">
+<b class="attributeedit">Attribute Edit</b>
+<div class="grid">
+  <div class="row fieldheader">
+    <div class="col-md-2 ">
+      <div class="form-group">
+       <b style="margin-left: 20px;">Field Name</b> 
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+     <b> Field Type</b>  
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+          <b>    Field Setting</b>  
+      </div>
+    </div>
+    <!-- <div class="col-md-2">
+      <div class="form-group">
+
+        Field Value
+      </div> 
+    </div>-->
+    <div class="col-md-2">
+      <div class="form-group">
+
+          <b>  Edit</b>  
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid" *ngFor="let data of holder?.attribute">
+  <div class="row gridRow" *ngIf="!data.showDiv">
+    <div class="col-md-2">
+      <div class="form-group">
+        {{data.fieldName}}
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        {{data.fieldType}}
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        {{data.fieldSetting}}
+      </div>
+    </div>
+    <!-- <div class="col-md-2">
+        <div class="form-group">
+          {{data.fieldValue}}
+        </div>
+      </div> -->
+    <div class="col-md-1">
+      <div class="form-group">
+        <a (click)="editAttribute(data._id)">
+          <mat-icon class="rowEdit">edit</mat-icon>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-5">
+      
+   
+      
+    </div>
+  </div>
+  <div class="row gridRow" *ngIf="data.showDiv">
+    
+    <div class="col-md-2">
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Field Name</mat-label>
+          <input matInput [(ngModel)]="data.fieldName"  formControlName="updateFieldName" placeholder="Field Name" >
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <mat-radio-group (change)="selectDropdown($event, data?.fieldValue)" [(ngModel)]="data.fieldType"
+        formControlName="updateFieldType"
+          aria-labelledby="example-radio-group-label" class="example-radio-group">
+          <mat-radio-button class="example-radio-button" *ngFor="let field of fieldType"
+          
+          
+          [value]="field">
+            {{field}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    
+    <div class="col-md-1">
+      <div class="form-group">
+        <mat-radio-group (change)="selectTypeSetting($event)" [(ngModel)]="data.fieldSetting"
+        formControlName="updateFieldSettingType"
+          aria-labelledby="example-radio-group-label" class="example-radio-group">
+          <mat-radio-button class="example-radio-button" *ngFor="let def of fieldSettingType" 
+          
+           [value]="def">
+            {{def}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <section class="example-section">
+        <mat-slide-toggle   formControlName="updateFieldEnable"
+        [(ngModel)]="data.fieldEnable"
+        [checked]="data.fieldEnable">
+        </mat-slide-toggle>
+      </section>
+    </div>
+    <div class="col-md-1">
+        <section class="example-section">
+          <mat-slide-toggle   formControlName="updateFieldEnableValue"
+          [(ngModel)]="data.fieldEnableValue"
+          [checked]="data.fieldEnableValue">
+          </mat-slide-toggle>
+        </section>
+      </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-12" *ngIf="deleteAttributeValue">
+          <div class="alert-danger">Please Delete Attribute Value</div>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                  <button mat-flat-button class="cancleNow"
+                   (click)="addFieldValueOpen(data._id)">Add Field Value</button>
+                </div>
+            </div>
+        </div>
+    <div class="grid" *ngFor="let field of data?.fieldValue">
+      
+        <div class="row" *ngIf="!field.showFieldDiv">
+          <div class="col-md-10">
+            <div class="form-group">
+              {{field.fieldAttributeValue}}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <a (click)="editAttributeValue(data?.fieldValue, field._id)">
+              <mat-icon class="rowEdit">edit</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row" *ngIf="field.showFieldDiv">
+          <div class="col-md-6">
+            <div class="form-group">
+              <mat-form-field class="full-width">
+                <input matInput [value]="field.fieldAttributeValue" placeholder="Field Value" 
+                #fieldAttributeValue>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <button mat-flat-button color="primary"
+
+              (click)="updateAttributeValueField(data?._id, field._id, fieldAttributeValue.value)">Save</button>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <button mat-flat-button color="primary"
+
+              (click)="deleteAttributeValueField(data?._id, field._id)">Delete</button>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-group">
+              <a (click)="cancelAttributeValue(data?.fieldValue)">
+                <mat-icon class="rowEdit">clear</mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group">
+
+
+        <button mat-flat-button color="primary" [disabled]="deleteAttributeValue"
+         (click)="updateAttribute(data._id)">Save</button>
+
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group">
+        <button mat-flat-button color="primary"class="cancleNow" (click)="cancelAttribute(data._id)">Cancel</button>
+      </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+          <button mat-flat-button color="primary"class="deleteNow" (click)="deleteAttributeSingle(data._id)">Delete</button>
+        </div>
+      </div>
+  </div>
+</div>
+</mat-card>
+</form>
+</mat-card>

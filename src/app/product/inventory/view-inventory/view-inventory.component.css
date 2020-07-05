@@ -1,0 +1,97 @@
+.headLabel {
+    color: slategray;
+}
+.onEditPric {
+    display: none;
+    cursor: pointer;
+}
+.priceHover:hover .onEditPric {
+    display: block;
+}
+.onEditVP {
+    display: none;
+    cursor: pointer;
+}
+.priceHover:hover .onEditVP {
+    display: block;
+}
+.onEditMrp {
+    display: none;
+    cursor: pointer;
+}
+.priceHover:hover .onEditMrp {
+    display: block;
+}
+.onEditDiscount {
+    display: none;
+    cursor: pointer;
+}
+.priceHover:hover .onEditDiscount {
+    display: block;
+}
+.onEditQty {
+    display: none;
+    cursor: pointer;
+}
+.qtyHover:hover .onEditQty {
+    display: block;
+}
+.pagination{
+    display: inline-block;
+    float: none;
+}
+.pagination li{
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+    /* border:1px solid grey; */
+    /* background-color: #ccc; */
+    padding: 2px 5px;
+    cursor: pointer;
+    color: #333;
+    margin:2px;
+    width: 40px;
+    height: 40px;
+    background-color: #E6E6E6;
+    border-radius: 50%;
+}
+.selectedPage{
+    background-color: #1c4561  !important;
+    border: 1px solid #1c4561;
+    color: white !important;
+    border-radius: 50%;
+  }
+  
+  .aeroClass {
+    padding: 0px 0px 0px 6px;
+    color: #747474;
+    cursor: pointer !important;
+  }
+  .selectedDropdown {
+      top: 2%;
+      left: 40px;
+      display: block !important;
+  }
+  .showHand {
+      cursor: pointer !important;
+  }
+  .selectedItem {
+      background-color: #007bff;
+  }
+  .selectCondition {
+     pointer-events: none;
+     opacity: 0.5;
+  }
+  .btnBac {
+    background-color: #181d57;
+    color: white;
+    border: 1px solid #181d57;
+    padding: 7px 11px;
+    border-radius: 18%;
+}
+.btnBac:hover {
+    background-color: white;
+    color: #181d57;
+    border: 1px solid #181d57;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

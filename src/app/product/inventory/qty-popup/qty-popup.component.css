@@ -1,0 +1,13 @@
+.btnBac {
+    background-color: #181d57;
+    color: white;
+    border: 1px solid #181d57;
+    padding: 7px 11px;
+    border-radius: 18%;
+}
+.btnBac:hover {
+    background-color: white;
+    color: #181d57;
+    border: 1px solid #181d57;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

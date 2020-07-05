@@ -1,0 +1,180 @@
+<!-- <button class="btn btn-success" (click)="addMeasurement()">Add</button> -->
+
+<!-- <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">MeaurementName</th>
+        <th scope="col">createdDate</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="">
+      <tr>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{data.measurementName}}</td>
+        <td>{{data.creationDate | date}}</td>
+        <td><div class=" vcenter form-group">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+          <mat-menu #menu="matMenu">
+              <a class="nav-link selectCursor" (click)="getEdit(data._id)" >Edit</a>
+              <a class="nav-link selectCursor" (click)="getStyleEdit(data._id)" >Style Edit</a>
+             !-- <a class="nav-link selectCursor" > De <lete</a> -->
+            <!-- <a class="nav-link selectCursor" (click)="editSuperCategory(element._id)" >Edit</a>
+            <a class="nav-link selectCursor" (click)="openDialog(element)">Delete</a> -->
+        <!-- </mat-menu>
+        </div></td>
+      </tr>
+      
+    </tbody>
+  </table> -->
+  <div *ngIf="isEmpty"><button (click)="onAdd()">Add</button></div>
+
+  <div class="row" *ngFor="let data of holder; let i = index">
+    <div class="col-md-6">
+      <button class="btn btn-primary" (click)="getEdit(data._id)">Edit</button>
+    </div>
+   <div class="col-md-6"></div>
+    <div class="col-md-6 pa" >
+      <h4>Measurement Type</h4>
+      <div class="row" *ngFor="let d of data.measurementType; let i = index">
+        <div class="col-md-4">
+          {{d.typeName}} :
+        </div> 
+        <div class="col-md-8">
+          {{d.typeDescription}}
+        </div>
+      </div>
+      <h4>Closing With</h4>
+      <div class="col-md-3" *ngFor="let d of data.closingWith; let i = index">
+          {{d}}
+        </div>
+        <h4>Closing Side</h4>
+        <div class="col-md-3" *ngFor="let d of data.closingSide; let i = index">
+            {{d}}
+          </div>
+    </div>
+    
+    <div class="col-md-6 pa" *ngFor="let d of data.aroundAboveWaist; let i = index">
+      <div class="row">
+      <div class="col-md-8">
+      <h4> Around Above waist</h4>
+      Minimum Value : {{d.min}} <br>
+      Maximum Value : {{d.max}} <br>
+      Description : {{d.description}} </div>
+      <div class="col-md-4">
+      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+            style="width: 250px;" />  </div>
+            </div>
+    </div>
+    <div class="col-md-6 pa" *ngFor="let d of data.aroundArm; let i = index">
+        <div class="row">
+            <div class="col-md-8">
+            <h4> Around Arm</h4>
+            Minimum Value : {{d.min}} <br>
+            Maximum Value : {{d.max}} <br>
+            Description : {{d.description}} </div>
+            <div class="col-md-4">
+            <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                  style="width: 250px;" />  </div>
+                  </div>
+      </div>
+      <div class="col-md-6 pa" *ngFor="let d of data.aroundBust; let i = index">
+          <div class="row">
+              <div class="col-md-8">
+              <h4> Around Bust</h4>
+              Minimum Value : {{d.min}} <br>
+              Maximum Value : {{d.max}} <br>
+              Description : {{d.description}} </div>
+              <div class="col-md-4">
+              <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                    style="width: 250px;" />  </div>
+                    </div>
+        </div>
+          <div class="col-md-6 pa" *ngFor="let d of data.blouseLength; let i = index">
+              <div class="row">
+                  <div class="col-md-8">
+                  <h4>Blouse Length</h4>
+                  Minimum Value : {{d.min}} <br>
+                  Maximum Value : {{d.max}} <br>
+                  Description : {{d.description}} </div>
+                  <div class="col-md-4">
+                  <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                        style="width: 250px;" />  </div>
+                        </div>
+            </div>
+            <div class="col-md-6 pa" *ngFor="let d of data.frontNeckDepth; let i = index">
+                <div class="row">
+                    <div class="col-md-8">
+                    <h4>Front Neck Depth</h4>
+                    Minimum Value : {{d.min}} <br>
+                    Maximum Value : {{d.max}} <br>
+                    Description : {{d.description}} </div>
+                    <div class="col-md-4">
+                    <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                          style="width: 250px;" />  </div>
+                          </div>
+              </div>
+              <div class="col-md-6 pa" *ngFor="let d of data.backNeckDepth; let i = index">
+                  <div class="row">
+                      <div class="col-md-8">
+                      <h4> Back Neck Depth</h4>
+                      Minimum Value : {{d.min}} <br>
+                      Maximum Value : {{d.max}} <br>
+                      Description : {{d.description}} </div>
+                      <div class="col-md-4">
+                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                            style="width: 250px;" />  </div>
+                            </div>
+                </div>
+                <div class="col-md-6 pa" *ngFor="let d of data.sleeveLength; let i = index">
+                    <div class="row">
+                        <div class="col-md-8">
+                        <h4>Sleeve Length</h4>
+                        Minimum Value : {{d.min}} <br>
+                        Maximum Value : {{d.max}} <br>
+                        Description : {{d.description}} </div>
+                        <div class="col-md-4">
+                        <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                              style="width: 250px;" />  </div>
+                              </div>
+                  </div> 
+                 
+                  <div class="col-md-6">
+                      <button class="btn btn-primary" (click)="getStyleEdit(data._id)">Style Edit</button>
+                    </div> <div class="col-md-6"></div>
+                  <div class="col-md-12 pa">
+                    <h4>Front Neck Style</h4>
+                  <app-carousel-item>
+                  <div appCarouselItem class="col-md-3" *ngFor="let d of data.frontNeckStyle; let i = index">
+                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                      style="width: 200px;" /> <br>
+                    {{d.title}}  </div>
+                      </app-carousel-item>
+                      </div>
+                      <div class="col-md-12 pa">
+                          <h4>Back Neck Style</h4>
+                      <app-carousel-item>
+                        
+                          <div appCarouselItem class="col-md-3" *ngFor="let d of data.backNeckStyle; let i = index">
+                              <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                              style="width: 200px;" /> <br>
+                            {{d.title}}  </div>
+                              </app-carousel-item>
+                              </div>
+                            
+                                 
+                                      <div class="col-md-12 pa">
+                                          <h4>Sleeve Style</h4>
+                                      <app-carousel-item>
+                                        
+                                          <div appCarouselItem class="col-md-3" *ngFor="let d of data.sleeveStyle; let i = index">
+                                              <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                              style="width: 200px;" /> <br>
+                                            {{d.title}}  </div>
+                                              </app-carousel-item>
+                                              </div>    
+  </div>
+     

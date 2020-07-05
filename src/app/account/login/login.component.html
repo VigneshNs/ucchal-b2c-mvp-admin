@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-md-12 form-group text-center">
+      <label>Login Form</label>
+    </div>
+    <div class="col-md-4 form-group">
+    </div>
+    <div class="col-md-4 form-group">
+      <input type="text" class="form-control" #email placeholder="Email ID">
+    </div>
+    <div class="col-md-4 form-group"></div>
+    <div class="col-md-4 form-group">
+      </div>
+      <div class="col-md-4 form-group">
+        <input type="password" class="form-control" #pass placeholder="Password">
+      </div>
+      <div class="col-md-4 form-group"></div>
+      <div class="col-md-4 form-group">
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <button class="btn btn-primary form-control" (click)="getLogin(email.value, pass.value)">Login</button>
+            </div>
+            <div class="col-md-4">
+              <p *ngIf="showError" style="color: red;">Invalid Account</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 form-group"></div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="row" *ngIf="!data">
+  <div class="col-md-5">
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select (selectionChange)="categorySelected($event)">
+          <mat-option *ngFor="let sup of categoryModel" [value]="sup">
+            {{sup.categoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+<div class="col-md-7">
+    
+</div>
+<div class="col-md-5">
+    <mat-form-field>
+        <mat-label>Main Category</mat-label>
+        <mat-select (selectionChange)="categoryMainCategory($event)">
+          <mat-option *ngFor="let main of selectedSuperCategory?.mainCategory" [value]="main">
+            {{main.mainCategoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="col-md-7">
+    
+  </div>
+  <div class="col-md-5">
+      <mat-form-field>
+          <mat-label>Sub Category</mat-label>
+          <mat-select (selectionChange)="categorySubCategory($event)">
+            <mat-option   
+            *ngFor="let sub of selectedMainCategory?.subCategory" [value]="sub">
+              {{sub.subCategoryName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-7"></div>
+    <div class="col-md-4">
+      <input type="text" #size placeholder="Size" class="form-control">
+    </div>
+    <div class="col-md-2"> </div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="addPlusSize(size.value)">Submit</button></div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="cancel()">Cancel</button></div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row" *ngIf="data">
+  <!-- <div class="col-md-5">
+    
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select (selectionChange)="editedCategory($event)" [(value)]="data.superCategoryName">
+          <mat-option *ngFor="let sup of categoryModel" [value]="sup.categoryName">
+            {{sup.categoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+<div class="col-md-7">
+    {{data | json}}
+</div>
+<div class="col-md-5">
+    <mat-form-field>
+        <mat-label>Main Category</mat-label>
+        <mat-select (selectionChange)="categoryMainCategory($event)">
+          <mat-option *ngFor="let main of selectedSuperCategory?.mainCategory" [value]="main">
+            {{main.mainCategoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="col-md-7">
+    
+  </div>
+  <div class="col-md-5">
+      <mat-form-field>
+          <mat-label>Sub Category</mat-label>
+          <mat-select (selectionChange)="categorySubCategory($event)">
+            <mat-option   
+            *ngFor="let sub of selectedMainCategory?.subCategory" [value]="sub">
+              {{sub.subCategoryName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-7"></div> -->
+    <div class="col-md-12 form-group">
+      {{data?.subCategoryName === undefined ? data?.superCategoryName : data?.subCategoryName}}
+    </div>
+    <div class="col-md-4">
+      <input type="text" #size placeholder="Size" [ngModel]="data.startingSize" class="form-control">
+    </div>
+    <div class="col-md-2"> </div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="updatePlusSize(size.value, data._id)">Submit</button></div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="cancel()">Cancel</button></div>
+    <div class="col-md-2"></div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-5">
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select (selectionChange)="categorySelected($event)">
+          <mat-option *ngFor="let sup of categoryModel" [value]="sup">
+            {{sup.categoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+<div class="col-md-7">
+    
+</div>
+<div class="col-md-5">
+    <mat-form-field>
+        <mat-label>Main Category</mat-label>
+        <mat-select (selectionChange)="categoryMainCategory($event)">
+          <mat-option *ngFor="let main of selectedSuperCategory?.mainCategory" [value]="main">
+            {{main.mainCategoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="col-md-7">
+    
+  </div>
+  <div class="col-md-5">
+      <mat-form-field>
+          <mat-label>Sub Category</mat-label>
+          <mat-select (selectionChange)="categorySubCategory($event)">
+            <mat-option   
+            *ngFor="let sub of selectedMainCategory?.subCategory" [value]="sub">
+              {{sub.subCategoryName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-7"></div>
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Height" #height aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)='addSize(height.value)'>add</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"> </div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="onSubmit()">Submit</button></div>
+    <div class="col-md-2"><button class="btn btn-primary form-control" (click)="cancel()">Cancel</button></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 border"  style="height: 200px;">
+      <p *ngFor="let data of array">{{data}} <span (click)="clear(data)"><mat-icon class="Ico" >clear</mat-icon></span>	</p>
+    </div>
+</div>
+</div>

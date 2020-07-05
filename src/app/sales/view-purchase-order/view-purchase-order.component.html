@@ -1,0 +1,88 @@
+<div *ngIf="!loader">
+  <img src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader" /></div>
+<mat-card class="container" *ngIf="loader" style="margin-top: 50px; background-color: #dddfeb;">
+  <div class="row pt-5">
+    <div class="col-md-12 form-group">
+      <div class="row">
+        <div class="col-md-3 form-group">
+          <mat-form-field>
+            <mat-label>Vendor</mat-label>
+            <mat-select (selectionChange)="sortByVendor($event)">
+              <mat-option value="all">
+                All
+              </mat-option>
+              <mat-option *ngFor="let data of filterData" [value]="data">
+                {{data.vendorName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 form-group">
+          <mat-form-field>
+            <mat-label>Order ID</mat-label>
+            <mat-select (selectionChange)="sortByOrderId($event)">
+              <mat-option value="all">
+                All
+              </mat-option>
+              <mat-option *ngFor="let data of filterData" [value]="data">
+                {{data.orderId}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 form-group">
+          <mat-form-field>
+            <mat-label>PO Status</mat-label>
+            <mat-select (selectionChange)="sortByStatus($event)">
+              <mat-option value="all">
+                All
+              </mat-option>
+              <mat-option *ngFor="let data of status" [value]="data">
+                {{data}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-6 form-group"></div>
+        <div class="col-md-4 form-group">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search.." #search aria-label="Recipient's username"
+              aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="onSearch(search.value)" type="button">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Vendor Name</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">PO Number</th>
+            <th scope="col">PO Date</th>
+            <th scope="col">PO Expiry Date</th>
+            <th scope="col">PO Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let data of container; let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td class="clickDecorate" (click)="viewPage(data)">{{data.vendorName}}</td>
+            <td>{{data.orderId}}</td>
+            <td>{{data.poNumber}}</td>
+            <td>{{data.poDate | date}}</td>
+            <td>{{data.poExpiryDate | date}}</td>
+            <td>{{data.poStatus}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[50, 100, 150]" [showFirstLastButtons]="true"
+        [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)"></mat-paginator>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,124 @@
+.ctrlCard {
+  margin: 10px;
+  background-color: #f0f3f5;
+}
+
+.cancleNow {
+  background-color: #FF5778 !important;
+  color: #fff;
+}
+
+.cancleNow:focus {
+  outline: none;
+}
+
+.hfive {
+  text-align: center !important;
+  color: #5c6873;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.matCtrl {
+  margin: 10px;
+  background-color: #f0f3f5;
+}
+
+.attributeedit {
+  background-color: black;
+  color: #fff;
+  letter-spacing: 2px;
+  padding: 10px;
+
+}
+
+.grid {
+  margin-top: 20px;
+}
+
+.fieldheader {
+  font-size: 16px;
+  font: bold;
+}
+
+.btnNew {
+  background-color: #FF5778;
+  color: #f0f3f5;
+}
+
+.btnNew {
+  background-color: #FF5778 !important;
+  color: #f0f3f5;
+}
+
+.selectValue {
+  cursor: pointer;
+}
+
+.ctrlCard {
+  margin: 10px;
+  background-color: #f0f3f5;
+}
+
+/* .cancleNow{
+    background-color: #FF5778;
+    color: #fff;
+}*/
+
+.deleteNow {
+  background-color: red;
+  color: #fff;
+}
+
+.cancleNow:focus {
+  outline: none;
+}
+
+.imgCard {
+  width: 100%;
+  height: auto;
+  margin: 10px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #f2f3f8;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  color: #3f51b5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #f2f3f8 !important;
+  margin: 25px;
+  margin-top: 58px;
+}
+
+.addButtons {
+  margin: 10px;
+  background-color: #8f9bb3;
+  color: #fff;
+  border-radius: 27%;
+
+}
+
+.addButtons:focus {
+  outline: none;
+}
+
+.iconBtn{
+    background-color: #8f9bb3;
+    color: #fff !important;
+  }
+  .rowEdit{
+    color: #fff;
+  }
+  .iconBtn:focus{
+outline: none;
+  }

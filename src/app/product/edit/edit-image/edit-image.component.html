@@ -1,0 +1,151 @@
+<form [formGroup]="productForm">
+   <div class="grid">
+      <div class="row" *ngIf="!editProductModel?.imageEdit">
+        <div class="col-md-8 col-8">
+
+        </div>
+        <div class="col-md-2 col-2">
+
+        </div>
+        <div class="col-md-2 col-2">
+          <div class="form-group float-right">
+            <input class="btn btn-md btn-primary" (click)="getEdit()" 
+            type="button" value="Edit">
+          </div>
+        </div>
+      </div>
+      <div class="row gridRow" *ngIf="!editProductModel?.imageEdit">
+        <div class="col-md-2" *ngIf="productModel?.productImage.length !== 0">
+          <mat-card *ngFor="let data of productModel?.productImage">
+            <img [src]="data.productImageName" style="width: 90px; height: 125px;" />
+          </mat-card>
+          <!--  <div *ngIf="this.showDelete === true">
+            <button mat-icon-button mat-sm-button color="primary"
+              (click)="deleteProductImage(this.productModel._id, data)">
+              <mat-icon> clear </mat-icon>
+            </button></div> -->
+        </div>
+      </div>
+     
+      <div class="row" *ngIf="editProductModel?.imageEdit">
+        <div class="col-md-8 col-8">
+        </div>
+        <div class="col-md-2 col-2">
+
+        </div>
+        <div class="col-md-2 col-2">
+          <div class="form-group float-right">
+            <input class="btn btn-md btn-primary" (click)="cancel()" type="button" value="cancel">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="editProductModel?.imageEdit">
+          <div class="grid" formArrayName="productImage">
+              <div class="row gridRow">
+                <div class="col-md-6">
+                  <div class="form-group p-2">
+                    <input class="btn btn-sm btn-danger"  (click)="addForm()" type="button" value="Add Size">
+                  </div>
+                </div>
+               <!--  <div class="col-md-6" *ngIf="productImageForm.controls.length > 0">
+                  <div class="form-group float-right">
+                    <input class="btn btn-sm btn-danger" (click)="addProductVariant(productForm, productModel._id)"
+                      type="button" value="Save">
+                  </div>
+                </div> -->
+              </div>
+            
+              <div class="row gridRow" *ngFor="let account of productImageForm.controls; let i=index"
+                [formGroupName]="i">
+                <div class="col-md-12">
+                <mat-form-field class="full-width">
+                   
+               <input  type="text" matInput
+               formControlName="productImageName"
+               (ngModelChange)="productModel.productImageName=$event">
+                
+                </mat-form-field>
+              </div>
+                <div class="col-md-1" style="padding: 10px;">
+    
+                </div>
+                <div class="col-md-1" style="padding: 10px;">
+                  <div class="form-group">
+                    <a (click)="deleteForm(i)">
+                      <mat-icon>clear</mat-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary" (click)="updateImage()">Save</button>
+              </div>
+            </div>
+      </div>
+  
+     <!--  <div class="row" *ngIf="editProductModel?.imageEdit">
+        <div class="col-md-4">
+          <label>
+            <input type="file" (change)="handleFileInput($event.target.files)" multiple>
+          </label>
+          <div class="alert alert-danger" *ngIf="imageError">
+            <h4>Please Select the images</h4>
+          </div>
+          <button class="btn btn-md btn-primary" (click)="imageUpload()">Upload</button>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-3 pb-2" *ngFor="let url of urls">
+              <mat-card>
+                <img class="img-fluid" [src]="url" />
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="row" *ngIf="editProductModel?.imageEdit">
+        <div class="col-md-4" *ngIf="productModel?.productImage.length !== 0">
+          <div class="gridRow" *ngFor="let data of productModel?.productImageName">
+            <img [src]="productImageUrl + this.productModel._id + '/' + data" style="width: 90px; height: 125px;" />
+            <button mat-icon-button mat-sm-button color="primary"
+            (click)="deleteProductImage(data)">
+            <mat-icon> clear </mat-icon>
+          </button>
+        </div>
+        
+        </div>
+      </div> -->
+    </div>
+    <!--  <div class="col-md-6">
+          <button class="btn btn-md btn-primary" (click)="getEdit()">Edit</button>
+          <div *ngIf="this.showDelete === false">
+            <button class="btn btn-md btn-primary" (click)="getDelete()">Delete</button>
+          </div>
+          <div *ngIf="this.showDelete === true">
+            <button class="btn btn-md btn-primary"
+             (click)="imageUploadCancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    <div class="col-md-6" *ngIf="editProductModel?.imageEdit">
+      <label>
+        <input type="file" (change)="handleFileInput($event.target.files)" multiple>
+      </label>
+      <div class="alert alert-danger" *ngIf="imageError">
+        <h4>Please Select the images</h4>
+      </div>
+      <div class="row">
+        <div class="col-md-6 pb-2" *ngFor="let url of urls">
+          <mat-card>
+            <img class="img-fluid" [src]="url" />
+          </mat-card>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-md btn-primary" (click)="imageUpload()">Upload</button>
+        <button class="btn btn-md btn-primary" (click)="imageUploadCancel()">Cancel</button>
+      </div>
+    </div> 
+  </div>-->
+</form>

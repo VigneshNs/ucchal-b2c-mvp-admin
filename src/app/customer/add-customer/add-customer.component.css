@@ -1,0 +1,59 @@
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  color: #3f51b5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #fff;
+  margin: 25px;
+  margin-top: 55px;
+  box-shadow: 0 0px 0px 0 rgba(172, 172, 172, 0.2), 0 0px 10px 0 rgba(150, 150, 150, 0.19);
+  background-color: #f2f3f8;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #f2f3f8;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+
+.pageBoxl {
+  border: 1px solid #c8ced3;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+
+  margin: 25px;
+  margin-top: 55px;
+  box-shadow: 0 0px 0px 0 rgba(172, 172, 172, 0.2), 0 0px 10px 0 rgba(150, 150, 150, 0.19);
+  background-color: #8f9bb3 !important;
+  padding: 25px;
+  border-radius: 5px;
+
+}
+
+.colorAll {
+  color: #fff;
+  font-size: 17px;
+}
+
+.addButtons:focus {
+  outline: none;
+}
+
+.addButtons:hover {
+  background-color: #1c4561 !important;
+  color: #fff;
+}
+
+.addButtons {
+  margin: 10px;
+  background-color: #f2f3f8;
+  color: #8f9bb3;
+  border-radius: 27%;
+  margin-top: 15px;
+}

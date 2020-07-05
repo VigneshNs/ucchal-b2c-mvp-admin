@@ -1,0 +1,218 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Product /  Size Guide </p>
+  </div>
+<div class="pageBoxLg">
+  <label style="padding-top: 8px;padding-bottom: 8px" class="pageBoxLg-label">Size Guide</label>
+  <form [formGroup]="sizeGuideForm"  novalidate>
+    <div style="margin-top: 20px" class="row">
+          <div class="col-md-12">
+            <div class="col-md-3 labelcolor">
+              <mat-form-field>
+                <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)"
+                  placeholder="Select Super Category">
+                  <mat-option *ngFor="let category of categoryData" [value]="category">
+                    {{category.categoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 15px" class="col-md-3 ">
+              <mat-form-field style="margin: 19px 0px 19px 0px">
+                <mat-select #selectMain (selectionChange)="selectMainCategory(selectMain.value)"
+                  placeholder="Select Main Category">
+                  <mat-option *ngFor="let category of mainCategoryModel" [value]="category">
+                    {{category.mainCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 15px" class="col-md-3 ">
+              <mat-form-field style="margin: 19px 0px 19px 0px">
+                <mat-select #selectSub (selectionChange)="selectSubCategory(selectSub.value)"
+                  placeholder="Select Sub Category">
+                  <mat-option *ngFor="let category of subCategoryModel" [value]="category">
+                    {{category.subCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field style="margin: 19px 0px 19px 0px">
+                <mat-select #vend (selectionChange)="selectVendor(vend.value)"
+                  placeholder="Select Vendor">
+                  <mat-option *ngFor="let vendor of vendorModel" [value]="vendor">
+                    {{vendor.vendorName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <label>Size char(CM)</label>
+            </div>
+            <div class="col-md-3">
+                <input type="file"  (change)="handleFileInputCM($event.target.files)" class="checked">
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 pb-2" *ngFor="let url of urlCM">
+                    <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+                 </div>
+            </div>
+            <div class="col-md-3">
+                <label>Size char(Inches)</label>
+              </div>
+              <div class="col-md-3">
+                  <input type="file"  (change)="handleFileInputInches($event.target.files)" class="checked">
+              </div>
+              <div class="col-md-6">
+                  <div class="col-md-12 pb-2" *ngFor="let url of urlInches">
+                      <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+                   </div>
+              </div>
+            <div>
+                <button style="margin-bottom: 10px;margin-left: 15px"  type="button" mat-raised-button type="button" color="primary" (click)="addSizeGuide()" matTooltip="Save" >Save
+                  </button>
+                  <!-- <button style="margin-bottom: 10px;margin-left: 15px"  type="button" mat-raised-button type="button" color="primary" (click)="cancelSizeGuide()" matTooltip="Cancel" >Cancel
+                    </button>       -->
+            </div>
+          </div>
+    </div>
+  </form>
+  <div class="categoryRow" *ngIf="!showNoData">
+
+    <table style="background-color:#fff" mat-table [dataSource]="sizeguideData" class="container-fluid border text-strong">
+        <ng-container matColumnDef="image1">
+
+            <th mat-header-cell *matHeaderCellDef ><h5>SizeGuide Image</h5>  </th>
+            <td mat-cell *matCellDef="let element">
+              <img [src]="sizeGuideUrl + element._id + '/' + element.sizeChartCM" style="width: 180px; height: 145px;" /> </td>
+
+          </ng-container>
+          <ng-container matColumnDef="image2">
+
+              <th mat-header-cell *matHeaderCellDef ><h5>SizeGuide Image</h5>  </th>
+              <td mat-cell *matCellDef="let element">
+                <img [src]="sizeGuideUrl + element._id + '/' + element.sizeChartInches" style="width: 180px; height: 145px;" /> </td>
+  
+            </ng-container>
+      <ng-container  matColumnDef="title">
+
+        <th mat-header-cell *matHeaderCellDef><h5>Title Name</h5> </th>
+        <td mat-cell *matCellDef="let element">
+
+          {{element.subCategoryName === undefined ? element.superCategoryName : element.subCategoryName }}
+        </td>
+
+      </ng-container>
+     
+   
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef><h5>Action</h5></th>
+          <td mat-cell *matCellDef="let element"> 
+            <!-- <button mat-icon-button mat-sm-button color="primary"
+            (click)="openDialog(element)">
+            <mat-icon>delete</mat-icon>
+          </button>  -->
+          <div class=" vcenter form-group">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+      
+                <!-- <a class="nav-link" >View</a>
+                <a class="nav-link" >Update Status</a> -->
+                <a class="nav-link selectCursor" (click)="onEdit(element)">Edit</a>
+                <a class="nav-link selectCursor" (click)="openDialog(element._id)">Delete</a>
+              </mat-menu>
+            </div>
+         <!--  <button mat-icon-button mat-sm-button color="primary" (click)="edit(element)">
+            <mat-icon>edit</mat-icon>
+          </button> -->
+        </td>
+         
+        </ng-container>
+     
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="showNoData" class="nodata"> No results found</div>
+</div>
+
+
+<!-- <div class="pageBoxLg">
+    <label class="pageBoxLg-label ">Size Guide</label>
+    <form [formGroup]="sizeGuideForm"  novalidate>
+      <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6 ">
+                  <mat-label>Size Guide Image</mat-label>
+                  <input type="file"  (change)="handleFileInput($event.target.files)">
+                  <div class="row">
+                      <div class="col-md-12 pb-2" *ngFor="let url of urls">
+                       
+                          <img class="img-fluid" [src]="url" height="350px" width="350px" />
+                      </div>
+                     
+                    </div>
+              </div>
+              <div class="col-md-6 ">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Size Guide Title</mat-label>
+                          <input matInput formControlName="title" type="text">
+                          <mat-error *ngIf="sizeGuideForm.controls['title'].errors?.required">
+                            Size Guide Title is
+                            <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+              </div>
+              <div>
+                  <button  type="button" mat-button class="btn btn-sm btn-danger" (click)="addSizeGuide()" matTooltip="Save" >Save
+                    </button>
+              </div>
+            </div>
+      </div>
+    </form>
+    <div class="categoryRow">
+  
+      <table mat-table [dataSource]="sizeguideData" class="container-fluid border text-strong">
+          <ng-container matColumnDef="image">
+  
+              <th mat-header-cell *matHeaderCellDef > SizeGuide Image </th>
+              <td mat-cell *matCellDef="let element">
+                <img [src]="sizeGuideUrl + element._id + '/' + element.imageName" style="width: 180px; height: 145px;" /> </td>
+  
+            </ng-container>
+        <ng-container matColumnDef="title">
+  
+          <th mat-header-cell *matHeaderCellDef> Title Name</th>
+          <td mat-cell *matCellDef="let element">
+  
+            {{element.title }}
+          </td>
+  
+        </ng-container>
+       
+     
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element"> 
+            <div class=" vcenter form-group">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+      
+                <a class="nav-link selectCursor" [routerLink]="['/product/editsizeguide/', element._id]" >Edit</a>
+                <a class="nav-link selectCursor" (click)="deleteSizeGuide(element)">Delete</a>
+              </mat-menu>
+            </div>
+         
+          </td>
+           
+          </ng-container>
+       
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div> -->

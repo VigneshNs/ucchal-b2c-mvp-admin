@@ -1,0 +1,148 @@
+<div class="container">
+  <form>
+  <div class="row">
+    <br>
+    <div class="col-md-12 mat-card">
+        <div class="col-md-12">
+            <label><h4>Front Neck Style</h4></label>
+            <div class="row">
+              <app-carousel-item>
+              <div appCarouselItem class="col-md-4" *ngFor="let data of holder?.frontNeckStyle">    
+              <img [src]="measurementImageUrl + holder?._id + '/' + data.imageName"
+                  style="width: 200px;" /> <br>
+                  {{data.title}}
+                  <button class="btn btn-primary" (click)="checkBeforeFrontDelete(data._id, data.title)">
+                    <mat-icon >delete</mat-icon>
+                  </button>
+              </div>
+              </app-carousel-item>
+            </div>
+          </div>
+          <br>
+      <div class="row">
+        <div class="col-md-10">
+            <mat-form-field >
+          <input type="text" matInput #frontTitle>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="addFront(frontTitle.value)">Add</button>
+        </div>
+        <div class="col-md-6">
+            <label>
+                <input type="file" (change)="frontNeckStyleImageUpload($event.target.files)" >
+              </label>
+              <div class="alert alert-danger" *ngIf="imageError1">
+                <h4>Please Select the images</h4>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pb-2" *ngFor="let url of frontStyleImg">
+                  <mat-card>
+                    <img class="img-fluid" [src]="url" #img1/>
+                  </mat-card>
+                </div>
+              </div>
+        </div>
+      </div>
+        
+
+    </div>
+    <br>
+    <div class="col-md-12 mat-card">
+            <label><h4>Back Neck Style</h4></label>
+            <div class="row">
+              <app-carousel-item>
+              <div appCarouselItem class="col-md-4" *ngFor="let data of holder?.backNeckStyle">    
+              <img [src]="measurementImageUrl + holder?._id + '/' + data.imageName"
+                  style="width: 200px;" /> <br>
+                  {{data.title}}
+                  <button class="btn btn-primary" (click)="checkBeforeBackDelete(data._id, data.title)">
+                      <mat-icon >delete</mat-icon>
+                  </button>
+              </div>
+              </app-carousel-item>
+            </div>
+        <br>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-10">
+                  <mat-form-field >
+                <input type="text" matInput #backTitle id="back">
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" (click)="addBack(backTitle.value)">Add</button>
+              </div>
+              <div class="col-md-12">
+                  <label>
+                      <input type="file" (change)="backNeckStyleImageUpload($event.target.files)">
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError2">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of backStyleImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url"  #img2/>
+                        </mat-card>
+                      </div>
+                    </div>
+              </div>
+            </div>
+              
+      
+          </div>
+    </div>
+    <br><br>
+    <div class="col-md-12 mat-card">
+      <label><h4>Sleeve Style</h4></label>
+      <div class="row">
+        <app-carousel-item>
+        <div appCarouselItem class="col-md-4" *ngFor="let data of holder?.sleeveStyle">    
+        <img [src]="measurementImageUrl + holder?._id + '/' + data.imageName"
+            style="width: 200px;" /> <br>
+            {{data.title}}
+            <button class="btn btn-primary" (click)="checkBeforeSleeveDelete(data._id, data.title)">
+                <mat-icon >delete</mat-icon>
+            </button>
+        </div>
+        </app-carousel-item>
+      </div>
+      <br>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-10">
+            <mat-form-field >
+          <input type="text" matInput #frontTitle1>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary" (click)="addSleeve(frontTitle1.value)">Add</button>
+        </div>
+        <div class="col-md-12">
+            <label>
+                <input type="file" (change)="sleeveStyleImageUpload($event.target.files)" >
+              </label>
+              <div class="alert alert-danger" *ngIf="imageError3">
+                <h4>Please Select the images</h4>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pb-2" *ngFor="let url of sleeveStyleImg">
+                  <mat-card>
+                    <img class="img-fluid" [src]="url" #img3/>
+                  </mat-card>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <br>
+    <div class="col-md-12 mx-auto">
+      <button class="btn btn-primary" (click)="getView()">View page</button>
+    </div>
+ 
+</div>
+  </form>
+</div>

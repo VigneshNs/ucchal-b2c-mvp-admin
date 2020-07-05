@@ -1,0 +1,718 @@
+<form [formGroup]="productForm">
+  <div class="grid" *ngIf="!editProductModel?.productDetailsEdit">
+    <div class="row">
+      <div class="col-md-8 col-8">
+
+      </div>
+      <div class="col-md-2 col-2">
+
+      </div>
+      <div class="col-md-2 col-2">
+        <div class="form-group float-right">
+          <input class="btn btn-md btn-primary" (click)="editProductInfo()" type="button" value="Edit">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid" *ngIf="!editProductModel?.productDetailsEdit">
+    <div class="row gridRow">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Product Name</label>
+          <div>
+            {{productModel?.productName}}
+          </div>
+          <br>
+        <!-- </div>
+      </div>
+      <div class="col-md-4">
+
+        <div class="form-group"> -->
+          <label>Product Description</label>
+          <div>
+            {{productModel?.productDescription}}
+          </div>
+          <br>
+          <!-- <div class="col-md-2" *ngIf="productModel?.pattern">
+            <div class="form-group"> -->
+              <label>Pattern</label>
+              <div>
+                {{productModel?.pattern}}
+              </div>
+            <!-- </div>
+          </div> -->
+          <br>
+          <label>Manufacturer</label>
+          <div>
+            {{productModel?.manufactureInfo}}
+          </div>
+        <br>
+        <div class="row">
+        <div class="col-md-6">
+          <!-- <div class="form-group"> -->
+            <label>Selling Price</label>
+            <div class="price">
+              {{productModel?.sp}}
+            </div>
+          <!-- </div> -->
+        </div>
+        <br>
+        <div class="col-md-6">
+            <!-- <div class="form-group"> -->
+              <label>Vendor Price</label>
+              <div class="price">
+                {{productModel?.vp}}
+              </div>
+            <!-- </div> -->
+          </div>
+          <br>
+          <div class="col-md-6">
+              <!-- <div class="form-group"> -->
+                <label >MRP</label>
+                <div class="price">
+                  {{productModel?.mrp}}
+                </div>
+              <!-- </div> -->
+            </div> 
+            <br>
+            <div class="col-md-6">
+                <!-- <div class="form-group"> -->
+                  <label>Discount</label>
+                  <div class="price">
+                    {{productModel?.discount}}
+                  </div>
+                <!-- </div> -->
+              </div>
+
+              <div class="col-md-6">
+                <!-- <div class="form-group"> -->
+                  <label>Variantion</label>
+                  <div>
+                    {{productModel?.variation}}
+                  </div>
+                <!-- </div> -->
+              </div>
+            <div class="col-md-6">
+              <!-- <div class="form-group"> -->
+                <label>Variation Type</label>
+                <div>
+                  {{productModel?.variationType}}
+                </div>
+              <!-- </div> -->
+            </div>
+              </div>
+        
+            </div>
+          
+        </div>
+      <!-- </div> -->
+     
+     
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+        <div class="form-group">
+          <label>HSN</label>
+          <div>
+            {{productModel?.hsnCode}}
+          </div>
+        </div>
+        </div>
+        <!-- </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group"> -->
+          <div class="col-md-6" *ngIf='productModel?.styleCode'>
+
+            <!-- <div class="form-group"> -->
+              <label>Style Code</label>
+              <div>
+                {{productModel?.styleCode}}
+              </div>
+            <!-- </div> -->
+          </div>
+          <div class="col-md-6" *ngIf='productModel?.sku'>
+
+            <div class="form-group">
+              <label>SKU</label>
+              <div>
+                {{productModel?.sku}}
+              </div>
+            </div>
+          </div>
+          
+
+
+     
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <label>Bullet Points</label>
+          <div>
+            {{productModel?.bulletPoints}}
+          </div>
+        </div>
+      </div> -->
+      
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Quantity</label>
+          <div>
+            {{productModel?.quantity}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <label>TTS Vendor</label>
+            <div class="price">
+              {{productModel?.ttsVendor}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+              <label>TTS Portal</label>
+              <div class="price">
+                {{productModel?.ttsPortol}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Style Code</label>
+              <div class="price">
+                {{productModel?.styleCode}}
+              </div>
+            </div>
+          </div>
+      <!-- <div class="col-md-12">
+        More Information
+
+      </div> -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Size Variant</label>
+          <div>
+            {{productModel?.sizeVariant}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Weight</label>
+          <div>
+            {{productModel?.weight}}
+          </div>
+        </div>
+      </div>
+      
+     <!--  <div class="col-md-2" *ngIf="productModel?.sizeVariant">
+          <div class="form-group">
+            <label>Size Variant</label>
+            <div>
+              {{productModel?.sizeVariant}}
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-6" *ngIf="productModel?.fabric">
+            <div class="form-group">
+              <label>Fabric</label>
+              <div>
+                {{productModel?.fabric}}
+              </div>
+            </div>
+          </div>
+          
+            <div class="col-md-6" *ngIf="productModel?.toFitWaist">
+                <div class="form-group">
+                  <label>To Fit Waist</label>
+                  <div>
+                    {{productModel?.toFitWaist}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" *ngIf="productModel?.color">
+                  <div class="form-group">
+                    <label>Color</label>
+                    <div>
+                      {{productModel?.color}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6" *ngIf="productModel?.catalogueName">
+                    <div class="form-group">
+                      <label>Catalogue Name</label>
+                      <div>
+                        {{productModel?.catalogueName}}
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6" *ngIf="productModel?.searchTerms1">
+                      <div class="form-group">
+                        <label>Search Terms 1</label>
+                        <div>
+                          {{productModel?.searchTerms1}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="productModel?.searchTerms2">
+                        <div class="form-group">
+                          <label>Search Terms 2 </label>
+                          <div>
+                            {{productModel?.searchTerms2}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6" *ngIf="productModel?.searchTerms3">
+                          <div class="form-group">
+                            <label>Search Terms 3</label>
+                            <div>
+                              {{productModel?.searchTerms3}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="productModel?.searchTerms4">
+                            <div class="form-group">
+                              <label>Search Terms 4 </label>
+                              <div >
+                                {{productModel?.searchTerms4}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6" *ngIf="productModel?.searchTerms5">
+                              <div class="form-group">
+                                <label>Search Terms 5</label>
+                                <div>
+                                  {{productModel?.searchTerms5}}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6" *ngIf="productModel?.costIncludes">
+                                <div class="form-group">
+                                  <label>Cost Includes</label>
+                                  <div>
+                                    {{productModel?.costIncludes}}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6" *ngIf="productModel?.PINTsku">
+                                  <div class="form-group">
+                                    <label>PINT Sku</label>
+                                    <div>
+                                      {{productModel?.PINTsku}}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6" *ngIf="productModel?.tailoringService">
+                                    <div class="form-group">
+                                      <label>Tailoring Service</label>
+                                      <div>
+                                        {{productModel?.tailoringService}}
+                                      </div>
+                                    </div>
+                                  </div>
+      <!-- <div class="col-md-4">
+          <div class="form-group">
+            <label>Tags</label>
+            <div>
+              {{productModel?.tags}}
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="grid" *ngIf="editProductModel?.productDetailsEdit">
+    <div class="row">
+      <div class="col-md-8 col-8">
+      </div>
+      <div class="col-md-2 col-2">
+        <div class="form-group  float-left">
+          <input class="btn btn-md btn-danger" (click)="updateChildInfo(prodName.value, dec.value,
+             hsnCode.value,  manu.value,sku.value, vp.value, sp.value,    quantity.value,
+             discount.value, variation.value, styleCode.value,
+            variantType.value,  weight.value,size.value, fabric.value,
+            ttsPortol.value, ttsVendor.value,  
+            mrp.value, color.value, pattern.value, toFitWaist.value,
+             searchTerms1.value, searchTerms2.value, searchTerms3.value,
+              searchTerms4.value, searchTerms5.value, pintsku.value, tail.value)" type="button"
+            value="save">
+        </div>
+      </div>
+      <div class="col-md-2 col-2">
+        <div class="form-group float-right">
+          <input class="btn btn-md btn-primary" (click)="cancel()" type="button" value="cancel">
+        </div>
+      </div>
+    </div>
+    <div class="row gridRow">
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input matInput placeholder="Product Name"
+             #prodName [value]="productModel.productName" required>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Product Description</mat-label>
+            <input matInput placeholder="Product Description" #dec [value]="productModel.productDescription">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Vendor ID</mat-label>
+            <input matInput placeholder="Product Description" #vendorId 
+            [value]="productModel.vendorId || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+     <!--  <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Products Type</mat-label>
+            <input matInput placeholder="Product Description" #productsType
+            [value]="productModel.productsType || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>HsN Code</mat-label>
+            <input matInput placeholder="HSN Code" #hsnCode
+             [value]="productModel.hsnCode || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Manufacturer Info</mat-label>
+            <input matInput placeholder="Manufacturer Info" #manu [value]="productModel.manufactureInfo || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SKU</mat-label>
+            <input matInput placeholder="SKU" #sku 
+            [disabled]="true"
+            [value]="productModel.sku || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Vendor Price</mat-label>
+            <input matInput placeholder="Vendor Price" #vp [value]="productModel.vp || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Selling Price</mat-label>
+            <input matInput placeholder="Vendor Price" #sp [value]="productModel.sp || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input matInput placeholder="Quantity" #quantity [value]="productModel.quantity || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Discount</mat-label>
+              <input matInput placeholder="Discount" #discount [value]="productModel.discount || null">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Variation</mat-label>
+                <input matInput placeholder="Variation" #variation [value]="productModel.variation || null">
+              </mat-form-field>
+            </div>
+          </div>
+
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Style Code</mat-label>
+            <input matInput placeholder="Style Code" #styleCode 
+            [disabled]="true"
+             [value]="productModel.styleCode || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Products Type</mat-label>
+            <input matInput placeholder="Style Code" 
+            #productType [value]="productModel.productType || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Variant Type</mat-label>
+            <input matInput placeholder="Variant Type" #variantType [value]="productModel.variationType || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Weight</mat-label>
+            <input matInput placeholder="Weight" #weight [value]="productModel.weight || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Size Variant</mat-label>
+            <input matInput placeholder="Size Variant" #sizeVariant [value]="productModel.sizeVariant || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Size Variant</mat-label>
+            <input matInput placeholder="Size" #size [value]="productModel.sizeVariant || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Fabric</mat-label>
+            <input matInput placeholder="Fabric" #fabric [value]="productModel.fabric || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label> Wash Care</mat-label>
+            <input matInput placeholder="WashCare" #washCare [value]="productModel.washCare || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+    <!--   <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Product Dimension</mat-label>
+            <input matInput placeholder="WashCare" #productDimension [value]="productModel.productDimension || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+
+     <!--  <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Packing Dimension</mat-label>
+            <input matInput placeholder="WashCare" #packingDimension [value]="productModel.packingDimension || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Packing TTS Portal</mat-label>
+            <input matInput placeholder="ttsPortol" #ttsPortol [value]="productModel.ttsPortol || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Packing TTSVendor</mat-label>
+            <input matInput placeholder="ttsVendor" #ttsVendor [value]="productModel.ttsVendor || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>MRP Price</mat-label>
+            <input matInput placeholder="MRP Price" #mrp [value]="productModel.mrp || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Color</mat-label>
+            <input matInput placeholder="Color" #color [value]="productModel.color || null">
+
+          </mat-form-field> -->
+          <mat-form-field>
+              <mat-label>Color</mat-label>
+              <mat-select (selectionChange)="selectedColor($event, colorHolder)" #color [value]="productModel.color || null">
+                <mat-option *ngFor="let data of colorHolder" [value]="data.fieldAttributeValue">
+                  {{data.fieldAttributeValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Pattern</mat-label>
+            <input matInput placeholder="Pattern" #pattern [value]="productModel.pattern || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Product Description</mat-label>
+            <input matInput placeholder="Product Description" #productDescription
+              [value]="productModel.productDescription || null">
+
+          </mat-form-field>
+        </div>
+      </div> -->
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>To Fit Waist</mat-label>
+            <input matInput placeholder="To FitWaist" #toFitWaist [value]="productModel.toFitWaist || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SearchTerms 1</mat-label>
+            <input matInput placeholder="searchTerms1" #searchTerms1 [value]="productModel.searchTerms1 || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SearchTerms 2</mat-label>
+            <input matInput placeholder="SearchTerms2" #searchTerms2 [value]="productModel.searchTerms2 || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SearchTerms 3</mat-label>
+            <input matInput placeholder="SearchTerms3" #searchTerms3 [value]="productModel.searchTerms3 || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SearchTerms 4</mat-label>
+            <input matInput placeholder="SearchTerms4" #searchTerms4 [value]="productModel.searchTerms4 || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>SearchTerms 5</mat-label>
+            <input matInput placeholder="SearchTerms5" #searchTerms5 [value]="productModel.searchTerms5 || null">
+
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>SearchTerms 5</mat-label>
+              <input matInput placeholder="Catalogue Name" #catalogue [value]="productModel.catalogueName || null">
+  
+            </mat-form-field>
+          </div>
+        </div> -->
+        <div class="col-md-4">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>PINT Sku</mat-label>
+                <input matInput placeholder="PINT sku" #pintsku [value]="productModel.PINTsku || null">
+    
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4">
+              <mat-form-field>
+                <mat-label>Tailoring Service</mat-label>
+                <mat-select #tail [value]="productModel.tailoringService || null" >
+                  <mat-option *ngFor="let data of tailor" [value]="data">
+                    {{data}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+    </div>
+  </div>
+</form>

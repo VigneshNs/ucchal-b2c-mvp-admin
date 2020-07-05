@@ -1,0 +1,8 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  
+  .pageBoxLg {
+      max-width: 1140px;
+      border: 1px solid #fff;
+  }

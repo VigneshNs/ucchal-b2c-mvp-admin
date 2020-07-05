@@ -1,0 +1,34 @@
+import { OfficeAddressDetails } from './officeAddressDetails.model';
+import { WareHouseAddress } from './wareHouseAddressDetail.model';
+import { PaymentModel } from './paymentDetails.model';
+import { DeliveryModel } from './deliveryDetails.model';
+import { PerformanceModel } from './performanceDetails.model';
+import { SignatureModel } from './signatureDetails.model';
+export class VendorModel {
+    vendorName: string;
+    vendorEmailId: string;
+    vendorMobileNumber: string;
+    password: string;
+    vendorType: string;
+    vendorContactPerson: string;
+    vendorContactPersonMobileNumber: string;
+    vendorContactPersonEmailId: string;
+    vendorContactPersonDesignation: string;
+    officeAddressDetails: [OfficeAddressDetails];
+    supplyLocationAddressDetails: [WareHouseAddress];
+    merchandiseDivision: string;
+    companyStatus: string;
+    contractNumber: string;
+    contractDate: Date;
+    contractStartDate: Date;
+    contractEndDate: Date;
+    contractReviewDate: Date;
+    paymentDetails: [PaymentModel];
+    deliveryDetails: [DeliveryModel];
+    performanceDetails: [PerformanceModel];
+    signatureDetails: [SignatureModel];
+    digitalSignature: string;
+    cancelledCheque: string;
+    vendorCode: string;
+    appId: string;
+}

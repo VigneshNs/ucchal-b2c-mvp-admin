@@ -1,0 +1,106 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Setting / Privacy Policy / Add</p>
+    </div>
+<div class="pageBoxLg">
+  <div class="container topAlignContainer ">
+    <form [formGroup]="privacyPolicyForm">
+      <div>
+          <label  class="pageBoxLg-label pblabel">Create Privacy Policy</label>
+        <!-- <label class="pageBoxLg-label">Create Privacy Policy</label> -->
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Title" formControlName="policyHeading"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12" formArrayName="policies">
+          <div *ngFor="let account of policyForms.controls; let i=index" [formGroupName]="i">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Policy Questions " formControlName="policyQuestion"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Policy Answers" formControlName="policyAnswers"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <a (click)="deletePolicies(i)">
+                  <mat-icon>clear</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <a (click)="addPolicyForm()">
+            <mat-icon class="gridEdit">add_box</mat-icon>
+          </a>
+          <p>Add New</p>
+        </div>
+        <div style="margin-left: 15px">
+            <button  mat-raised-button type="button" color="primary" (click)="createPolicy(privacyPolicyForm)">Save</button>
+
+          <button style="margin-left: 10px" mat-raised-button type="button" color="primary" (click)="cancel()">Cancel</button>
+         
+          
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- <div class="pageBoxLg">
+  <div class="container topAlignContainer ">
+    <form [formGroup]="privacyPolicyForm">
+      <div>
+        <label class="pageBoxLg-label">Create Privacy Policy</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Title" formControlName="policyHeading"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12" formArrayName="policies">
+          <div *ngFor="let account of policyForms.controls; let i=index" [formGroupName]="i">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Policy Questions " formControlName="policyQuestion"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Policy Answers" formControlName="policyAnswers"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <a (click)="deletePolicies(i)">
+                  <mat-icon>clear</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <a (click)="addPolicyForm()">
+            <mat-icon class="gridEdit">add_box</mat-icon>
+          </a>
+          <p>Add New</p>
+        </div>
+        <div>
+          <button mat-raised-button mat-button type="button" (click)="cancel()">Cancel</button>
+          <span></span>
+          <span></span>
+          <button mat-raised-button type="button" (click)="createPolicy(privacyPolicyForm)">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->

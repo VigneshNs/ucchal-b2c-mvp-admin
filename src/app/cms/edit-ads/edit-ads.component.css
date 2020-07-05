@@ -1,0 +1,45 @@
+.borDer {
+/*     border: 1px black solid;
+    background-color: lightgrey; */
+}.newNow {
+    margin-top: 15px;
+    background: #f2f3f8;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .54);
+  }
+  .pageBoxLg {
+    border: 1px solid #c8ced3;
+    color: #3f51b5;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #f2f3f8;
+    margin: 25px;
+    margin-top: 55px;
+  }
+  .editImage{
+      width: 100%;
+      height: auto;
+  }
+  .editNow{
+      margin-bottom: 15px;
+      background: #8f9bb3;
+  }
+  .editNow:focus{
+      outline: none;
+  }
+  .nenow{
+      font-size: 15px;
+      color: black;
+  }
+  .dimension{
+    margin: 10px;
+  background-color: #8f9bb3;
+  color: #fff;
+  border-radius: 27%;
+  }
+  .dimension:focus{
+      outline: none;
+  }

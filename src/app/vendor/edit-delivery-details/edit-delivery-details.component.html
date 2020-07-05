@@ -1,0 +1,258 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Service Level Standards 'On Time' - OT</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.slsOT}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Service Level Standards 'In Full' - Case Fill</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.slsIFC}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Service Level Standards 'In Full' - Line Fill</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.slsIFL}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Delivery Mode</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.deliveryMode}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Transport cost(s) paid by</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.transportCostPaidBy}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Returns of Goods</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.returnOfGoods}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Min.Order Size (QTY)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.minOrderSizeQty}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Min.Order Size (Amount)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.minOrderSizeAmt}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Catalogue images to be arranged by</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.cateImgAssignBy}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>if photoshoot by Ucchal, charges borne by</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.chargesOfPhotoShopBy}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Photoshoot charges(if applicable)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.photosCharge}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Business Model</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.businessModel}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Default Delivery Location</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.defaultDeliveyLocation}}
+    </div>
+  </div>
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Service Level Standards 'On Time' - OT</label>
+          <input type="text" class="form-control" [ngModel]="profileData.slsOT" #name formControlName="slsOT"
+            placeholder="Service Level Standards 'On Time' - OT" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Service Level Standards 'In Full' - Case Fill</label>
+          <input type="text" class="form-control" [ngModel]="profileData.slsIFC" #mob formControlName="slsIFC"
+            placeholder="Service Level Standards 'In Full' - Case Fill" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Service Level Standards 'In Full' - Line Fill</label>
+          <input type="text" class="form-control" [ngModel]="profileData.slsIFL" #emal formControlName="slsIFL"
+            placeholder="Service Level Standards 'In Full' - Line Fill" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Delivery Mode</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.deliveryMode" #comStat
+            formControlName="deliveryMode" (ngModelChange)="profileData.deliveryMode=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of DeliveryMode" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Transport cost(s) paid by</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.transportCostPaidBy" #vencop
+            formControlName="transportCostPaidBy" (ngModelChange)="profileData.transportCostPaidBy=$event">
+            <!-- <option selected >Select</option> -->
+            <option *ngFor="let data of TransportCost" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Returns of Goods</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.returnOfGoods" #comStat
+            formControlName="returnOfGoods" (ngModelChange)="profileData.returnOfGoods=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of ReturnsofGood" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Min.Order Size (QTY)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.minOrderSizeQty"
+            formControlName="minOrderSizeQty" #vencpd placeholder="Min.Order Size (QTY)">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Min.Order Size (Amount)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.minOrderSizeAmt"
+            formControlName="minOrderSizeAmt" #merDiv placeholder="Min.Order Size (Amount)">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Catalogue images to be arranged by</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.cateImgAssignBy" #merDiv
+            formControlName="cateImgAssignBy" (ngModelChange)="profileData.cateImgAssignBy=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of CatalogImgAssingBy" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>if photoshoot by Ucchal, charges borne by</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.chargesOfPhotoShopBy" #conNum
+            formControlName="chargesOfPhotoShopBy" (ngModelChange)="profileData.chargesOfPhotoShopBy=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of ChargesOfPhotoshop" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Photoshoot charges(if applicable)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.photosCharge " #contstardate
+            formControlName="photosCharge" placeholder="Photoshoot charges(if applicable)">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Business Model</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.businessModel" #contenddate
+            formControlName="businessModel" (ngModelChange)="profileData.businessModel=$event">
+            <!--   <option selected>Select</option> -->
+            <option *ngFor="let data of BusinessModel" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Default Delivery Location</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.defaultDeliveyLocation" #contenddate
+            formControlName="defaultDeliveyLocation" (ngModelChange)="profileData.defaultDeliveyLocation=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of DefaultDeliveryLocation" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(name, mob, emal, venty, vencop, venpemob, vencpd, merDiv, comStat, conNum, contstardate, contenddate)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

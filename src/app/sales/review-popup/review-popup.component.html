@@ -1,0 +1,34 @@
+<button type="button" class="close" (click)="close()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group text-left">
+            <fieldset class="rating">
+                <input type="radio"  [checked]="data.rating===5" />
+                <label title="Rocks!" >5 stars</label>
+              
+                <input type="radio"  [checked]="data.rating===4" />
+                <label title="Pretty good" >4 stars</label>
+              
+                <input type="radio"  [checked]="data.rating===3" />
+                <label title="Ok" >3 stars</label>
+              
+                <input type="radio"  [checked]="data.rating===2" />
+                <label title=" bad" >2 stars</label>
+              
+                <input type="radio"  [checked]="data.rating===1" />
+                <label title="Very bad" >1 star</label>
+              </fieldset>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="form-group">
+            {{data.review}}
+        </div>
+    </div>
+</div>
+
+
+

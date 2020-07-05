@@ -1,0 +1,139 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Marketing / First Time Coupon </p>
+    </div>
+<div class="pageBoxLg container">
+    <div style="padding: 7px">
+        <label  class="pageBoxLg-label pblabel">First Time SignUp Coupon</label>
+    
+        <!-- <label style="margin-left: 20px" matTooltip="Add Terms & Use" class="pageBoxLg-label" (click)="goToAdd()">Add</label> -->
+      </div>
+      <div class="col-md-11 text-right" *ngIf="isHave">
+          <h1 >
+              <button class="addButton" mat-flat-button color="primary" (click)="getAdd()"> <i
+                  class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> <a style="padding-left: 10px;">Add</a>  </button>
+          </h1>
+        </div>
+  <!-- <div class="row ">
+      <div class="col-md-12 form-group text-center">
+          <label>First Time SignUp Coupon</label>
+        </div>
+  </div> -->
+  <div class="row"  *ngIf="!showNoData" >
+  <table mat-table [dataSource]="holder" class="container-fluid border text-strong tablesuper">
+
+      <ng-container matColumnDef="couponName">
+        <th mat-header-cell *matHeaderCellDef><h5>Coupon Name</h5>  </th>
+        <td mat-cell *matCellDef="let element"> {{element.couponCode}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef><h5>Description</h5>  </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef><h5>Status</h5>  </th>
+        <td mat-cell *matCellDef="let element"> {{element.couponStatus === true ? 'Enable': 'Disable'}} </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="endingDate">
+          <th mat-header-cell *matHeaderCellDef><h5>Ending Date</h5>  </th>
+          <td mat-cell *matCellDef="let element"> {{element.endDate | date}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef><h5>Edit</h5>  </th>
+            <td mat-cell *matCellDef="let element"><mat-icon (click)="getChange()">edit</mat-icon> </td>
+          </ng-container>
+    
+      <!-- <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef><h5>Action</h5>  </th>
+        <td mat-cell *matCellDef="let element">
+         
+          <div class=" vcenter form-group">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+      
+                <a class="nav-link selectCursor" [routerLink]="['/marketing/editDiscount/',element._id]" >Edit</a>
+                <a class="nav-link selectCursor" (click)="openDialog(element)">Delete</a>
+              </mat-menu>
+            </div> </td>
+      </ng-container> -->
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="showNoData" class="nodata"> No results found</div>
+  <!-- <div class="row col-md-12">
+      <table  class="table" *ngFor="let data of holder">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"><h5 style="margin-left: 20px">#</h5></th>
+              <th scope="col"><h5>Coupon Name</h5></th>
+              <th scope="col"><h5>Description</h5></th>
+              <th scope="col"><h5>Starting Date</h5></th>
+              <th scope="col"><h5>Ending Date</h5></th>
+              <th scope="col"><h5>Action</h5></th>
+              
+            </tr>
+          </thead>
+          <tbody  *ngFor="let data of holder;let i = index">
+            <tr>
+             
+              <th scope="row"><a  style="margin-left: 20px" >{{i+1}}</a></th>
+              <td> {{data.couponCode}}</td>
+              <td>  {{data.description}}</td>
+              <td> {{data.startDate | date}}</td>
+              <td>{{data.endDate | date}}</td>
+              <td><mat-icon (click)="getChange()">edit</mat-icon></td>
+             
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+ -->
+
+  <!-- <div class="row" *ngFor="let data of holder">
+    
+    <div class="col-md-6 form-group">
+      <label>Coupon Name</label>
+    </div>
+    <div class="col-md-6 form-group">
+      {{data.couponCode}}
+    </div>
+    <div class="col-md-6 form-group">
+        <label>Description</label>
+      </div>
+      <div class="col-md-6 form-group">
+        {{data.description}}
+      </div>
+      <div class="col-md-6 form-group">
+          <label>Starting Date</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{data.startDate | date}}
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Ending Date</label>
+          </div>
+          <div class="col-md-6 form-group">
+            {{data.endDate | date}}
+          </div>
+          
+  </div> -->
+  <!-- <div class="row" >
+    <div class="col-md-6 form-group" *ngIf="!isHave">
+      <button class="btn" (click)="getChange()">Changes</button>
+    </div>
+     <div class="col-md-6 form-group" *ngIf="isHave">
+      <button class="btn" (click)="getAdd()">Add</button>
+    </div> 
+    <div class="col-md-6 form-group">
+
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,28 @@
+<div class="col-md-12" *ngIf="isFinancialStatusDownload ? download(pendingData.length, successData.length, pendingTotal, successTotal): false">
+  <button mat-flat-button color="primary" class="btn" (click)="download(pendingData.length, successData.length, pendingTotal, successTotal)">Download</button>
+  <button  >Primary</button>
+</div>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><h5>#</h5></th>
+      <th scope="col"><h5>Status</h5></th>
+      <th scope="col"><h5>No of Order</h5></th>
+      <th scope="col"><h5>Revenue</h5></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Pending</td>
+      <td>{{pendingData.length}}</td>
+      <td>&#x20B9; {{pendingTotal | number:'3.2-5'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Success</td>
+      <td>{{successData.length}}</td>
+      <td>&#x20B9; {{successTotal | number:'3.2-5'}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,146 @@
+.inputclass{
+    height: 36px;
+    width:140px;
+  margin: auto;
+}
+.addproduct{
+    margin-left:7%;
+  
+}
+select.mat-input-element:not(:disabled) {
+  cursor: pointer;
+  top: -6px;
+  left: 12px;
+}
+.parentLabel{
+text-align: center;
+}
+.childtLabel{
+  text-align: center;
+}
+.headerwrapper__searchbox {
+  position: relative;
+  left: -1px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background: #F7F5F3; */
+  border: 1px solid #5f5d5d;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width:230px;
+  height: 40px;
+  /* margin-left: -13px; */
+}
+.headerwrapper__searchbox input {
+  width: 95%;
+  border: 0;
+  outline: 0;
+  /* font-family: "HelveticaNeue"; */
+  font-weight: normal;
+  font-size: 17px;
+  color: #333333;
+  padding-right: 1rem;
+  background: transparent;
+  /* display: none; */
+}
+.headerwrapper__searchbox img {
+  height: 1.5rem;
+}
+.parentChildLabel{
+
+  width: 71px;
+  border: 1px solid #5f5d5d;
+  border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+  height: 40px;
+  right: 10px;
+}
+.searchbar{
+  left: -1px;
+  position: relative;
+height: 40px;
+width: 200px;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+border: 1px solid #939090;
+}
+.pagination li{
+  font-size: 25px;
+  /* background-color: #ccc; */
+  padding: 5px;
+  cursor: pointer;
+  color: #333;
+}
+.pagination{
+  display: inline-block;
+    float: none;
+}
+
+.loader{
+  margin-top: 100px;
+  width: 300px !important;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #f2f3f8 !important;
+  margin: 25px;
+  margin-top: 58px;
+}
+.addButtons {
+  margin: 10px;
+  background-color: #255d80;
+  color: #fff;
+  border-radius: 27%;
+  margin: 20px;
+
+}
+td{
+    background-color: #f2f3f8 !important;color: #fff;
+    margin: 15px;
+    color: #000;
+}
+
+th{
+    background: #040c116c !important;
+    color: white;
+    border: 1px solid #eeeeee;
+    margin: 15px !important;
+    padding: 15px;
+}
+
+.addButtons:focus {
+  outline: none; 
+}
+h5{
+  text-align: center;
+}
+.btnIcon{
+  background-color: #1c4561;
+  margin-top: 10px;
+}
+.btnIcon:focus{
+outline: none;
+}
+.hoverNow:hover{
+  background-color: #255d80;
+  margin: 10px;
+  color: #fff;
+}
+.hoverNow{
+  margin: 10px;
+  cursor: pointer;
+}
+
+.onHand {
+  cursor: pointer !important;
+}

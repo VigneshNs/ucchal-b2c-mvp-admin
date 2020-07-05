@@ -1,0 +1,247 @@
+<button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+<div class="row">
+  <div class="col-md-5 form-group card">
+    <div class="row"  style="padding: 8px !important ; ">
+
+      <table class="table table-bordered table-hover">
+
+        <tbody>
+          <tr> 
+            <td>PO Number</td>
+            <td>{{data.poNumber}}</td>
+          </tr>
+          <tr>
+            <td>PO Date</td>
+            <td>{{data.poDate | date}}</td>
+          </tr>
+          <tr>
+            <td>PO Expire Date</td>
+            <td>{{data.poExpiryDate | date}}</td>
+          </tr>
+          <tr>
+            <td>Order ID</td>
+            <td>{{data.orderId}}</td>
+          </tr>
+          <tr>
+            <td>
+              PO Type
+            </td>
+            <td>
+              {{data.poType}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+              <div class="col-md-12">
+                  <div class="row form-group" >
+                      <!-- <div class="col-md-2"></div> -->
+                      <div class="col-md-3 bordeR text-center" *ngFor="let st of status" ><span *ngIf="st === data.poStatus">&#10003;</span><label>{{st}}</label></div>
+                      <!-- <div class="col-md-2"></div> -->
+                    </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row" *ngIf="isInvoiceAgain || (data.poStatus !== 'Received' && data.poStatus !== 'Approved')">
+                  <div class="col-md-6">
+                    <input type="text" [disabled]="data.poStatus === 'Created'" #invoice placeholder="Invoice Number" class="form-control" required>
+                    <p *ngIf="isInvoice === true" style="color: red;">Enter Invoice Number</p>
+                    <span *ngIf="data.poStatus === 'Created'" style="color: rgb(128, 128, 128);">Note: (This field is enable after send mail)</span>
+                  </div>
+                  <div class="col-md-3">
+                    <button  class="btn btn-info" [disabled]="data.poStatus === 'Created'" (click)="onInvoice(invoice)">Add</button>
+                    
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-info" *ngIf="isInvoiceAgain" (click)="onCancel()">Cancel</button>
+                  </div>
+                </div>
+                <div class="row" *ngIf="!isInvoiceAgain && (data.poStatus ==='Received' || data.poStatus === 'Approved')">
+                  <div class="col-md-6">
+                    <label>Invoice Number</label>
+                  </div>
+                  <div class="col-md-3">
+                      {{data.invoiceNumber}}
+                  </div>
+                  <div class="col-md-3">
+                      <button class="btn btn-info" *ngIf="data.poStatus !== 'Approved'" (click)="onEditInvoice()">Edit</button>
+                  </div>     
+                </div>
+              </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+
+  <div class="col-md-2 form-group"></div>
+  <div class="col-md-5 form-group">
+    <div class="row">
+        <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td>Vendor Name</td>
+                <td>{{data.vendorName}}</td>
+              </tr>
+              <tr>
+                <td>Vendor Code </td>
+                <td> {{data.vendorCode}}</td>
+              </tr>
+              <tr>
+                  <td>Vendor EmailId</td>
+                  <td> {{data.vendorEmailId}}</td>
+                </tr>
+                <tr>
+                    <td>Vendor Address</td>
+                    <td> {{data.vendorAddress}}</td>
+                  </tr>
+                  <tr>
+                      <td>Vendor CST No</td>
+                      <td> {{data.vendorCSTNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vendor GST No</td>
+                        <td>{{data.vendorGSTNo}}</td>
+                      </tr>
+                      <tr>
+                          <td>Currency</td>
+                          <td> {{data.vendorCurrencyType}}</td>
+                        </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  <div class="col-md-12 form-group">
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Catalogue Name</th>
+              <th scope="col">Vendor Item No.</th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Size</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Discount Percentage</th>
+              <th scope="col">CGST Rate</th>
+              <th scope="col">CGST Amount</th>
+              <th scope="col">SGST Rate</th>
+              <th scope="col">SGST Amount</th>
+              <th scope="col">IGST Rate</th>
+              <th scope="col">IGST Amount</th>
+              <th scope="col">Ner Amount</th>
+              <th scope="col">Estimated Shipment Date</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let po of data.vendorItems; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{po.catalogueName}}</td>
+              <td>{{po.sku}}</td>
+              <td>{{po.unitPrice}}</td>
+              <td>{{po.size}}</td>
+              <td>{{po.quantity}}</td>
+              <td>{{po.discount}}</td>
+              <td>{{po.cgstRate}}</td>
+              <td>{{po.cgstAmount}}</td>
+              <td>{{po.sgstRate}}</td>
+              <td>{{po.sgstAmount}}</td>
+              <td>{{po.igstRate}}</td>
+              <td>{{po.igstAmount}}</td>
+              <td>{{po.netAmount}}</td>
+              <td>{{po.estimatedShipmentDate | date}}</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{data.totalQuantity}}</td>
+                <td></td>
+                <td></td>
+                <td>{{data.totalCGSTamt}}</td>
+                <td></td>
+                <td>{{data.totalSGSTamt}}</td>
+                <td></td>
+                <td>{{data.totalIGSTamt}}</td>
+                <td>{{data.netAmount}}</td>
+                <td></td>
+              </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="col-md-6 form-group">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>Special Instruction</label>
+      </div>
+      <div class="col-md-6 form-group">
+        {{data.specialInstruction}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 form-group">
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan="7" scope="col">Grand Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Net Amount</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{data.netAmount}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Freight</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Tax</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{data.tax}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Total Amount</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{data.totalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="col-md-12">
+      <div class="row">
+          <div class="col-md-10"></div>
+          <div class="col-md-2">
+              <button class="btn btn-info" [disabled]="data.poStatus !== 'Received'" (click)="onApprove()">Approved</button>
+          </div>
+        </div>
+  </div>
+</div>

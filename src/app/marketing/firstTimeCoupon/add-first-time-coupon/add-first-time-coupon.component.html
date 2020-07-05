@@ -1,0 +1,133 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Marketing / First Time Coupon / Add</p>
+    </div>
+<form [formGroup]="couponForm">
+<div class="pageBoxLg container">
+  <div class="row">
+    <div class="col-md-12 form-group text-center">
+        <label  class="pageBoxLg-label pblabel">Create First Time Coupon</label>
+     
+    </div>
+    <!-- <div class="col-md-4 form-group">
+
+    </div> -->
+    <div class="col-md-6 form-group">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Coupon Code" style="text-transform: uppercase" formControlName="couponCode">
+      </mat-form-field>
+      </div>
+      <div class="col-md-6 form-group">
+        </div>
+        <div class="col-md-6 form-group">
+          <mat-form-field>
+            <textarea  matInput placeholder="Description" formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 form-group"></div>
+        <div class="col-md-2 form-group">
+           <label>Percentage</label>
+        </div>
+        <div class="col-md-6 form-group">
+            <mat-form-field >
+                <mat-label>Percentage</mat-label>
+                <input matInput placeholder="Percentage" formControlName="typeValue" required>
+                <span mat-button matSuffix mat-icon-button aria-label="typeValue" >
+                    <mat-icon [inline]="true" matSuffix>%</mat-icon>
+                  </span>
+    
+                <mat-error *ngIf="couponForm.controls['typeValue'].errors?.required">
+                  Percentage is
+                  <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div class="col-md-4 form-group"></div>
+      <!--   <div class="col-md-12 form-group">
+          <label>Conditions</label>
+        </div> -->
+        <!-- <div class="col-md-4 form-group">
+            <mat-form-field>
+                <mat-label>Field</mat-label>
+                <mat-select (selectionChange)="changesField($event)" formControlName="field">
+                  <mat-option *ngFor="let data of Field" [value]="data">
+                    {{data}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <label>Order Quantity</label>
+        </div> -->
+       <!--  <div class="col-md-4 form-group">
+            <mat-form-field>
+                <mat-label>Operator</mat-label>
+                <mat-select  formControlName="operator">
+                  <mat-option *ngFor="let data of Operator" [value]="data">
+                    {{data}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div> -->
+        <!-- <div class="col-md-4 form-group">
+            <mat-form-field >
+                <mat-label>Value</mat-label>
+                <input matInput placeholder="Value" formControlName="value" required>    
+                <mat-error *ngIf="couponForm.controls['typeValue'].errors?.required">
+                  Value is
+                  <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div> -->
+        <div class="col-md-4 form-group">
+          <label>Enable</label>
+        </div>
+        <div class="col-md-4 form-group">
+            <mat-checkbox value="checked" (click)="changeCouponStatus()" color="primary">
+              </mat-checkbox>
+        </div>
+        <div class="col-md-4 form-group"></div>
+       <!--  <div class="col-md-4 form-group">
+          <label>Show Advance Settings</label>
+        </div>
+        <div class="col-md-4 form-group">
+            <mat-checkbox value="checked" (click)="changeAdvanceSettings()" color="primary">
+              </mat-checkbox>
+        </div>
+        <div class="col-md-4 form-group"></div>
+        <div class="col-md-4 form-group" *ngIf="isAdvanceSettig">
+            <mat-form-field >
+                <input matInput placeholder="Maximum Usage" formControlName="maximumUsage" required>    
+                <mat-error *ngIf="couponForm.controls['typeValue'].errors?.required">
+                  Value is
+                  <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div class="col-md-4 form-group" *ngIf="isAdvanceSettig">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" formControlName="startDate" placeholder="Start date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="col-md-4 form-group" *ngIf="isAdvanceSettig">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker1" formControlName="endDate" placeholder="End date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        </div> -->
+        <div class="col-md-4 form-group text-center"></div>
+          <div class="col-md-2 form-group text-center">
+            <button  mat-raised-button type="button" color="primary" (click)="createDiscount(couponForm)" class="btn">Submit</button>
+          </div>
+          <div class="col-md-0 form-group text-center" >
+            <button  mat-raised-button type="button" color="primary" (click)="cancelCreation()" class="btn">Cancel</button>
+          </div>
+        <!-- <div class="col-md-6 form-group text-center">
+          <button (click)="createDiscount(couponForm)" class="btn">Submit</button>
+        </div>
+        <div class="col-md-6 form-group text-center" >
+          <button (click)="cancelCreation()" class="btn">Cancel</button>
+        </div> -->
+  </div>
+</div>
+</form>

@@ -1,0 +1,421 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="nav-color" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name"></h1>
+    <h5 class="logout" (click)="getLogOut()">LogOut</h5>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-accordion multi="true">
+          <mat-nav-list style="margin-left: 9px; color: black">
+              <a mat-list-item  routerLink="/dashboard/maindashboard" >Dashboard </a>
+             
+            </mat-nav-list>
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Category
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/category/supercategory">
+              <a>Super Category</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/category/maincategory">
+              <a>Main Category</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/category/subcategory">
+              <a>Sub Category</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/category/templateupload">
+              <a>Template Create</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Customer
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/customer/viewCustomer">
+                <a>View Customer</a>
+              </mat-list-item>
+            </mat-nav-list>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/customer/viewinquiries">
+                <a>View Inquiries</a>
+              </mat-list-item>
+            </mat-nav-list>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/customer/viewsubscribers">
+                <a>View Subscribers</a>
+              </mat-list-item>
+            </mat-nav-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Vendor Management
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/vendor/viewAllVendor">
+                <a>View Vendor</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/vendor/setting">
+                <a>Vendor Setting</a>
+              </mat-list-item> 
+              <!-- <mat-list-item routerLink="/cms/viewPrivacyPolicy">
+                <a>Privacy Policy</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewFaq">
+                <a>FAQ</a>
+              </mat-list-item> -->
+            </mat-nav-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Home Page
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/cms/viewAds">
+                <a>ADS</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewBanner">
+                <a>Banners</a>
+              </mat-list-item>  
+              <mat-list-item routerLink="/cms/header">
+                <a>Header</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewFooter">
+                <a>Footer</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewThird">
+                <a>Launch Offer</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewCategoryBanner">
+                <a>Category Banner</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/displayContent">
+                <a>Offer Content</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/homepageVideo">
+                <a>Add Video</a>
+              </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+     <!--    <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Home Page
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/cms/viewAds">
+                <a>ADS</a>
+              </mat-list-item>
+             <mat-list-item routerLink="/cms/viewBanner">
+                <a>Banners</a>
+              </mat-list-item>  
+              <mat-list-item routerLink="/cms/header">
+                <a>Header</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewFooter">
+                <a>Footer</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewSecond">
+                <a>Multiple Row</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewThird">
+                <a>Third Row</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewFifth">
+                <a>Fifth Row</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewSixth">
+                <a>Sixth Row</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/cms/viewSeventh">
+                <a>Seventh Row</a>
+              </mat-list-item>
+            </mat-nav-list>
+          </mat-expansion-panel> -->
+          <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Marketing
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/marketing/viewDiscount">
+                <a>Discount</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/marketing/viewfirstcoupon">
+                <a>First Time Coupon</a>
+              </mat-list-item>
+             <mat-list-item routerLink="/marketing/viewFlexibleCoupon">
+                <a>Flexible Coupon</a>
+              </mat-list-item>
+              <mat-list-item routerLink="/marketing/viewWallet">
+                <a>Wallet</a>
+              </mat-list-item>  
+              
+            </mat-nav-list>
+          </mat-expansion-panel>
+
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Settings
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/cms/contactUs">
+              <a>Contact Us</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/viewTermsAndUse">
+              <a>Terms and Use</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/viewPrivacyPolicy">
+              <a>Privacy Policy</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/cms/viewFaq">
+              <a>FAQ</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion multi="true">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Brand
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/brand/viewbrand">
+              <a>Manage Brand</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+     <mat-accordion multi="true">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Product
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item (click)="getproduct()">
+              <a>Manage Product</a>
+            </mat-list-item>
+          </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/product/viewproductoption">
+                <a>Manage Product Size</a>
+              </mat-list-item>
+            </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/product/productsettings">
+              <a>Product Settings</a>
+            </mat-list-item>
+          </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/product/categorynote">
+                <a>Category Note</a>
+              </mat-list-item>
+            </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/product/discount">
+              <a>Product Discount</a>
+            </mat-list-item>
+          </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/product/dispatch">
+              <a>Product Dispatch</a>
+            </mat-list-item>
+          </mat-nav-list>
+          <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/product/viewProductTag">  
+                <a>Product Tags</a>
+              </mat-list-item>
+            </mat-nav-list>
+            <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/product/sizeguide">
+                  <a>Size Guide</a>
+                </mat-list-item>
+              </mat-nav-list>
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/product/howtomeasure">
+                  <a>How to Measure</a>
+                </mat-list-item>
+              </mat-nav-list>
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/product/viewreadytowear">
+                  <a>Ready To Wear</a>
+                </mat-list-item>
+              </mat-nav-list>
+              <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewProductReview">
+                    <a>Product Review</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/productSequence">
+                    <a>Product Sequence</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewplussize">
+                    <a>Plus Size</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewbodyheight">
+                    <a>Body Height</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewsizewiseincrement">
+                    <a>Size Wise Increment</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewNewArrival">
+                    <a>New Arrival</a>
+                  </mat-list-item>
+                </mat-nav-list>
+             
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion multi="true">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Inventory
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item routerLink="/product/viewinventory">
+              <a>View Inventory</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion multi="true">
+          <mat-expansion-panel class="no-shadow">
+              <mat-expansion-panel-header fxLayout="row">
+                <mat-panel-title>
+                  Tailoring Service
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewMeasurement">
+                    <a>Blouse Measurement</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/viewkameezmeasurement">
+                    <a>Kameez Measurement</a>
+                  </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list class="ml-0" dense>
+                    <mat-list-item routerLink="/product/viewlehengameasurement">
+                      <a>Lehenga Measurement</a>
+                    </mat-list-item>
+                  </mat-nav-list>
+            </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion multi="true">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row">
+            <mat-panel-title>
+              Sales
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/sales/vieworders">
+                <a>Orders</a>
+              </mat-list-item>
+            </mat-nav-list>
+            <!-- <mat-nav-list class="ml-0" dense>
+              <mat-list-item routerLink="/sales/shipmentFees">
+                <a>ShippingFees</a>
+              </mat-list-item>
+            </mat-nav-list> -->
+            <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/sales/purchaseOrderSettting">
+                  <a>PO Settings</a>
+                </mat-list-item>
+              </mat-nav-list>
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/sales/viewpurchaseorder">
+                  <a>Purchase Order</a>
+                </mat-list-item>
+              </mat-nav-list>
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/sales/viewReturnOrder">
+                  <a>Return Order</a>
+                </mat-list-item>
+              </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion multi="true">
+          <mat-expansion-panel class="no-shadow">
+            <mat-expansion-panel-header fxLayout="row">
+              <mat-panel-title>
+                Shipment
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+           
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item routerLink="/sales/shipmentFees">
+                  <a>ShippingFees</a>
+                </mat-list-item>
+              </mat-nav-list>
+             
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/sales/shipmentsetting">
+                    <a>Shipment Settings</a>
+                  </mat-list-item>
+                </mat-nav-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion multi="true">
+            <mat-expansion-panel class="no-shadow">
+              <mat-expansion-panel-header fxLayout="row">
+                <mat-panel-title>
+                  Price Calculation
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+             
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item routerLink="/product/incrementrate">
+                    <a>Increment Rate</a>
+                  </mat-list-item>
+                </mat-nav-list>
+               
+                  <mat-nav-list class="ml-0" dense>
+                    <mat-list-item routerLink="/product/pricerate">
+                      <a>Price Rate</a>
+                    </mat-list-item>
+                  </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

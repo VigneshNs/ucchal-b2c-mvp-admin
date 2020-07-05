@@ -1,0 +1,74 @@
+<mat-card class="pageBoxLg">
+  <div class="row ">
+    <!-- <label class="pageBoxLg-label "><h6>Edit Address</h6></label> -->
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-6 input-group-md">
+      <label class="allColor"><b style="color: #fff; margin: 10px;">Name</b></label>
+      <input type="text" class="form-control" placeholder="Name" #name>
+    </div>
+    <div class="col-md-6 input-group-md">
+        <label class="allColor"><b style="color: #fff; margin: 10px;">Building</b></label>
+        <input type="text" class="form-control" placeholder="Building.no" #build>
+    </div>
+    <div class="col-md-6 input-group-md">
+        <label class="allColor"><b style="color: #fff; margin: 10px;">Street Address</b></label>
+        <input type="text" class="form-control" placeholder="Street Address" #street>
+      </div>
+      <div class="col-md-6 input-group-md">
+          <label class="allColor"><b style="color: #fff; margin: 10px;">Land Mark</b></label>
+          <input type="text" class="form-control" placeholder="Landmark" #land>
+      </div>
+      <div class="col-md-6 input-group-md">
+          <label class="allColor"><b style="color: #fff; margin: 10px;">City</b></label>
+          <input type="text" class="form-control" placeholder="City" #city>
+        </div>
+        <div class="col-md-6 input-group-md">
+            <label class="allColor"><b style="color: #fff; margin: 10px;">State</b></label>
+            <input type="text" class="form-control" placeholder="State" #state>
+        </div>
+        <div class="col-md-6 input-group-md">
+            <label ><b style="color: #fff; margin: 10px;" class="allColor">PinCody</b></label>
+            <input type="text" class="form-control" placeholder="Pincode" #pin>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-12">
+          <br>
+        </div>
+        <div class="col-md-12 text-center">
+            <button mat-stroked-button type="button" class="btn btn-dark "
+            (click)="addAddress(name, build, street, land, city, state, pin)" class="addButtons">Submit</button>
+            <button mat-stroked-button type="button" class="btn btn-dark " (click)="cancel()" class="addButtons">Cancel</button>
+        </div>
+  </div>
+  <div class="row pageBoxl">
+      <table class="table table-striped table-hover" >
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Name</th>
+              <th scope="col" class="text-center">Building</th>
+              <th scope="col" class="text-center">Street Address</th>
+              <th scope="col" class="text-center">City</th>
+              <th scope="col" class="text-center">State</th>
+              <th scope="col" class="text-center">Landmark</th>
+              <th scope="col" class="text-center">Pincode</th>
+              <th scope="col" class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let data of holder">
+            <tr>
+              <th scope="row" class="text-center">{{data.name}}</th>
+              <td class="text-center">{{data.building}}</td>
+              <td class="text-center">{{data.streetAddress}}</td>
+              <td class="text-center">{{data.city}}</td>
+              <th class="text-center">{{data.state}}</th>
+              <td class="text-center">{{data.landmark}}</td>
+              <td class="text-center">{{data.pincode}}</td>
+              <td class="text-center" (click)="getDelete(data)"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            </tr>
+            </tbody>
+        </table>
+  </div>
+</mat-card>

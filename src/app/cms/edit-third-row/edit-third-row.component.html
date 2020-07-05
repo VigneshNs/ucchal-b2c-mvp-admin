@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <mat-horizontal-stepper #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Edit Third Row Product</ng-template>
+      <form [formGroup]="productForm">
+          <div class="container-fluid">
+              <div class="row">
+                <div class="form-group col-md-8">
+                  <div class="form-group col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Title" [ngModel]="holder?.title" formControlName="title" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Description" [ngModel]="holder?.description" formControlName="description" required>
+                      </mat-form-field>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="row" fxLayout="row">
+                <div fxFlex="50%">
+                  <button mat-raised-button color="warn" matStepperNext>
+                    Next
+                  </button>
+                </div>
+                <div fxFlex="50%">
+                  <button mat-flat-button color="primary" style="margin-left: 10px" (click)="updateCancel()">
+                    Cancel
+                  </button>
+              </div>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+
+        <ng-template matStepLabel>Select the Products</ng-template>
+        <mat-form-field>
+            <mat-label>Select an Tag</mat-label>
+            <mat-select (selectionChange)="filterByOption($event)">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let data of tagValue" [value]="data._id">{{data.tagName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <table mat-table [dataSource]="productData" matSort class="container-fluid ">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? masterToggle() : null" [checked]="isAtLeaseOneSelected() && isAllSelected()"
+                    [indeterminate]="isAtLeaseOneSelected() && !isAllSelected()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? rowToggle(row) : null" [checked]="selection.isSelected(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+            <ng-container matColumnDef="primeImage">
+              <th mat-header-cell *matHeaderCellDef> Products
+               
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <a (click)="viewProduct(element)">
+                  <img [src]="element.productImage[0]?.productImageName" style="width: 90px; height: 125px;" /></a> </td>
+            </ng-container>
+            <ng-container matColumnDef="productName">
+      
+              <th mat-header-cell *matHeaderCellDef> Product Name <br>
+               
+      
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+            </ng-container>
+      
+      
+            <ng-container matColumnDef="styleCode">
+              <th mat-header-cell *matHeaderCellDef> Style Code<br>
+      
+      
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.styleCode}} </td>
+            </ng-container>
+            <ng-container matColumnDef="skuCode">
+              <th mat-header-cell *matHeaderCellDef> SKU Code<br>
+                
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.skuCode}} </td>
+            </ng-container>
+           
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+      <div class="row">
+        <div class="col-md-6">
+          <button mat-flat-button color="primary" matStepperPrevious>
+            Back
+          </button>
+        </div>
+        <div  class="float-left col-md-6" >
+          <div *ngIf="showError" >
+            <p style="color: crimson">Select atleast 4 Product</p>
+          </div>
+            <button mat-flat-button color="primary" (click)="onCheck()">
+              Save
+            </button>
+          </div>
+      </div> 
+    </mat-step>
+   
+  </mat-horizontal-stepper>
+</div>

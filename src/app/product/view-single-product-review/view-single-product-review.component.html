@@ -1,0 +1,92 @@
+  <div class="row grid"  *ngFor="let data of holder">
+    <div class="col-md-12">
+      <div class="form-group">
+          <label><h5>Review Details</h5></label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label><h6>Review</h6></label>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="form-group">
+        : {{data.review}}
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label><h6>Product Name</h6></label>
+      </div>
+    </div>
+    <div class="col-md-9" *ngFor="let val of data.productdetails">
+      <div class="form-group">
+        : {{val.productName}}
+      </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+          <label><h6>Country</h6></label>
+        </div>
+      </div>
+      <div class="col-md-9" >
+        <div class="form-group">
+          : {{data.country}}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label><h6>Order ID</h6></label>
+        </div>
+      </div>
+      <div class="col-md-9" >
+        <div class="form-group">
+          : {{data.orderId}}
+        </div>
+      </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label><h6>Publish</h6></label>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="form-group">
+        : {{data.publish === true ? 'Published' : 'UnPublish'}}
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label><h6>Rating</h6></label>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="form-group">
+        : {{data.rating}}
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label><h6>Email_Id</h6></label>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="form-group">
+        : {{data.customerEmailId}}
+      </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+          <label><h6>Creation On</h6></label>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="form-group">
+        :  {{data.createdDate | date}}
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <button  mat-icon-button mat-sm-button color="primary" (click)="back()">Back</button>
+        </div>
+      </div>
+  </div>

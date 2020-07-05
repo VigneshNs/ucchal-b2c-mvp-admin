@@ -1,0 +1,74 @@
+.pageBoxLg {
+    border: 1px solid #c8ced3;
+    color: #3f51b5;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #ebedef  !important;
+    margin: 25px;
+    margin-top: 58px;
+  }
+  
+  .newNow {
+    margin-top: 15px;
+    background: #ebedef ;
+    font-size: 14px;
+    font-weight: 100;
+    color: rgb(33, 46, 65);
+    font-size: 15px;
+  }
+  .imgEdit{
+      width: 100%;
+      height: 250px;
+      border-radius: 5px;
+  }
+  .addButtons {
+    margin: 10px;
+    background-color: #255d80;
+    color: #fff;
+    border-radius: 27%;
+    position: relative;
+    left: -25%;
+  }
+  .addButtons:hover {
+    margin: 10px;
+    background-color: #1c4561 !important;
+    color: #fff;
+    border-radius: 27%;
+    position: relative;
+    left: -25%;
+   
+  }
+  .addButtons:focus {
+    outline: none; 
+  }
+  
+th {
+    background: #255d80 !important;
+    color: #fff;
+  }
+  .imgCard{
+    margin: 15px;
+  }
+  .selectCursor{
+    color: #000 !important;
+  }
+  .selectCursor:hover{
+background-color: #255d80;
+  }
+  .iconBtn{
+    background-color: #255d80;
+    color: #fff !important;
+  }
+  .iconBtn:focus{
+    outline: none;
+  }
+  .rowEdit{
+    color: #fff;
+  }
+  th {
+    background: #255d80 !important;
+    color: #fff;
+    font-weight: 300 !important;
+  }

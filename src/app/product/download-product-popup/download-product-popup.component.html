@@ -1,0 +1,151 @@
+<div *ngIf="!loader">
+    <img  src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader"/></div>
+<div  *ngIf="loader">
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+<div class="row">
+    <div class="col-md-4 radioBox">
+      <div class="form-check">
+        <input class="form-check-input" type="radio"
+        (change) ="handleChange($event)"
+        name="exampleRadios" id="exampleRadios1" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios1">
+          Vendor with Category
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios"
+        (change) ="handleChange($event)"
+        id="exampleRadios2" value="option2">
+        <label class="form-check-label" for="exampleRadios2">
+          Vendor with Catalogue
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <input class="form-check-input" type="radio" name="exampleRadios"
+        (change) ="handleChange($event)"
+        id="exampleRadios3" value="option3" >
+        <label class="form-check-label" for="exampleRadios3">
+          Vendor with Status
+        </label>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <mat-form-field>
+            <mat-label>Select an Vendor</mat-label>
+            <mat-select   (selectionChange)="filterByVendor($event)">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let vendor of vendorModel" [value]="vendor">{{vendor.vendorName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <div class="row" *ngIf="isCategoryVendor === true">
+        <div class="col-md-12">
+            <mat-form-field>
+                <mat-label>Select an Category</mat-label>
+                <mat-select #category  (selectionChange)="filterByCategory($event)">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let super of data" [value]="super">{{super.categoryName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-12" *ngIf="isMainCategory">
+            <mat-form-field>
+                <mat-label>Select an Main Category</mat-label>
+                <mat-select #category  (selectionChange)="filterByMainCategory($event)">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let main of selectedSuperCategory?.mainCategory" [value]="main">{{main.mainCategoryName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="col-md-12" *ngIf="isSubCategory">
+              <mat-form-field>
+                  <mat-label>Select an Sub Category</mat-label>
+                  <mat-select #category  (selectionChange)="filterBySubCategory($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let sub of selectedMainCategory?.subCategory" [value]="sub">{{sub.subCategoryName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+      </div>
+      <div class="row" *ngIf="isCatalogueVendor === true">
+        <div class="col-md-12">
+            <mat-form-field>
+                <mat-label>Select an Catalogue</mat-label>
+                <mat-select   (selectionChange)="filterByCatalogue($event)">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let data of catalogueModel" [value]="data">{{data}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="isStatusVendor === true">
+          <div class="col-md-12">
+              <mat-form-field>
+                  <mat-label>Select an Status</mat-label>
+                  <mat-select   (selectionChange)="filterByStatus($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let data of status" [value]="data.value">{{data.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+        </div>
+    </div>
+    
+  <!--   <div class="col-md-2">
+
+    </div> -->
+ <!--  <div class="col-md-5" *ngIf="!isCatalogue">
+      <mat-form-field>
+          <mat-label>Select an Category</mat-label>
+          <mat-select #category  (selectionChange)="filterByCategory($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let super of data" [value]="super">{{super.categoryName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div> -->
+<!--   <div class="col-md-5">
+      <mat-form-field>
+          <mat-label>Select an Vendor</mat-label>
+          <mat-select   (selectionChange)="filterByVendor($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let vendor of vendorModel" [value]="vendor">{{vendor.vendorName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div> -->
+  <div class="col-md-2 form-group mt-4"><button class="btn btn-primary" (click)="onDownload()">Download</button></div>
+  <div class="col-md-2 mt-4" *ngIf="showNoData">
+    <p style="color: red;">No Product</p>
+  </div>
+<!--   <div class="col-md-5" *ngIf="isMainCategory">
+      <mat-form-field>
+          <mat-label>Select an Main Category</mat-label>
+          <mat-select #category  (selectionChange)="filterByMainCategory($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let main of selectedSuperCategory?.mainCategory" [value]="main">{{main.mainCategoryName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div>
+  <div class="col-md-7" *ngIf="!isCatalogue"></div> -->
+ <!--  <div class="col-md-7" *ngIf="isCatalogue">
+      <mat-form-field>
+          <mat-label>Select an Catalogue</mat-label>
+          <mat-select   (selectionChange)="filterByCatalogue($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let data of catalogueModel" [value]="data">{{data}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div> -->
+<!--   <div class="col-md-5" *ngIf="isSubCategory">
+      <mat-form-field>
+          <mat-label>Select an Sub Category</mat-label>
+          <mat-select #category  (selectionChange)="filterBySubCategory($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let sub of selectedMainCategory?.subCategory" [value]="sub">{{sub.subCategoryName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </div> -->
+</div>
+</div>

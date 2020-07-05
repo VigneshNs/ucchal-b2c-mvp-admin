@@ -1,0 +1,31 @@
+<button class="btn btn-primary" (click)="onAdd()">ADD</button>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Height</th>
+      <th scope="col">Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor='let data of holder; let i = index'>
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{data.subCategoryName ? data.subCategoryName : data.superCategoryName}}</td>
+      <td>{{data.height}}</td>
+      <td>{{data.addedDate | date}}</td>
+      <td><div class=" vcenter form-group">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+
+          <a class="nav-link selectCursor"(click)="onEdit(data)">Edit</a>
+          <a class="nav-link selectCursor" (click)="onDelete(data._id)">Delete</a>
+        </mat-menu>
+      </div></td>
+    </tr>
+  </tbody>
+</table>

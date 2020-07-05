@@ -1,0 +1,255 @@
+<mat-card class="pageBoxLg">
+  <div class="row">
+    <div class="col-md-4 form-group">
+        <mat-form-field>
+            <mat-label>Select VendorName</mat-label>
+            <mat-select (selectionChange)="selectVendor($event)">
+              <mat-option *ngFor="let data of vendorData" [value]="data">{{data.vendorName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+   <!--  <div class="col-md-4 form-group"></div> -->
+    <div class="col-md-2 form-group" *ngIf="isShow">
+      <button class="btn btn-primary" (click)="selectDownload()">Download</button>
+    </div>
+    <div class="col-md-2 form-group" *ngIf="isShow">
+       <label style="color: green;" *ngIf="selectedPO?.poStatus !== 'Created'">Email Sent</label> 
+       <label style="color: blue;" *ngIf="selectedPO?.poStatus === 'Created'">Waiting for Email Send</label> 
+      </div>
+      <div class="col-md-2 form-group" *ngIf="isShow && selectedPO?.poStatus !== 'Created'">
+          
+          <input [disabled]="selectedPO?.poStatus === 'Created'"
+          (change)="checkSelected()"
+          type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">need send again?</label>
+      </div>
+    <div class="col-md-2 form-group"  *ngIf="isShow">
+      <button class="btn btn-primary" [disabled]="selectedPO?.poStatus !== 'Created'  && !isCheck" (click)="selectSend()">Send with Mail</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="isShow">
+    <div class="col-md-2 form-group">
+      <label>VendorName</label>
+    </div>
+    <div class="col-md-4 form-group">
+      {{selectedPO?.vendorName}}
+    </div>
+    <div class="col-md-2 form-group">
+      <label>Order Number</label>
+    </div>
+    <div class="col-md-4 form-group">
+      {{orderData.orderId}}
+    </div>
+    <div class="col-md-2 form-group">
+        <label>Vendor Code</label>
+      </div>
+      <div class="col-md-4 form-group">
+        {{selectedPO?.vendorCode}}
+      </div>
+      <div class="col-md-2 form-group">
+        <label>PO Type</label>
+      </div>
+      <div class="col-md-4 form-group">
+        {{selectedPO?.poType}}
+         <!--  <mat-form-field>
+              <mat-label>Select the Field</mat-label>
+              <mat-select (selectionChange)="filterByOption($event)">
+                <mat-option *ngFor="let data of poSettingData?.poType" [value]="data">{{data}}</mat-option>
+              </mat-select>
+            </mat-form-field>-->
+      </div>
+      <div class="col-md-2 form-group">
+          <label>Vendor Address</label>
+        </div>
+        <div class="col-md-4 form-group" *ngFor="let data of vendorHolder?.officeAddressDetails">
+          {{selectedPO?.vendorAddress}}
+        </div>
+        <div class="col-md-2 form-group">
+          <label>PO Date</label>
+        </div>
+        <div class="col-md-4 form-group">
+          {{selectedPO?.poDate | date}}
+        </div>
+        <div class="col-md-2 form-group">
+            <label>EmailID</label>
+          </div>
+          <div class="col-md-4 form-group">
+            {{selectedPO?.vendorEmailId}}
+          </div>
+          <div class="col-md-2 form-group">
+            <label>PO Expiry Date</label>
+          </div>
+          <div class="col-md-4 form-group">
+           {{selectedPO?.poExpiryDate | date}}
+          </div>
+          <div class="col-md-2 form-group">
+              
+            </div>
+            <div class="col-md-4 form-group">
+              
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Bill To</label>
+            </div>
+            <div class="col-md-4 form-group">
+              {{poModel?.billTo}}
+            </div>
+            <div class="col-md-1 form-group">
+              <label>CST No</label>
+            </div>
+            <div class="col-2 form-group" >
+              {{selectedPO.vendorCSTNo}}
+            </div>
+            <div class="col-md-1 form-group">
+             <!--  <label>Country</label> -->
+            </div>
+            <div class="col-md-2">
+             <!--  <input class="form-control" #country type="text"> -->
+            </div>
+            <div class="col-md-2 form-group" >
+              <label>GSTIN</label>
+            </div>
+            <div class="col-md-4 form-group" >
+              {{poModel?.gstNo}}
+            </div>
+            <div class="col-md-1 form-group" >
+                <label>GSTIN</label>
+              </div>
+              <div class="col-2 form-group" >
+                  {{selectedPO?.vendorGStNo}}
+              </div>
+              <div class="col-md-1 form-group">
+                <label>Currency Type</label>
+              </div>
+              <div class="col-md-2">
+                {{selectedPO?.vendorCurrencyType}}
+              </div>
+              <div class="col-md-2 form-group">
+                <label>Contact Us</label>
+              </div>
+              <div class="col-md-4 form-group">
+                {{poModel?.contactNo}}
+              </div>
+              
+  </div>
+  <div class="row" *ngIf="isShow">
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">S.NO</th>
+              <th scope="col">Image</th>
+              <th scope="col">SKU Code</th>
+              <th scope="col">Vendor Item No</th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Size</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Unit of Measure</th>
+              <th scope="col">Discount Percentage</th>
+              <th scope="col">CGST Rate</th>
+              <th scope="col">CGST Amount</th>
+              <th scope="col">SGST Rate</th>
+              <th scope="col">SGST Amount</th>
+              <th scope="col">IGST Rate</th>
+              <th scope="col">IGST Amount</th>
+              <th scope="col">Net Amount</th>
+              <th scope="col">Estimated Shipment Date</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let data of selectedPO?.vendorItems; let i = index">
+              <td>{{i + 1}}</td>
+              <td><img [src]="data.productImage" style="width: 70px;" ></td>
+              <td>{{data.catalogueName}} <br> <span *ngIf="data.bodyHeight !== undefind && data.bodyHeight !== 'None'"> <label>Body Height</label> {{data.bodyHeight}} </span></td>
+              <td>{{data.sku}}</td>
+              <td>{{data.unitPrice}}</td>
+              <td>{{data.size}}</td>
+              <td>{{data.quantity}}</td>
+              <td>Each</td>
+              <td>{{data.discount}}</td>
+              <td scope="row">{{data.cgstRate}}</td>
+              <td>{{data.cgstAmount}}</td>
+              <td>{{data.sgstRate}}</td>
+              <td>{{data.sgstAmount}}</td>
+              <td scope="row">{{data.igstRate}}</td>
+              <td>{{data.igstAmount}}</td>
+              <td>{{data.netAmount}}</td>
+              <td>{{data.estimatedShipmentDate | date}}</td>
+            </tr>
+            <!-- <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>-->
+            <tr>
+              <th colspan="4">Total</th>
+              <td></td>
+              <th>{{selectedPO?.totalQuantity}}</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <th>{{selectedPO?.totalCGSTamt}}</th>
+              <td></td>
+              <th>{{selectedPO?.totalSGSTamt}}</th>
+              <td></td>
+              <th>{{selectedPO?.totalIGSTamt}}</th>
+              <th>{{selectedPO?.netAmount}}</th>
+              <td></td>
+            </tr> 
+          </tbody>
+        </table>
+  </div>
+  <div class="row" *ngIf="isShow">
+    <div class="col-md-6 form-group">
+      <textarea placeholder="Special Instruction" #instruct class="form-control" cols="100" rows="10"></textarea>
+    </div>
+    <div class="col-md-6 form-group">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="7">Grand Total</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Net Amount</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{selectedPO?.netAmount}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Freight</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">Tax</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{selectedPO?.tax}}</td>
+              </tr>
+              <tr>
+                  <th scope="row">Total Amount</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th>{{selectedPO?.totalAmount}}</th>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</mat-card>

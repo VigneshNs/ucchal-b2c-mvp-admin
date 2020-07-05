@@ -1,0 +1,85 @@
+<div class="pageBoxLg">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group p-2">
+        
+      </div>
+      <button mat-fab style="margin: 10px;" (click)="setPublishads()">Publish</button>
+      <button mat-fab (click)="setUnPublishads()">UnPublish</button>
+    </div>
+    <div class="col-md-10">
+      <div>
+        
+        <div class="row">
+          <div class="col-md-4">
+           <!--  <mat-form-field>
+              <input matInput placeholder="Search users" (keyup)="applySearchFilter($event.target.value)">
+            </mat-form-field> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <table mat-table [dataSource]="productData" matSort class="container-fluid ">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef>
+          Product Name
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.productdetails[0].productName}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="publish">
+          <th mat-header-cell *matHeaderCellDef> Publish </th>
+          <td mat-cell *matCellDef="let element"> {{ element.publish === true ? 'Published' : 'UnPublish' }} </td>
+        </ng-container>
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef> Rating <br>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+      </ng-container>
+      <ng-container matColumnDef="emailId">
+        <th mat-header-cell *matHeaderCellDef> Email_Id<br>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerEmailId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef> Creation-On<br>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdDate | date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="acition">
+          <th mat-header-cell *matHeaderCellDef>
+            Action
+        </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+        <mat-menu #menu="matMenu">
+
+          <a class="nav-link" (click)="viewProductReview(element._id)">View</a>
+          <a class="nav-link"
+            (click)="delete(element._id)">Delete</a>
+        </mat-menu>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

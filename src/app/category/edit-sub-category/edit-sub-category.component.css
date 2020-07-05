@@ -1,0 +1,143 @@
+.matCtrl {
+  margin: 10px;
+  background-color: #f0f3f5;
+}
+
+.attributeedit {
+  background-color: black;
+  color: #fff;
+  letter-spacing: 2px;
+  padding: 10px;
+
+}
+
+/* .grid {
+  margin-top: 20px;
+} */
+
+.fieldheader {
+  font-size: 14px;
+  font: bold;
+  box-shadow: none !important;
+  padding: 2px !important;
+  border: 1px solid rgba(0,0,0,.125) !important;
+  background-color: #255d80  !important;
+  color: #000 !important;
+  border-radius: 5px !important;
+}
+
+.btnNew {
+  background-color: #FF5778;
+  color: #f0f3f5;
+}
+
+.btnNew {
+  background-color: #FF5778 !important;
+  color: #f0f3f5;
+}
+
+.selectValue {
+  cursor: pointer;
+}
+.mat-input-element {
+  font: inherit;
+  background: 0 0;
+  color: currentColor;
+  border: none;
+  outline: 0;
+  padding: 0;
+  color: black;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+}
+.ctrlCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-clip: border-box;
+    margin: 10px;
+}
+
+/* .cancleNow{
+    background-color: #FF5778;
+    color: #fff;
+}*/
+
+.deleteNow {
+  background-color: red;
+  color: #fff;
+}
+
+.cancleNow:focus {
+  outline: none;
+}
+
+.imgCard {
+  width: 100%;
+  height: auto;
+  margin: 10px;
+}
+
+th {
+  background: #8f9bb3 !important;
+  color: #fff;
+  font-weight: 300 !important;
+}
+
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  color: #3f51b5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #255d80 !important;
+  margin: 25px;
+  margin-top: 58px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #255d80;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+
+.addButtons {
+    margin: 10px;
+    background-color: #8f9bb3;
+    color: #fff;
+    border-radius: 27%;
+   
+  }
+  
+  .addButtons:focus {
+    outline: none; 
+  }
+  .iconBtn{
+      background-color: #8f9bb3;
+      margin: 10px;
+  }
+  .gridRowz{
+    box-shadow: none !important;
+    padding: 2px !important;
+    border: 1px solid rgba(0,0,0,.125) !important;
+    background-color: #ffffff  !important;
+    color: #000 !important;
+    border-radius: 5px !important;
+  }
+
+  .fieldheader .form-group{
+    margin-top: 10px;
+    color: #fff;
+  }
+  mat-card{
+    color: black !important;
+  }
+  .col-md-2{
+    color: rgb(8, 6, 6);
+  }

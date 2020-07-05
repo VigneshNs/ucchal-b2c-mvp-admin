@@ -1,0 +1,246 @@
+<div class="container">
+  <div class="pageBoxLg">
+    <form [formGroup]="walletForm">
+    <div class="row">
+      <div class="col-md-3 form-group">
+        <label>Minimum Coin :</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control" [value]="walletModel?.minCoin" formControlName="minCoin" placeholder="Minimum Coin For adding">
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Maximum Coin :</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control"  [value]="walletModel?.maxCoin" formControlName="maxCoin" placeholder="Maximum Coin For adding">
+      </div>
+     
+      <div class="col-md-3 form-group">
+        <label>Validation Period(Month):</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control"  [value]="walletModel?.vaildationPeriodForCoin" formControlName="vaildationPeriodForCoin" placeholder="Wallet Validation Period(Month)">
+      </div>
+      <div class="col-md-3 form-group"></div>
+      <div class="col-md-3 form-group"></div>
+      <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label style="font: 15px">Loyalty Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Loyalty Amount:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="loyaltyFixedAmount"
+          [value]="walletModel?.loyaltyWallet[0].fixedAmount"
+          placeholder="Fixed Amount" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Loyalty Coin:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="loyaltyFixedCoin"
+          [value]="walletModel?.loyaltyWallet[0].fixedCoin"
+          placeholder="Fixed Coin" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number"  formControlName="loyaltyUsingPercentage"
+          [value]="walletModel?.loyaltyWallet[0].usingPercentage"
+          placeholder="Using Percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onLoyalMin()"
+          [checked]="walletModel?.loyaltyWallet[0].minimunCondition" formControlName="loyaltyMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" [readonly]="!isMinLoyalty"
+          [value]="walletModel?.loyaltyWallet[0].minimumOrder"
+          formControlName="loyaltyminimumOrder" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onLoyalMax()"
+          [checked]="walletModel?.loyaltyWallet[0].maximumCondition"
+          formControlName="loyaltyMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control"
+          [value]="walletModel?.loyaltyWallet[0].maximumOrder"
+          [readonly]="!isMaxLoyalty" formControlName="loyaltyMaximumOrder" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Activity Wallet</label>
+        </div>
+        <!-- <div class="col-md-3 form-group">
+          <label>Coin For Video</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control"
+          [value]="walletModel?.activityWallet[0].addingVideo"
+          formControlName="activityAddingVideo" placeholder="Add Coin For Video Upload">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Coin For Photo</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" 
+          [value]="walletModel?.activityWallet[0].addingImage"
+          formControlName="activityAddingImage" placeholder="Add Coin For Photo Upload">
+        </div> -->
+        <div class="col-md-3 form-group">
+          <label>Coin For Regsitration</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" 
+          [value]="walletModel?.activityWallet[0].firstTimeRegistration"
+          formControlName="activityFirstTimeRegistration" placeholder="Add Coin For First time Registration">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="activityUsingPercentage"
+          [value]="walletModel?.activityWallet[0].usingPercentage"
+          placeholder="Using Percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onActivityMin()"
+          [checked]="walletModel?.activityWallet[0].minimunCondition"
+          formControlName="activityMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinActivity" 
+          [value]="walletModel?.activityWallet[0].minimumOrder"
+          formControlName="activityMinimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onActivityMax()"
+          [checked]="walletModel?.activityWallet[0].maximumCondition"
+          formControlName="activityMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxActivity"
+          [value]="walletModel?.activityWallet[0].maximumOrder"
+          formControlName="activityMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Event Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="eventUsingPercentage"
+          [value]="walletModel?.eventWallet[0].usingPercentage"
+          placeholder="using percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onEventMin()"
+          [checked]="walletModel?.eventWallet[0].minimunCondition"
+          formControlName="eventMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinEvent"
+          [value]="walletModel?.eventWallet[0].minimumOrder"
+          formControlName="eventMinimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onEventMax()"
+          [checked]="walletModel?.eventWallet[0].maximumCondition"
+          formControlName="eventMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxEvent"
+          [value]="walletModel?.eventWallet[0].maximumOrder"
+          formControlName="eventMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Refer Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="referusingPercentage"
+          [value]="walletModel?.referWallet[0].usingPercentage"
+          class="form-control" placeholder="Using Percentage">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onReferMin()"
+          [checked]="walletModel?.referWallet[0].minimunCondition"
+          formControlName="referminimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinRefer"
+          [value]="walletModel?.referWallet[0].minimumOrder"
+          formControlName="referminimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onReferMax()"
+          [checked]="walletModel?.referWallet[0].maximumCondition"
+          formControlName="referaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxRefer"
+          [value]="walletModel?.referWallet[0].maximumOrder"
+          formControlName="referMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-12 form-group text-center">
+      <button class="btn btn-primary mr-2" (click)="onSubmit()">Submit</button>
+      <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </div>
+    </div>
+  </form>
+  </div>
+</div>

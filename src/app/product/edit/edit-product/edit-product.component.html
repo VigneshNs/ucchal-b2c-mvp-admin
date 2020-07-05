@@ -1,0 +1,76 @@
+<form [formGroup]="productForm">
+  <div class="pageBoxLg">
+    <div class="row">
+      <div class="col-md-8 col-8">
+
+      </div>
+      <div class="col-md-2 col-2">
+
+      </div>
+      <div class="col-md-2 col-2">
+        <div class="form-group float-right">
+          <input class="btn btn-md btn-success" (click)="getBack()" type="button" value="Back">
+        </div>
+      </div>
+    </div>
+    <mat-tab-group class="mat-tab-fill-height" dynamicHeight (selectedIndexChange)="selectedIndexChange($event)"
+      >
+      <!-- category Start -->
+      <!-- <mat-tab label="Category">
+        <app-edit-category [superCategoryModel]="superCategoryModel" [editProductModel]="editProductModel"
+        [productValue]="productModel" 
+          [editCategoryName]="editCategoryName" [editMainCategoryName]="editMainCategoryName"
+          [editSubCategoryName]="editSubCategoryName" (editCategoryDetails)="updateCategoryDetails($event)">
+        </app-edit-category>
+      </mat-tab> -->
+      <!-- category End -->
+      <!-- Brand Start -->
+      <!-- <mat-tab label="Brand">
+        <app-edit-brand [brandId]="productModel?.brandId" [editProductModel]="editProductModel"
+          [brandModel]="brandModel" (editBrandId)="updateBrand($event)"></app-edit-brand>
+      </mat-tab> -->
+      <!-- Brand End -->
+      <!--    Product Info Start -->
+      <mat-tab label="Product Info">
+        <app-edit-product-info [productModel]="productModel" [productTagModel]="productTagModel" [editProductModel]="editProductModel" [color]="color"
+          [material]="material" [occasion]="occasion" [productForm]="productForm"
+          [superCategoryModel]="superCategoryModel"
+          (editProductInfoDetails)="updateProductInfro($event)"></app-edit-product-info>
+      </mat-tab>
+      <!-- Product Info End -->
+      <mat-tab label="Images">
+        <app-edit-image (deleteImage)="deleteProductImageData($event)" [productModel]="productModel"
+        [productImageForm]="productImageForm" (addFormImage)="addImageForm()" [productForm]="productForm"
+        (removeFrom)="deleteImageForm($event)"
+          (uploadImage)="updateImage()" [editProductModel]="editProductModel"></app-edit-image>
+      </mat-tab>
+      <mat-tab label="Attirbute" *ngIf="productModel?.variation === 'Child'">
+        <app-edit-attribute  [productModel]="productModel" (updateAttributeValue)="updateAttribute($event)"
+        [attributeModel]="attributeModel" (editAttributeCat)="getCatAttribute()"
+        [categoryAttributeModel]="categoryAttributeModel"
+        [editProductModel]="editProductModel"></app-edit-attribute>
+      </mat-tab>
+      <!-- <mat-tab label="Size">
+        <app-edit-size [productModel]="productModel" [productOptionModel]="productOptionModel"
+          [editProductModel]="editProductModel" [productOptionValueForms]="productOptionValueForms"
+          [productOptionValue]="productOptionValue?.optionValue" [productForm]="productForm" (add)="addForm()"
+          (editProductVariantDetails)="updateProductvariant($event)" (delete)="deleteForm($event)"
+          (addProductVariantDetails)="addProductVariant($event)" [sizeguideData]="sizeguideData"
+          (deleteProductVariantDetails)="deleteProductVariantData($event)" 
+          (editProductSizeGuide)="editProductSizeGuideData($event)"
+          >
+
+        </app-edit-size>
+      </mat-tab> -->
+      <!-- <mat-tab label="SEO
+                ">
+        <app-edit-seo [productModel]="productModel" 
+        [editProductModel]="editProductModel" [productForm]="productForm"
+        
+          (editProductSeoDetails)="updateProductSeo($event)">
+
+        </app-edit-seo>
+      </mat-tab> -->
+    </mat-tab-group>
+  </div>
+</form>

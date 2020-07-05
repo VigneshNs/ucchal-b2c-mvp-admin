@@ -1,0 +1,17 @@
+.pagebox{
+    box-shadow: 1px;
+}
+.notePoint{
+    margin-top: 34px;
+}
+table.mat-table {
+    border-spacing: 0;
+    margin-top: 30px;
+}
+.colorDetails{
+    margin-top: 20px;
+}
+.filterCircle{
+    font-size: 20px;
+    padding-left: 7px;
+}

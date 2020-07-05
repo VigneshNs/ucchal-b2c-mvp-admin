@@ -1,0 +1,22 @@
+.clickDecorate:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: brown;
+}
+.loader{
+    margin-top: 100px;
+    width: 300px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .pageBoxLg {
+    border: 1px solid #c8ced3;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #242735 !important;
+    margin: 25px;
+    margin-top: 58px;
+  }

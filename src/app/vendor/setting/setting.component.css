@@ -1,0 +1,42 @@
+.pageBoxl {
+  /* border: 1px solid ; */
+  margin: 10px 10px 10px 10px;
+  padding: 20px;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.titleTxt{
+  margin-left: 15px;
+  font-size: 15px;
+  padding: 5px;
+  font-weight: 500;
+  letter-spacing: 0.0rem;
+}
+
+.fa-lg{
+  color: #24a2f7 !important;
+  border-radius: 100%;
+}
+.form-control{
+  width: 250px;
+  position: relative;
+  left: 578px;
+  border-radius: 5px 0px 0px 5px;
+  border: #24a2f7 1px solid;
+  box-shadow: 0 1px 52px 0 #00000033, 0 1px 2px 0 rgba(0, 0, 0, .19);
+  
+}
+
+.newOne{
+  left: 350px;
+}
+.btn-primary{
+  position: relative;
+  left: 578px;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0 1px 12px 0 #00000033, 0 1px 2px 0 rgba(0, 0, 0, .19);
+
+}

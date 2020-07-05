@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center pt-5 form-group">
+      <mat-radio-group aria-label="Select an option" (change)="onCondition($event)">
+        <mat-radio-button  class="mr-5" value="1">Manual</mat-radio-button>
+        <mat-radio-button value="2">Automated</mat-radio-button>
+      </mat-radio-group>
+  </div>
+  <div class="col-md-12 pageBoxLg" *ngIf="condition === 'manual'">
+    <button class="btn btn-primary" [disabled]="selection.selected.length === 0" (click)="onSubmit()">Submit</button>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+          <th scope="col">Image</th>
+          <th scope="col">SKU</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of productModel">
+        <tr>
+          <td scope="row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(data) : null"
+            [checked]="selection.isSelected(data)" [aria-label]="checkboxLabel(data)">
+          </mat-checkbox>
+        </td>
+          <td><img [src]="data.productImage[0].productImageName" style="width: 50px;"></td>
+          <td>{{data.sku}}</td>
+          
+        </tr>
+       
+      </tbody>
+    </table>
+    <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[50, 100, 150]" [showFirstLastButtons]="true"
+    [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)"></mat-paginator>
+  </div>
+  <div class="col-md-12 pageBoxLg" *ngIf="condition === 'automated'">
+    <div class="row">
+      <div class="col-md-4">
+        <label class="colorAll">Select</label>
+        <select class="browser-default custom-select" #gen (change)="onSelectCondition($event)">
+            <option selected disabled>Select </option>
+            <option [value]="data.conditionValue" *ngFor="let data of automatedDateCondition">{{data.conditionName}}</option>
+          </select>
+      </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-12 " *ngIf="selectedAutoCondition === 'dateWise'">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-radio-group aria-label="Select an option" class="dateCond" (change)="onDateCondition($event)">
+              <mat-radio-button   value="1">Last 30 Days</mat-radio-button>
+              <mat-radio-button value="2">Custom</mat-radio-button>
+            </mat-radio-group>
+            <button class="btn btn-primary" (click)="onSubmitDateCondition()">Submit</button>
+          </div>
+          <div class="col-md-8"  *ngIf="customDate">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="colorAll">Starting Date</label>
+                <input type="date"  class="form-control" #startDate placeholder="Starting Date" >
+              </div>
+              <div class="col-md-4">
+                <label class="colorAll">Ending Date</label>
+                <input type="date"  class="form-control" #endDate placeholder="Ending Date" >
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-12" *ngIf="selectedAutoCondition === 'priceWise'">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-radio-group aria-label="Select an option" class="dateCond" (change)="onPriceCondition($event)">
+              <mat-radio-button checked  value="1">Set Maximum</mat-radio-button>
+              <mat-radio-button value="2">Set Minimum and Maximum</mat-radio-button>
+            </mat-radio-group>
+            <button class="btn btn-primary" (click)="onSubmitPriceCondition()">Submit</button>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4" *ngIf="isBothPrice"><input type="number" #minPrice class="form-control"></div>
+              <div class="col-md-4" *ngIf="!isBothPrice"> 0 </div>
+              <div class="col-md-4"><input type="number" #maxPrice class="form-control"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12"  *ngIf="selectedAutoCondition === 'categoryWise'">
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-primary" [disabled]="!isCategory" (click)="onAddCategory()">Add</button>
+            <div>
+            <label class="colorAll">Category</label>
+            <select class="browser-default custom-select"  (change)="onSelectSuperCategory($event)">
+                <option selected disabled>Select </option>
+                <option [value]="data._id" *ngFor="let data of categoryModel">{{data.categoryName}}</option>
+              </select>
+            </div>
+            <div *ngIf="isMainCategory">
+              <label class="colorAll">Main Category</label>
+              <select class="browser-default custom-select"  (change)="onSelectMainCategory($event)">
+                  <option selected disabled>Select </option>
+                  <option [value]="data._id" *ngFor="let data of selectedSuperCategory.mainCategory">{{data.mainCategoryName}}</option>
+                </select>
+            </div>
+            <div *ngIf="isSubCategory">
+              <label class="colorAll">Sub Category</label>
+              <select class="browser-default custom-select"  (change)="onSelectSubCategory($event)">
+                  <option selected disabled>Select </option>
+                  <option [value]="data._id" *ngFor="let data of selectedMainCategory.subCategory">{{data.subCategoryName}}</option>
+                </select>
+            </div>
+
+          </div>
+          <div class="col-md-6 ">
+            <button class="btn btn-primary" [disabled]="categoryHolder.length === 0" (click)="onSubmitCategory()">Submit</button>
+            <div class="row bor">
+              <div class="col-md-12" *ngFor="let data of categoryHolder">
+              <span>  {{data.subCategoryName === undefined ? data.superCategoryName : data.subCategoryName}}<mat-icon class="Ico" (click)="clear(data)">clear</mat-icon></span>	
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  </div>
+</div>

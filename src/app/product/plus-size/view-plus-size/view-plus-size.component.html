@@ -1,0 +1,31 @@
+<button class="btn btn-primary" (click)="addPlusSize()">add</button>
+
+<table class="table pt-5" >
+  <thead >
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Starting Size</th>
+      <th scope="col">Added Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of holder; let i = index">
+    <tr>
+      <td>{{ i + 1}}</td>
+      <td>{{data.subCategoryName === undefind ? data.superCategoryName : data.subCategoryName}}</td>
+      <td>{{data.startingSize}}</td>
+      <td>{{data.addedDate | date}}</td>
+      <td><div class=" vcenter form-group">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+
+          <a class="nav-link selectCursor"(click)="editPlusSize(data)">Edit</a>
+          <a class="nav-link selectCursor" (click)="deletePlusSize(data._id)">Delete</a>
+        </mat-menu>
+      </div></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,671 @@
+<form [formGroup]="productForm" (ngSubmit)="saveAttri()">
+    <div class="pageBoxLg">
+      <div class="grid">
+        <div class="row">
+          <div class="col-md-8 col-8">
+  
+          </div>
+          <div class="col-md-2 col-2">
+            <div class="form-group  float-right">
+              <input class="btn btn-md btn-danger" type="submit" value="save">
+            </div>
+          </div>
+          <div class="col-md-2 col-2">
+            <div class="form-group float-right">
+              <input class="btn btn-md btn-primary"
+               (click)="cancelProduct()" type="button" 
+               value="cancel">
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-tab-group class="mat-tab-fill-height" dynamicHeight (selectedIndexChange)="selectedIndexChange($event)"
+        [selectedIndex]="selectedIndex">
+       <!--  <mat-tab label="Category">
+          <div class="grid">
+            <div class="row gridRow">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="offset-md-3 col-md-6 offset-md-3">
+                    <mat-form-field>
+                      <mat-label>Category</mat-label>
+                      <mat-select (selectionChange)="categorySelected($event)">
+                        <mat-option *ngFor="let sup of superCategoryModel" [value]="sup">
+                          {{sup.categoryName}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="offset-md-3 col-md-6 offset-md-3" *ngIf="mainCategorySelected">
+                    <mat-form-field>
+                      <mat-label>Main Category</mat-label>
+                      <mat-select (selectionChange)="categoryMainCategory($event)">
+                        <mat-option *ngFor="let main of supCategoryDetails?.mainCategory" [value]="main">
+                          {{main.mainCategoryName}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="offset-md-3 col-md-6 offset-md-3" *ngIf="subCategorySelected">
+                    <mat-form-field>
+                      <mat-label>Sub Category</mat-label>
+                      <mat-select (selectionChange)="categorySubCategory($event)">
+                        <mat-option *ngFor="let sub of mainCategoryDetails?.subCategory" [value]="sub">
+                          {{sub.subCategoryName}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab> -->
+        <!-- <mat-tab label="Brand">
+          <div class="grid">
+            <div class="row gridRow">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Brand</mat-label>
+                    <mat-select (selectionChange)="brandSelected($event)">
+                      <mat-option *ngFor="let brand of  brandModel" [value]="brand">
+                        {{brand.brandName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+  
+                <div class="form-group">
+                  {{selectedBrand?.brandTitle}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <img [src]="brandImageUrl + selectedBrandId + '/' +selectedBrand?.brandImageName" style="width: 280px; height: 245px;" aria-required="true"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab> -->
+        <mat-tab label="Product Info">
+          <div class="grid">
+            <div class="row gridRow">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Product Name</mat-label>
+                    <input matInput placeholder="Product Name" formControlName="productName" required>
+                    <mat-error *ngIf="productForm.controls['productName'].errors?.required">
+                      Product Name is
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Product Description</mat-label>
+                    <input matInput placeholder="Product Description" formControlName="productDescription">
+                    <mat-error *ngIf="productForm.controls['productDescription'].errors">
+                      Product Description
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>SKU</mat-label>
+                    <input matInput placeholder="SKU" formControlName="sku">
+                    <mat-error *ngIf="productForm.controls['sku'].errors">
+                      SKU Code
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- <div class="col-md-2">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Child Sku</mat-label>
+                      <input matInput placeholder="Child Sku" formControlName="styleCode">
+                
+                    </mat-form-field>
+                  </div>
+                </div> -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>HSN</mat-label>
+                    <input matInput placeholder="Style Code" formControlName="hsn">
+                    <mat-error *ngIf="productForm.controls['hsn'].errors">
+                      HSN
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Manufacturer</mat-label>
+                    <input matInput placeholder="Manufacturer" formControlName="manufacturer">
+                    <mat-error *ngIf="productForm.controls['manufacturer'].errors">
+                      Manufacturer
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Variant Type</mat-label>
+                    <mat-select  formControlName="variationType" >
+                      <mat-option *ngFor="let data of variantType" [value]="data">
+                        {{data.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>SP</mat-label>
+                    <input matInput placeholder="SP" formControlName="sp">
+                    <mat-error *ngIf="productForm.controls['sp'].errors">
+                      SP
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>VP</mat-label>
+                    <input matInput placeholder="VP" formControlName="vp">
+                    <mat-error *ngIf="productForm.controls['vp'].errors">
+                      VP
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="Price" formControlName="price">
+                    <mat-error *ngIf="productForm.controls['price'].errors">
+                      Price
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>MRP</mat-label>
+                    <input matInput placeholder="MRP" formControlName="mrp">
+                    <mat-error *ngIf="productForm.controls['mrp'].errors">
+                      MRP
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Discount</mat-label>
+                    <input matInput placeholder="Discount" formControlName="discount">
+                    <mat-error *ngIf="productForm.controls['discount'].errors">
+                      Discount
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Quantity</mat-label>
+                      <input matInput placeholder="Quantity" formControlName="quantity">
+                      <mat-error *ngIf="productForm.controls['quantity'].errors">
+                          Quantity
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+    
+                </div>
+                
+              <div class="col-md-12">
+                More Information
+                <!--  <div class="form-group">
+                 <a (click)="deleteRequirements(i)">
+                   <mat-icon>clear</mat-icon>
+                 </a>
+               </div> -->
+  
+              </div>
+              <!-- <div class="col-md-4">
+                <mat-form-field>
+                  <mat-select placeholder="Select the Material" formControlName="material">
+                    <mat-option *ngFor="let data of material" [value]="data">
+                      {{data}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+             <!--  <div class="col-md-2">
+  
+                <mat-form-field appearance="outline">
+                  <mat-label>Item Height (cm)</mat-label>
+                  <input matInput placeholder="Item Height" formControlName="height">
+                </mat-form-field>
+              </div> -->
+              <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Weight (kg)</mat-label>
+                  <input matInput placeholder="Weight" formControlName="weight">
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Pack Of</mat-label>
+                  <input matInput placeholder="Pack Of" formControlName="packOf">
+                </mat-form-field>
+              </div>
+            <!-- <div class="col-md-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Item Length (cm)</mat-label>
+                <input matInput placeholder="Item Length" formControlName="length">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Item Breath (cm)</mat-label>
+                <input matInput placeholder="Item Breath" formControlName="breath">
+              </mat-form-field>
+            </div> -->
+             <!--  <div class="col-md-4">
+                <mat-form-field>
+                  <mat-select placeholder="Select the Occassion Type" formControlName="occassion">
+                    <mat-option *ngFor="let data of occasion" [value]="data">
+                      {{data}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+              <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Select the Color" formControlName="color">
+                    <mat-option *ngFor="let data of color" [value]="data.colorName">
+                      {{data.colorName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+              <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Select the Fabric" formControlName="fabric">
+                    <mat-option *ngFor="let data of color" [value]="data.colorName">
+                      {{data.colorName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Wash Care</mat-label>
+                    <input matInput placeholder="Wash Care" formControlName="washCare">
+                    <mat-error *ngIf="productForm.controls['washCare'].errors">
+                      Wash Care
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Pattern</mat-label>
+                    <input matInput placeholder="Pattern" formControlName="pattern">
+                    <mat-error *ngIf="productForm.controls['pattern'].errors">
+                      Pattern
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Select the Tags" formControlName="tags" multiple>
+                      <mat-option *ngFor="let data of productTagModel" [value]="data._id">
+                        {{data.tagName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Product Dimension</mat-label>
+                      <input matInput placeholder="Product Dimension" formControlName="productDimension">
+                      <mat-error *ngIf="productForm.controls['productDimension'].errors">
+                        Product Dimension
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Packing Dimension</mat-label>
+                      <input matInput placeholder="Packing Dimension" formControlName="packingDimension">
+                      <mat-error *ngIf="productForm.controls['packingDimension'].errors">
+                        Packing Dimension
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>TTS Portal</mat-label>
+                      <input matInput placeholder="TTS Portal" formControlName="ttsPortal">
+                      <mat-error *ngIf="productForm.controls['ttsPortal'].errors">
+                        TTS Portal
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>TTS Vendor</mat-label>
+                      <input matInput placeholder="TTS Vendor" formControlName="ttsVendor">
+                      <mat-error *ngIf="productForm.controls['ttsVendor'].errors">
+                        TTS Vendor
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Cost Includes</mat-label>
+                      <input matInput placeholder="Cost Includes" formControlName="costIncludes">
+                      <mat-error *ngIf="productForm.controls['costIncludes'].errors">
+                        Cost Includes
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Search Term 1</mat-label>
+                        <input matInput placeholder="Search Term 1" formControlName="searchTerms1">
+                        <mat-error *ngIf="productForm.controls['searchTerms1'].errors">
+                            Search Term 1
+                          <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Search Term 2</mat-label>
+                          <input matInput placeholder="Search Term 2" formControlName="searchTerms2">
+                          <mat-error *ngIf="productForm.controls['searchTerms2'].errors">
+                              Search Term 2
+                            <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Search Term 3</mat-label>
+                            <input matInput placeholder="Search Term 3" formControlName="searchTerms3">
+                            <mat-error *ngIf="productForm.controls['searchTerms3'].errors">
+                                Search Term 3
+                              <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Search Term 4</mat-label>
+                              <input matInput placeholder="Search Term 4" formControlName="searchTerms4">
+                              <mat-error *ngIf="productForm.controls['searchTerms4'].errors">
+                                  Search Term 4
+                                <strong>required</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Search Term 5</mat-label>
+                                <input matInput placeholder="Search Term 5" formControlName="searchTerms5">
+                                <mat-error *ngIf="productForm.controls['searchTerms5'].errors">
+                                    Search Term 5
+                                  <strong>required</strong>
+                                </mat-error>
+                              </mat-form-field>
+                            </div>
+                          </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Images">
+          <div class="grid">
+            <div class="row gridRow">
+              <!-- <div class="col-md-6">
+                <label>
+                  <input type="file" (change)="handleFileInput($event.target.files)" multiple>
+                </label>
+                <div class="alert alert-danger" *ngIf="imageError">
+                  <h4>Please Select the images</h4>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 pb-2" *ngFor="let url of urls">
+                    <mat-card>
+                      <img class="img-fluid" [src]="url" />
+                    </mat-card>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row" >
+                <div class="grid" formArrayName="productImage">
+                    <div class="row ">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-6">
+                        <div class="form-group ">
+                          <input class="btn btn-sm btn-danger"  (click)="addImageForm()" type="button" value="Add Image">
+                        </div>
+                      </div>
+                     <!--  <div class="col-md-6" *ngIf="productImageForm.controls.length > 0">
+                        <div class="form-group float-right">
+                          <input class="btn btn-sm btn-danger" (click)="addProductVariant(productForm, productModel._id)"
+                            type="button" value="Save">
+                        </div>
+                      </div> -->
+                    </div>
+                  
+                    <div class="row pl-5" *ngFor="let account of productImageForm.controls; let i=index"
+                      [formGroupName]="i">
+                      <div class="col-md-12">
+                      <mat-form-field class="full-width">
+                         
+                     <input  type="text" matInput
+                     formControlName="productImageName"
+                     (ngModelChange)="productModel.productImageName=$event">
+                      
+                      </mat-form-field>
+                    </div>
+                      <div class="col-md-1" style="padding: 10px;">
+          
+                      </div>
+                      <div class="col-md-1" style="padding: 10px;">
+                        <div class="form-group">
+                          <a (click)="deleteImageForm(i)">
+                            <mat-icon>clear</mat-icon>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  <!--   <div>
+                      <button class="btn btn-primary" (click)="updateImage()">Save</button>
+                    </div> -->
+                  </div>
+            </div>
+            </div>
+          </div>
+        </mat-tab>
+       <!--  <mat-tab label="Size">
+          <div class="grid">
+            <div class="row">
+              <div class="col-md-12">
+                  <mat-form-field>
+                      <mat-select  placeholder="Select the Option"
+                        formControlName="sizeGuideName">
+                        <mat-option *ngFor="let option of sizeguideData" [value]="option">
+                          {{option.title}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <mat-form-field>
+                  <mat-select (selectionChange)="selectOptionValue($event)" placeholder="Select the Option"
+                    formControlName="sizeVariantId">
+                    <mat-option *ngFor="let option of productOptionModel" [value]="option">
+                      {{option.optionName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div [hidden]="!selectValueOptions" class="alert alert-danger">
+                  Select Option Value
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="grid" formArrayName="optionValue">
+                  <div class="row gridRow">
+                    <div class="col-md-12">
+                      <div class="form-group p-2">
+                        <input class="btn btn-sm btn-danger" (click)="addForm()" type="button" value="Add Size">
+                      </div>
+                    </div>
+                 
+                  </div>
+                  <div class="row gridRow" *ngFor="let account of productOptionValueForms.controls; let i=index"
+                    [formGroupName]="i">
+                    <div class="col-md-2">
+                     
+                      <mat-form-field class="example-full-width">
+                        <mat-select (selectionChange)="selectOptionValueName($event)" placeholder="Select the Size"
+                          formControlName="sizeName">
+                          <mat-option *ngFor="let optionValue of productOptionValue"
+                            [value]="optionValue.optionValueName">
+                            {{optionValue.optionValueName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline">
+                          <mat-label>SKU</mat-label>
+                          <input matInput formControlName="sku" placeholder="SKU">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Quantity</mat-label>
+                          <input matInput formControlName="sizeQuantity" placeholder="Quantity">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Price</mat-label>
+                          <input matInput formControlName="sizePrice" placeholder="Price">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-md-1" style="padding: 10px;">
+                      <div class="form-group">
+                        <a (click)="deleteRequirements(i)">
+                          <mat-icon>clear</mat-icon>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab> -->
+        <mat-tab label="Attribute" >
+          <div class="grid" *ngIf="isAttri">
+           <form [formGroup]="attributeForm">
+             <div class="row" *ngFor="let data of attributeModel">
+               <div class="col-md-4" *ngIf="data.fieldType === 'Dropdown'">
+                  <mat-form-field>
+                      <mat-label>{{data.fieldName}}</mat-label>
+                      <mat-select formControlName="{{data.fieldName}}" (selectionChange)="categorySubCategory($event)">
+                        <mat-option *ngFor="let att of data.fieldValue" [value]="att">
+                          {{att.fieldAttributeValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+               </div>
+               <div class="col-md-4" *ngIf="data.fieldType === 'Text'">
+                  <mat-form-field appearance="outline">
+                      <mat-label>{{data.fieldName}}</mat-label>
+                      <input matInput  formControlName="{{data.fieldName}}" required>
+                    </mat-form-field>
+               </div>
+             </div>
+           </form>
+          </div>
+          <div *ngIf="!isAttri">
+            <Label class="text-center" style="color: slategrey;">Loading..........</Label>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </form>

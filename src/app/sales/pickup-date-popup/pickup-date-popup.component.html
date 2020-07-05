@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-6 form-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" #date placeholder="Pickup Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  
+  <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+                          <mat-select #service placeholder="Service Type" >
+                            <mat-option *ngFor="let data of serviceType" [value]="data">
+                              {{data}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+  </div>
+  <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+                          <mat-select #type placeholder="DOX or SPX" >
+                            <mat-option *ngFor="let data of secondryType" [value]="data">
+                              {{data}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+  </div>
+  <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+                          <mat-select  placeholder="Destination Country" (selectionChange)="onCountry($event)">
+                            <mat-option *ngFor="let data of codeModel" [value]="data">
+                              {{data.CountryName}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+  </div>
+   <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+                          <mat-select  placeholder="Origin City" (selectionChange)="onCity($event)">
+                            <mat-option *ngFor="let data of cityList" [value]="data">
+                              {{data.CityName}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+  </div>
+  <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+    <input type="text" matInput #content placeholder="Content">
+  </mat-form-field>
+  </div>
+  <div class="col-md-6 form-group">
+    <mat-form-field class="full-width">
+    <input type="text" matInput #weight placeholder="Weight">
+  </mat-form-field>
+  </div>
+  <div class="col-md-12 text-center">
+    <button class="btn btn-primary mr-3" (click)='onSubmit(date.value, service.value, type.value, content.value, weight.value)'>Submit</button>
+    <button class="btn btn-primary" (click)="cancelRequest()">Cancel</button>
+    </div>
+</div>
+
+<!-- <mat-form-field>
+  <input matInput placeholder='Select Date' #date [matDatepicker]='datepickerRef' name='datepicker'   required readonly/>
+  <mat-datepicker-toggle [for]='datepickerRef' matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #datepickerRef></mat-datepicker>
+
+  </mat-form-field> -->
+  

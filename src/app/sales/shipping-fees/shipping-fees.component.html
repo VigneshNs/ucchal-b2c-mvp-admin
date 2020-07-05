@@ -1,0 +1,174 @@
+<div class="container">
+  <div class="row form-group pt-5">
+    <div class="col-md-6 form-group bord">
+      <div class="row pt-4">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Country Code</th>
+              <th scope="col">Minimum Order</th>
+              <th scope="col">Fees</th>
+              <th scope="col">AddedDate</th>
+              <th scope="col">Status</th>
+              <!-- <th scope="col">Delete</th> -->
+            </tr>
+          </thead>
+          <tbody *ngFor="let data of holder">
+            <tr>
+              <td>{{data.countryCode}}</td>
+              <td>{{data.minimumPrice}}</td>
+              <td>{{data.fees}}</td>
+              <td>{{data.addedDate | date}}</td>
+              <td>   <label class="switch ">
+                <input type="checkbox" (change)="changeStatus(data)" [checked]="data?.status === true">
+                <span class="slider round"></span>
+                </label></td>
+            <!--   <td>{{data.status === true ? 'Enable' : 'Disable'}}</td> -->
+              <td class="clicK" (click)="onDelete(data)"><mat-icon>delete</mat-icon></td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <!-- <div class="col-md-6 form-group">
+          <label>Minimum Order Price</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{holder?.minimumPrice}}
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Fees</label>
+          </div>
+          <div class="col-md-6 form-group">
+            {{holder?.fees}}
+          </div>
+          <div class="col-md-6 form-group">
+              <label>AddedDate</label>
+            </div>
+            <div class="col-md-6 form-group">
+              {{holder?.addedDate | date}}
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Status</label>
+              </div>
+              <div class="col-md-6 form-group">
+                {{holder?.status === true ? 'Enable' : 'Disable'}}
+              </div> -->
+      </div>
+    </div>
+
+    <form [formGroup]="shippingFeeForm" novalidate >
+      <div class="col-md-12 form-group">
+        <mat-form-field>
+          <mat-select placeholder="Country Code" #country formControlName="countryCode">
+            <mat-option *ngFor="let data of countryModel;let i = index " [value]="data.countryCode">
+              <a>{{data.countryCode}}</a>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    <div class="form-group col-md-12">
+      <mat-form-field class="outline">
+          <input matInput placeholder="Minimum Order Price (INR)" #min formControlName="minimumPrice">
+        
+          <mat-error *ngIf="shippingFeeForm.controls['minimumPrice'].errors?.required">
+           Minimum Price
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  </div>
+  <div class="form-group col-md-12">
+    <mat-form-field class="outline">
+        <input matInput placeholder="Fees (INR)" #fee formControlName="fees">
+       
+        <mat-error *ngIf="shippingFeeForm.controls['fees'].errors?.required">
+         Fees
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+</div>
+<div class="form-group col-md-12">
+  
+  <button mat-raised-button type="reset" (click)="checkValue(country.value, min.value, fee.value)"
+  [disabled]="!shippingFeeForm.valid"  color="primary">Add </button>
+
+</div>
+
+<!--  <div class="col-md-2 form-group" *ngIf="holder?.length !== 0">
+                <label class="switch ">
+                <input type="checkbox" (change)="changeStatus($event)" [checked]="holder?.status === true">
+                <span class="slider round"></span>
+                </label>
+            </div> -->
+    </form>
+
+
+
+
+
+
+
+    <!-- <div class="col-md-6 form-group">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <input type="number" #min placeholder="Minimum Price (INR)" class="form-control" >
+        </div>
+        <div class="col-md-12 form-group">
+            <input type="number"  #fees placeholder="Fees (INR)" class="form-control" >
+          </div>
+      
+            <div class="col-md-12 form-group">
+              <p *ngIf="showError" style="color: red;">add Value</p>
+              <button  class="btn btn-primary" (click)="checkValue(min.value, fees.value)">Add</button>
+            </div>
+            <div class="col-md-2 form-group" *ngIf="holder?.length !== 0">
+                <label class="switch ">
+                <input type="checkbox" (change)="changeStatus($event)" [checked]="holder?.status === true">
+                <span class="slider round"></span>
+                </label>
+            </div>
+      </div>
+    </div> -->
+
+
+
+
+
+
+
+    
+    <!-- <div class="col-md-6 form-group">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <input type="number" #min placeholder="Minimum Price (INR)" class="form-control" name="Minimum Price" required>
+        </div>
+        <div class="col-md-12 form-group">
+            <input type="number"  #fees placeholder="Fees (INR)" class="form-control" name="Fees" required>
+          </div>
+      
+<div class="col-md-12 form-group">
+              
+                  <label for="exampleFormControlSelect1">Status</label>
+                  <select class="form-control" #status id="exampleFormControlSelect1">
+                    <option value = true>Enable</option>
+                    <option value = false>Disable</option>
+                  </select>
+              
+            </div>
+
+
+            <div class="col-md-12 form-group">
+              <p *ngIf="showError" style="color: red;">add Value</p>
+              <button  class="btn btn-primary" (click)="checkValue(min.value, fees.value)">Add</button>
+            </div>
+            <div class="col-md-2 form-group" *ngIf="holder?.length !== 0">
+                <label class="switch ">
+                <input type="checkbox" (change)="changeStatus($event)" [checked]="holder?.status === true">
+                <span class="slider round"></span>
+                </label>
+            </div>
+      </div>
+    </div> -->
+
+
+  </div>
+</div>

@@ -1,0 +1,258 @@
+html,
+body {
+  height: 100%;
+  background-color: #e9e7e7;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nodata{
+  margin-left: 45%;
+  color: rgb(56, 134, 223);
+  font-size: 18px;
+
+}
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  overflow: auto;
+  pointer-events: auto;  
+}
+h5{
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+th {
+  background: #f0f3f5 !important;
+}
+.pblabel{
+  color: #fff !important;																
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  letter-spacing: 2px;
+  margin-bottom: 20px !important;
+}
+.chooseimages{
+  margin-left: 90px !important;
+  color:black !important;
+  }
+  .categorycancelbutton{
+    margin-left: 20px !important;
+  }
+.gridRow {
+  box-shadow: 0 1px 2px 0 #00000033, 0 1px 2px 0 rgba(0, 0, 0, .19);
+  background-color: #fff;
+  border-radius: 3px;
+  /* margin-bottom: 10px; */
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.rowEdit {
+  color: blue;
+  cursor: pointer;
+}
+
+.rowDelete {
+  color: red;
+  cursor: pointer;
+}
+
+.gridRowHeader {
+  box-shadow: 0 1px 2px 0 #00000033, 0 1px 2px 0 rgba(0, 0, 0, .19);
+  background-color: #dddd;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.categoryRow {
+  justify-content: flex-start;
+  padding: 10px 10px 10px 10px;
+}
+
+.categoryRow .card {
+  width: 100%;
+  position: relative;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+}
+
+.grid {
+  justify-content: flex-start;
+  padding: 10px 10px 10px 10px;
+
+}
+
+.grid .card {
+  width: 100%;
+  position: relative;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+}
+
+.categoryRow .card {
+  width: 100%;
+  position: relative;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.categoryRow .card {
+  width: 100%;
+  position: relative;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+}
+
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+input[type='submit'] {
+  display: block;
+  width: 100%;
+}
+
+.hideLabel {
+  display: none;
+}
+
+
+@media (max-width: 900px) {
+
+  .categoryRow .card .categoryBody .categoryField {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .categoryRow .card .categoryBody .brandField {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .grid .card .gridBody .gridField {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .display-none-small {
+    display: none !important;
+  }
+}
+
+@media (min-width: 900px) {
+
+  .displayRow {
+    display: none;
+  }
+
+  .categoryRow .card .categoryBody .categoryField {
+    width: 24%;
+    padding: 3px;
+  }
+
+  .categoryRow .card .categoryBody .brandField {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .grid .card .gridBody .gridField {
+    width: 24%;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+  /*Small */
+  .pageBox {
+    width: 90%;
+  }
+
+  .pageBoxLg {
+    border: 1px solid lightslategray;
+    margin: 5px 5px 5px 5px;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .pageBoxLg-label {
+    background: lightslategray;
+    margin: 0px 0px 0px 20px;
+    font-size: 14px;
+    padding: 2px 20px 2px 20px;
+    color: white;
+    transition: padding 3s;
+    -moz-transition: padding 3s;
+    -webkit-transition: padding 3s;
+  }
+
+  .display-none-small {
+    display: none;
+  }
+
+
+  .container-fuid-padding-small {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .editImage {
+    position: absolute;
+    right: 15px;
+  }
+
+  .gridLabel {
+    color: lightslategray;
+    font-size: 8pt;
+  }
+}
+
+.form-group label {
+  color: lightslategray;
+}
+
+.pageBoxLg {
+  border: 1px solid #11172b;
+  margin: 20px 10px 20px 10px;
+  padding: 20px;
+  position: relative;
+  background: #fff;
+  color: #11172b;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pageBoxLg-label {
+  background: #11172b;
+  margin: 0px 0px 0px 20px;
+  font-size: 14px;
+  padding: 2px 20px 2px 20px;
+  color: #ffff;
+  transition: padding 3s;
+  -moz-transition: padding 3s;
+  -webkit-transition: padding 3s;
+}
+.textarea.mat-input-element {
+  color: black !important;
+}
+.mat-input-element {
+  font: inherit;
+  background: 0 0;
+  color: currentColor;
+  border: none;
+  outline: 0;
+  padding: 0;
+  color: black;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+}

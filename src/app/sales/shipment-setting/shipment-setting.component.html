@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-md-3 form-group">
+      <label>Limited Period :</label>  {{holder?.daysCount}}
+    </div>
+    <div class="col-md-3 form-group">
+      <input type="number" class="form-control" [value]="holder?.daysCount" #count>
+    </div>
+    <div class="col-md-3 form-group">
+      <button class="btn btn-primary" (click)="addCount(count.value)">Add</button>
+    </div>
+    <div class="col-md-3 form-group">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Last Modified :</label>   {{holder?.addedDate | date}}
+    </div>
+    <div class="col-md-5 form-group"></div>
+  </div>
+</div>

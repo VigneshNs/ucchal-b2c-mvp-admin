@@ -1,0 +1,145 @@
+<div *ngIf="!loader">
+    <img  src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader"/></div>
+    <div *ngIf="loader">
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <mat-card class="newNow"> 
+    <p > Order > View Order</p>
+    </mat-card>
+    </div>
+
+
+<mat-card class="pageBoxLg">
+  <!-- <div class="row">
+
+    <div class="orders">
+      <a (click)=getAllOrders()>All({{allOrderCount}})</a>
+
+    </div>
+    <div class="orders">
+      <a (click)="viewNewOrders()">New({{newOrderCount}})</a>
+
+    </div>
+    <div class="orders">
+      <a (click)="viewActiveOrders()">Processing({{activeOrderCount}})</a>
+
+    </div>
+    <div class="orders">
+      <a (click)="viewCompletedOrders()">Completed({{completedOrderCount}})</a>
+
+    </div>
+    <div class="orders">
+      <a (click)="viewCancelledOrders()">Cancelled({{cancelledOrderCount}})</a>
+
+    </div>
+
+
+   
+
+  </div> -->
+  <div class="row">
+    <div class="col-md-4">
+      <div>
+          <button class="addButtons" mat-raised-button color="accent" (click)="addForm()" type="button" value="Add Filter">Add Filter</button>
+ <!--        <input class="btn btn-sm btn-danger" > -->
+      </div>
+      <div>
+        <!-- <p>test</p> -->
+        <div class="row gridRow" *ngFor="let account of productOptionValueForms.controls; let i=index"
+        [formGroupName]="i">
+        <div class="col-md-2">
+          
+            <mat-form-field >
+                <mat-label>Select the Field</mat-label>
+                <mat-select (selectionChange)="filterByOption($event)">
+                  <mat-option *ngFor="let data of filterColumns" [value]="data">{{data}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>SKU</mat-label>
+              <input style="color: #fff;" matInput formControlName="value" placeholder="value">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-1" style="padding: 10px;">
+          <div class="form-group">
+            <a (click)="deleteRequirements(i)">
+              <mat-icon style="color: white;">clear</mat-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <mat-form-field>
+            <input matInput placeholder="Search Orders" (keyup)="applyFilter($event.target.value)">
+          </mat-form-field>
+      </div>
+     
+  </div>
+  <div class="row">
+      <table mat-table [dataSource]="orderModel" matSort class="container-fluid ">
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef> <h5 style="text-align: center;">Orders</h5>
+
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+
+         <a (click)="showOrderDetails(element)" class="text-center">{{element.orderId}}</a>  </td>
+      </ng-container>   
+      <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef><h5 style="text-align: center; margin-left: 10px;">view</h5> 
+  
+          </th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+  
+              <a (click)="showOrderDetails(element)"><mat-icon>visibility   </mat-icon> </a>    </td>
+        </ng-container>
+      <ng-container matColumnDef="date">
+
+        <th mat-header-cell *matHeaderCellDef> <h5 style="text-align: center;">Date</h5> 
+
+
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.orderDate | date: 'dd/MM/yyyy hh:mm a'}} </td>
+      </ng-container>
+    <!--   <ng-container matColumnDef="paymentStatus">
+
+        <th mat-header-cell *matHeaderCellDef> Payment Status <br>
+
+
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentStatus }} </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef><h5 style="text-align: center;"> Status</h5><br>
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.orderStatus}} </td>
+      </ng-container>
+      <ng-container matColumnDef="itemStatus">
+        <th mat-header-cell *matHeaderCellDef><h5 style="text-align: center;">Item Status</h5><br>
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.confirmationOrderStatus}} </td>
+      </ng-container>
+     <!--  <ng-container matColumnDef="poStatus">
+      
+        <th mat-header-cell *matHeaderCellDef><h5 style="text-align: center;"> PO Status</h5>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.purchaseOrderStatus}} </td>
+      </ng-container> -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef><h5 style="text-align: center;">Total</h5>
+
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.total}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator style="background: #ebedef; color: #555;" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>

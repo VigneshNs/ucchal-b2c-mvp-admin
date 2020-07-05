@@ -1,0 +1,96 @@
+<div class="container-fluid pt-5" style="background: #6f7880">
+
+<div class="row">
+    <div class="col-md-1"></div>
+
+      <div class="col-md-2 form-group"> 
+          <div  class="card bg-light ctrlAll mb-3 text-center" style="max-width: 18rem;">
+        <div  class="card-header" > <h5 class="newOne">No. Of Vendor</h5></div>
+        <div class="card-body">
+          <h5 class="card-titlez">{{vendorCount}}</h5>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-md-2 form-group">
+          <div  class="card bg-light ctrlAll mb-3 text-center"style="max-width: 18rem;" >
+    <div class="card-header" >   <h5  class="newOne">No. of Product</h5></div>
+        <div class="card-body">
+          <h5 class="card-titlez">{{productCount}}</h5>
+        </div>
+          </div>
+      </div>
+
+       
+    <div class="col-md-2 form-group">
+        <div class="card bg-light ctrlAll mb-3 text-center" style="max-width: 18rem;">
+        <div class="card-header">  <h5 class="newOne">Inventory Count</h5></div>
+      <div class="card-body">
+        <h5 class="card-titlez">{{inventoryCount}}</h5>
+      </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card bg-light ctrlAll mb-3 text-center" style="max-width: 18rem;">
+          
+              <div class="card-header" > <h5 class="newOne">Purchase Order Count</h5></div>
+          
+          <div class="card-body">
+            <h5 class="card-titlez">{{poCount}}</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+          <div class="card bg-light ctrlAll mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header">
+              <h5 class="newOne">Out Of Stock Count</h5>
+            </div>
+            <div class="card-body">
+              <h5 class="card-titlez">{{outOfStock}}</h5>
+            </div>
+          </div>
+        </div>
+
+<div class="col-md-1"></div>
+
+</div>
+
+
+  <div class="row">
+      <div class="col-md-6 col-6 form-group" >
+      
+          <mat-card class="bg-lightz mb-3 text-center" style="height: 620px; background-color: #27293d;">
+            <div class="card-header">
+              <h5 style="text-transform: capitalize; color:#d0d0d5;">Category Wise Product Count</h5>
+            </div>
+            <div class="card-body" style="height: 536px;">
+              <div class="row" *ngFor="let data of categoryWiseCount">
+                
+                <div class="col-md-6 form-group" ><label style="color: #a6a6af;">{{data._id.category}}</label></div>
+                <div class="col-md-6 form-group" style="text-align: center; color: #a6a6af;">{{data.count}}</div>
+              </div>
+            </div>
+          </mat-card>
+       
+  </div>
+
+  <div class="col-md-6">
+    <div class="col-md-12 form-group">
+      <div class="card" class="graphCtrl">
+      <label style="color: #a6a6af;">Customer Count - {{customerCount}}</label>
+      <canvas #lineChart>{{ chart }}</canvas>
+      </div>
+    </div>
+    <div class="col-md-12 form-group">
+      
+        <div class="card" class="graphCtrl" style="padding: 15px;">
+
+      <label style="color: #a6a6af;">Order Count - {{ orderCount}}</label>
+      <canvas #orderChart style="color: red !important; border: 1px solid #5e606f;"> <h1>{{ orderChartData }}</h1></canvas>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

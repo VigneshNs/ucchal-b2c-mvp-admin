@@ -1,0 +1,120 @@
+<div class="pageBoxLg">
+  <div class="row">
+  <div class="col-md-1 form-group " >
+    <a class="hand" (click)="onCGST()">CGST</a>
+  </div>
+  <div class="col-md-1 form-group " >
+    <a class="hand" (click)="onSGST()">SGST</a>
+  </div>
+  <div class="col-md-1 form-group " >
+    <a class="hand" (click)="onIGST()">IGST</a>
+  </div>
+  <div class="col-md-1 form-group ">
+    <a class="hand" (click)="onTerms()">Terms And Condition</a>
+  </div>
+  <div class="col-md-1 form-group ">
+    <a class="hand" (click)="onContact()">Contact No</a>
+  </div>
+  <div class="col-md-1 form-group ">
+    <a class="hand" (click)="onGST()">Gst IN</a>
+  </div>
+  <div class="col-md-1 form-group ">
+    <a class="hand" (click)="onType()">Purchase Order Type</a>
+  </div>
+  <div class="col-md-1 form-group ">
+      <a class="hand" (click)="onBilling()">Billing Address</a>
+    </div>
+</div>
+<div class="row" *ngIf="isCGST">
+  <div class="col-md-3 form-group">
+    <input type="text"  #cgst class="form-control">
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addCGST(cgst.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.cgstRate}}
+  </div>
+</div>
+<div class="row" *ngIf="isSGST">
+  <div class="col-md-3 form-group">
+    <input type="text" #sgst class="form-control">
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addSGST(sgst.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.sgstRate}}
+  </div>
+</div>
+<div class="row" *ngIf="isIGST">
+  <div class="col-md-3 form-group">
+    <input type="text"  #igst class="form-control">
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addIGST(igst.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.igstRate}}
+  </div>
+</div>
+<div class="row" *ngIf="isTerms">
+  <div class="col-md-3 form-group">
+    <textarea type="text"  #terms class="form-control"></textarea>
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addTerms(terms.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.termsAndCondition}}
+  </div>
+</div>
+<div class="row" *ngIf="isContact">
+  <div class="col-md-3 form-group">
+    <input type="text" #contact class="form-control">
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addContact(contact.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.contactNo}}
+  </div>
+</div>
+<div class="row" *ngIf="isGST">
+  <div class="col-md-3 form-group">
+    <input type="text"  #gst class="form-control">
+  </div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addGST(gst.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg">
+    {{holder?.gstIn}}
+  </div>
+</div>
+<div class="row" *ngIf="isPOType">
+  <div class="col-md-3 form-group">
+    <input type="text"  #poType class="form-control">
+  </div>
+  <div *ngIf="isShowError"><p style="color: red">Already Exist</p></div>
+  <div class="col-md-1 form-group" >
+    <button class="btn btn-primary" (click)="addPOType(poType.value)">Add</button>
+  </div>
+  <div class="col-md-6 form-group pageBoxLg" >
+    <div *ngFor="let data of holder.poType">
+    {{data}}   <a (click)="typeDelete(data)" class="hand">| (Clear)</a>
+  </div>
+  </div>
+</div>
+<div class="row" *ngIf="isBill">
+    <div class="col-md-3 form-group">
+      <textarea type="text"  #bill class="form-control"></textarea>
+    </div>
+    
+    <div class="col-md-1 form-group" >
+      <button class="btn btn-primary" (click)="addBill(bill.value)">Add</button>
+    </div>
+    <div class="col-md-6 form-group pageBoxLg">
+      {{holder?.billingAddress}}
+    </div>
+  </div>
+</div>

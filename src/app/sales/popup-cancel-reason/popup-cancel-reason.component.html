@@ -1,0 +1,11 @@
+<button type="button" class="close" (click)="close()" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+<div class="row">
+  <div class="col-md-6 form-group ">
+    {{data.cancelReason}}
+  </div>
+  <div class="col-md-6 form-group text-right">
+    <label>Date:</label> {{data.cancelationDate | date: 'dd/MM/yyyy hh:mm a'}}
+  </div>
+</div>

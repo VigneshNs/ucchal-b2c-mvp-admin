@@ -1,0 +1,486 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <mat-card class="newNow">
+        <p style="padding-top: 21px;padding-left: 20px"> Category > Sub Category > Add </p>
+      </mat-card>
+
+    </div>
+<mat-card class="pageBoxLg ">
+
+    <form [formGroup]="subCategoryForm" novalidate style="padding-top:30px">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="categoryField Categoryimage col-md-6">
+              <div class="card" style="padding: 20px;">
+                <div class="form-group col-md-12">
+           
+                    <mat-form-field>
+                        <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)"
+                          placeholder="Select Super Category">
+                          <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
+                            {{category.categoryName | titlecase}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+       
+                </div>
+                <div class="form-group col-md-12">
+             
+    
+                    <mat-form-field style="margin: 19px 0px 19px 0px">
+                        <mat-select #selectMain (selectionChange)="selectMainCategory(selectMain.value)"
+                          placeholder="Select Main Category">
+                          <mat-option *ngFor="let category of mainCategoryModel" [value]="category._id">
+                            {{category.mainCategoryName | titlecase}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div *ngIf="selectedDisable">
+                          <small style="color: red">Select Category </small>
+                        </div>
+     
+                </div>
+                <div class="form-group col-md-12">
+             
+                    <mat-form-field class="outline">
+                        <input matInput placeholder="Sub Category Name" formControlName="subCategoryName" required #name>
+                        <button mat-button matSuffix mat-icon-button aria-label="Sub Category Name">
+                        </button>
+                        <mat-error *ngIf="subCategoryForm.controls['subCategoryName'].errors?.required">
+                          Sub Category Name is
+                          <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                  
+                </div>
+                <div class="form-group col-md-12">
+                
+    
+    
+                    <mat-form-field class="outline">
+                        <input matInput placeholder="Sub Category Description" formControlName="subCategoryDescription" #desc>
+                        <button mat-button matSuffix mat-icon-button aria-label="Sub Category Description">
+                        </button>
+                        <mat-error *ngIf="subCategoryForm.controls['subCategoryDescription'].errors?.required">
+                          Sub Category Description
+                          <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+      
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field  class="example-full-width">
+                    <mat-select (selectionChange)="statusValue($event)" formControlName="status" placeholder="Please Select Status">
+                      <mat-option *ngFor="let stat  of activeStatus" [value]="stat.active">
+                        {{stat.active }}
+                      </mat-option>
+                    </mat-select>
+                  <!--   <mat-error *ngIf="selectStatus">
+                      select Status is
+                      <strong>required</strong>
+                    </mat-error> -->
+    
+                    <!-- <div *ngIf="selectStatus">
+                      <small style="color: red">Select Status</small>
+                    </div> -->
+                  </mat-form-field>
+                </div>
+                <div class="form-group col-md-12">
+                    <mat-form-field class="outline">
+                        <input matInput placeholder="Meta Tag Title" formControlName="metaTagTitle">
+                        <button mat-button matSuffix mat-icon-button aria-label="Meta Tag Title">
+                        </button>
+                        <mat-error *ngIf="subCategoryForm.controls['metaTagTitle'].errors?.required">
+                          Sub Category Description
+                          <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                  
+                </div>
+                <div class="form-group col-md-12">
+                    <mat-form-field class="outline">
+                        <input matInput placeholder="Meta Tag Description" formControlName="metaTagDescription">
+                        <button mat-button matSuffix mat-icon-button aria-label="Meta Tag Title">
+                        </button>
+                        <mat-error *ngIf="subCategoryForm.controls['metaTagDescription'].errors?.required">
+                          Sub Category Description
+                          <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                </div>
+               
+                <div class="form-group col-md-12">
+                    <!-- <input (click)="addSubCategory()" [disabled]="!subCategoryForm.valid" class="btn btn-primary" type="submit"
+                    value="Save">            -->
+                    <button mat-raised-button type="reset" (click)="addSubCategory()"
+                    [disabled]="!subCategoryForm.valid"  class="addButtons">Save</button>
+                    
+                  <button mat-flat-button class="addButtons" type="reset" (click)="cancelSubCategory()">Cancel</button>
+                  <br>
+                </div>
+    
+    
+              </div>
+              </div>          
+
+          <div class="form-group col-md-6 text-center">
+          <mat-card class="card">
+              <div class="form-group">
+              <!--     <div> <label class="chooseimages"><h5><b>Choose (images)</b></h5> </label></div> -->
+                  <input type="file" (change)="handleFileInput($event.target.files)" class="checked">
+                  <div class="row">
+                    <div class="col-md-12 pb-2" *ngFor="let url of urls">
+                        <img class="img-fluid imgEdit" [src]="url" />
+                    </div>
+                  </div>
+    
+                </div>
+
+
+           
+
+              </mat-card>
+          </div>
+       </div>
+
+
+       <div class="grid" formArrayName="attribute">
+          <div class="row gridRow">
+            <div class="col-md-6">
+              <div class="form-group p-2">
+                <input class="btn addButtons"  style="height: 30px;width:100px" (click)="addForm()" type="button" value="Add Field">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right">
+                <input (click)="addSubCategory()" [disabled]="!subCategoryForm.valid" class="btn addButtons"
+                  type="submit" value="Save">
+              </div>
+            </div>
+          </div>
+          <div class="row gridRow" *ngFor="let fie of subCategoryForm['controls'].attribute['controls']; let i=index"
+            [formGroupName]="i">
+            <div class="col-md-2">
+              <div class="form-group">
+                <mat-form-field appearance="outline" >
+                  <mat-label>Field Name</mat-label>
+                  <input matInput formControlName="fieldName" placeholder="Field Name">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+    
+                <mat-radio-group  (change)="selectDropdown($event, i)" [(value)]="subCategoryForm['controls'].attribute['controls'][i].value.fieldType"
+                  aria-labelledby="example-radio-group-label" class="example-radio-group"
+                 >
+                  <mat-radio-button class="example-radio-button" 
+                   *ngFor="let field of fieldType" [value]="field">
+                    {{field}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="col-md-2">
+          <div class="form-group">
+            <mat-radio-group (change)="selectTypeSetting($event, i)"
+              [(value)]="subCategoryForm['controls'].attribute['controls'][i].value.fieldSetting"
+              aria-labelledby="example-radio-group-label" class="example-radio-group">
+              <mat-radio-button class="example-radio-button" *ngFor="let def of fieldSettingType" [value]="def">
+                {{def}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <section class="example-section">
+              <label>Field Enable</label>
+            <mat-slide-toggle formControlName="fieldEnable" [required]="false">
+            </mat-slide-toggle>
+          </section>
+        </div>
+        <div class="col-md-1">
+            <section class="example-section">
+                <label>Field Enable Value</label>
+              <mat-slide-toggle formControlName="fieldEnableValue" [required]="false">
+              </mat-slide-toggle>
+            </section>
+          </div>
+            <div class="col-md-2"> 
+            <div class="row">
+            <div class="col-md-12" *ngIf="subCategoryForm['controls'].attribute['controls'][i].value.fieldType !== 'Text'">
+            
+              <input class="btn btn-sm btn-danger" (click)="addFiledValue(i)" type="button" value="Field Search Value">
+              <div  formArrayName="fieldValue">
+                <div class="row" *ngFor="let Y of fie['controls'].fieldValue['controls']; let iy=index">
+                  <div class="col-md-9" formGroupName="{{iy}}">
+                   
+                   <mat-form-field appearance="outline">
+                      <mat-label>Field Search Value</mat-label>
+                      <input matInput formControlName="fieldAttributeValue" placeholder="Field Search Value">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <a (click)="removeFiledValue(i, iy)">
+                      <mat-icon>clear</mat-icon>
+                    </a>
+                  </div>
+                    
+                </div>
+                </div>
+               
+               
+            </div>
+            
+          </div>
+        </div>
+          
+            <div class="col-md-2" style="padding: 10px;">
+                <div class="form-group">
+                  <a (click)="deleteAttribute(i)">
+                    <mat-icon>clear</mat-icon>
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </form>
+  </mat-card>
+
+
+
+<!-- 
+  <div class="pageBoxLg">
+      <label class="pageBoxLg-label">Sub Category</label>
+      <form [formGroup]="subCategoryForm" novalidate>
+        <div class="flex categoryRow">
+          <div class="card">
+            <div class="flex categoryBody">
+              <div class="categoryField">
+                <div class="form-group">
+                
+                  <mat-label>Sub Category Image</mat-label>
+                  <input type="file" (change)="handleFileInput($event.target.files)">
+                  <div class="row">
+                    <div class="col-md-12 pb-2" *ngFor="let url of urls">
+                      <mat-card style="height: 105px; width:105px">
+                        <img class="img-fluid" [src]="url" height="100px" width="100px" />
+                      </mat-card>
+                    </div>
+                  </div>
+               
+                </div>
+              </div>
+              <div class="categoryField">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)"
+                      placeholder="Select Super Category">
+                      <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
+                        {{category.categoryName | titlecase}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="categoryField">
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-select #selectMain (selectionChange)="selectMainCategory(selectMain.value)"
+                      placeholder="Select Main Category">
+                      <mat-option *ngFor="let category of mainCategoryModel" [value]="category._id">
+                        {{category.mainCategoryName | titlecase}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="categoryField">
+                <div *ngIf="selectedDisable">
+                  <small style="color: red">Select Category </small>
+                </div>
+              </div>
+              <div class="categoryField">
+    
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="flex categoryRow">
+          <div class="card">
+            <div class="flex categoryBody">
+              <div class="categoryField">
+                <div class="form-group">
+                  <mat-form-field class="outline">
+                    <input matInput placeholder="Sub Category Name" formControlName="subCategoryName" required #name>
+                    <button mat-button matSuffix mat-icon-button aria-label="Sub Category Name">
+                    </button>
+                    <mat-error *ngIf="subCategoryForm.controls['subCategoryName'].errors?.required">
+                      Sub Category Name is
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="categoryField">
+                <div class="form-group">
+                  <mat-form-field class="outline">
+                    <input matInput placeholder="Sub Category Description" formControlName="subCategoryDescription" #desc>
+                    <button mat-button matSuffix mat-icon-button aria-label="Sub Category Description">
+                    </button>
+                    <mat-error *ngIf="subCategoryForm.controls['subCategoryDescription'].errors?.required">
+                      Sub Category Description
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="categoryField">
+                <div class="form-group">
+                  <mat-form-field class="outline">
+                    <input matInput placeholder="Meta Tag Title" formControlName="metaTagTitle">
+                    <button mat-button matSuffix mat-icon-button aria-label="Meta Tag Title">
+                    </button>
+                    <mat-error *ngIf="subCategoryForm.controls['metaTagTitle'].errors?.required">
+                      Sub Category Description
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="categoryField">
+                <mat-form-field class="outline">
+                  <input matInput placeholder="Meta Tag Title" formControlName="metaTagDescription">
+                  <button mat-button matSuffix mat-icon-button aria-label="Meta Tag Title">
+                  </button>
+                  <mat-error *ngIf="subCategoryForm.controls['metaTagDescription'].errors?.required">
+                    Sub Category Description
+                    <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+    
+            </div>
+            <div class="grid" formArrayName="attribute">
+              <div class="row gridRow">
+                <div class="col-md-6">
+                  <div class="form-group p-2">
+                    <input class="btn btn-sm btn-danger" (click)="addForm()" type="button" value="Add Field">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <input (click)="addSubCategory()" [disabled]="!subCategoryForm.valid" class="btn btn-danger"
+                      type="submit" value="Save">
+                  </div>
+                </div>
+              </div>
+              <div class="row gridRow" *ngFor="let fie of subCategoryForm['controls'].attribute['controls']; let i=index"
+                [formGroupName]="i">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline" >
+                      <mat-label>Field Name</mat-label>
+                      <input matInput formControlName="fieldName" placeholder="Field Name">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+        
+                    <mat-radio-group  (change)="selectDropdown($event, i)" [(value)]="subCategoryForm['controls'].attribute['controls'][i].value.fieldType"
+                      aria-labelledby="example-radio-group-label" class="example-radio-group"
+                     >
+                      <mat-radio-button class="example-radio-button" 
+                       *ngFor="let field of fieldType" [value]="field">
+                        {{field}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div class="col-md-2">
+              <div class="form-group">
+                <mat-radio-group (change)="selectTypeSetting($event, i)"
+                  [(value)]="subCategoryForm['controls'].attribute['controls'][i].value.fieldSetting"
+                  aria-labelledby="example-radio-group-label" class="example-radio-group">
+                  <mat-radio-button class="example-radio-button" *ngFor="let def of fieldSettingType" [value]="def">
+                    {{def}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+                <div class="col-md-3"> 
+                <div class="row">
+                <div class="col-md-12" *ngIf="subCategoryForm['controls'].attribute['controls'][i].value.fieldType !== 'Text'">
+                
+                  <input class="btn btn-sm btn-danger" (click)="addFiledValue(i)" type="button" value="Field Search Value">
+                  <div  formArrayName="fieldValue">
+                    <div class="row" *ngFor="let Y of fie['controls'].fieldValue['controls']; let iy=index">
+                      <div class="col-md-9" formGroupName="{{iy}}">
+                       
+                       <mat-form-field appearance="outline">
+                          <mat-label>Field Search Value</mat-label>
+                          <input matInput formControlName="fieldAttributeValue" placeholder="Field Search Value">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <a (click)="removeFiledValue(i, iy)">
+                          <mat-icon>clear</mat-icon>
+                        </a>
+                      </div>
+                        
+                    </div>
+                    </div>
+                   
+                   
+                </div>
+                
+              </div>
+            </div>
+              
+                <div class="col-md-2" style="padding: 10px;">
+                    <div class="form-group">
+                      <a (click)="deleteAttribute(i)">
+                        <mat-icon>clear</mat-icon>
+                      </a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+        <div class="categoryRow">
+          <label>View Sub Category</label>
+          <div class="form-group col-sm-12 col-md-2">
+            <div class="textContainer">
+              <mat-form-field>
+                <mat-select #selectElem1 (selectionChange)="getCategory(selectElem1.value)"
+                  placeholder="Select super category">
+                  <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
+                    {{category.categoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group col-sm-12 col-md-2">
+            <div class="textContainer">
+              <mat-form-field>
+                <mat-select #selectMainCatVal (selectionChange)="getSubCategory(selectMainCatVal.value)"
+                  placeholder="Select main category">
+                  <mat-option *ngFor="let category of mainCategoryModel" [value]="category._id">
+                    {{category.mainCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+    
+      </form> -->

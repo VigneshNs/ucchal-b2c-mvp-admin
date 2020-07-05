@@ -1,0 +1,55 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Setting / Terms And Use / Edit </p>
+    </div>
+<div class="pageBoxLg">
+    <div class="container topAlignContainer ">
+      <form [formGroup]="TermsForm">
+        <div>
+            <label  class="pageBoxLg-label pblabel">Edit Terms & Use</label>
+         
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Heading" [value]="termsModel.heading" formControlName="heading"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Details" [value]="termsModel.details" formControlName="details"></textarea>
+            </mat-form-field>
+          </div>
+          <div style="margin: 3px">
+            <button  mat-raised-button type="button" color="primary"(click)="updateTermsAndUse(TermsForm)">Update</button>
+            <button style="margin-left: 5px;" mat-raised-button type="button" color="primary" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- <div class="pageBoxLg">
+    <div class="container topAlignContainer ">
+      <form [formGroup]="TermsForm">
+        <div>
+          <label class="pageBoxLg-label">Edit Terms & USe</label>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Heading" [value]="termsModel.heading" formControlName="heading"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Details" [value]="termsModel.details" formControlName="details"></textarea>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-raised-button type="button" color="primary" (click)="updateTermsAndUse(TermsForm)">Save</button>
+            <button mat-raised-button type="button" color="primary" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> -->

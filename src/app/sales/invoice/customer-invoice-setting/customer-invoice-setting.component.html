@@ -1,0 +1,17 @@
+<div class="container">
+<form [formGroup]="invoiceFormSetting">
+    <mat-tab-group>
+      <mat-tab label="CGST">
+        <mat-form-field class="full-width">
+          <input matInput name="CGST" [formControl]="invoiceFormSetting.controls['cgst']" placeholder="CGST"
+            value="">
+          <mat-error
+            *ngIf="invoiceFormSetting.controls['cgst'].hasError('required') && invoiceFormSetting.controls['cgst'].touched">
+            CGST is required</mat-error>
+        </mat-form-field>
+      </mat-tab>
+      <mat-tab label="SGST"> Content 2 </mat-tab>
+      <mat-tab label="IGST"> Content 3 </mat-tab>
+    </mat-tab-group>
+</form>
+</div>

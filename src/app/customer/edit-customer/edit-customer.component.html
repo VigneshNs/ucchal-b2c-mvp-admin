@@ -1,0 +1,128 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+        <mat-card class="newNow"> 
+                <p > Customer > View  Customer > Editr</p>
+                </mat-card>
+    <p style="padding-top: 21px;padding-left: 20px"> </p>
+    </div>
+<mat-card class="pageBoxLg" style="padding: 15px;">
+<div class="row">
+<!--     <label  class="pageBoxLg-label pblabel">Edit Customer</label> -->
+</div>
+<div class="row pageBoxl">
+  <div class="col-md-12">
+   
+    <hr>
+  </div>
+ 
+  <div class="col-md-3">
+      <label style="color: rgb(35, 53, 70)"><b>First Name</b></label>
+      <input type="text" class="form-control" [value]="holder.firstName" placeholder="First Name" #first>
+  </div>
+  <div class="col-md-3">
+      <label style="color: rgb(35, 53, 70)"><b>Last Name</b></label>
+      <input type="text" class="form-control" [value]="holder.lastName" placeholder="Last Name" #last>
+  </div>
+  <div class="col-md-3">
+      <label style="color: rgb(35, 53, 70)"><b>Email_ID</b></label>
+      <input type="email" class="form-control" [value]="holder.emailId" placeholder="Email-ID" #mail>
+   
+  </div>
+  <div class="col-md-3">
+      <label style="color: rgb(35, 53, 70)"><b>Mobile Number</b></label>
+      <input type="number" class="form-control" [value]="holder.mobileNumber" placeholder="Mobile Number" #mob>
+  </div>
+</div>
+<div class="row pageBoxl">
+  <div class="col-md-12">
+      <h6 style="color: rgb(35, 53, 70)">More Information</h6>
+      <hr>
+  </div>
+  <div class="col-6">
+      <label style="color: rgb(35, 53, 70)"><b>Password</b></label>
+      <input type="password" class="form-control" [value]="holder.password" disabled placeholder="Password" #pass>
+  </div>
+  <div class="col-md-6">
+      <label style="color: rgb(35, 53, 70)"><b>Date of Birth</b></label>
+      <input type="date" class="form-control"  [value]="holder.dateOfBirth | date:'yyyy-MM-dd'" 
+      (ngModelChange)="holder.dateOfBirth = $event" placeholder="Date of birth" #dob>
+  </div>
+  <div class="col-md-6">
+      <label style="color: rgb(35, 53, 70); margin-top: 10px;"><b>Gender</b></label>
+      <select class="browser-default custom-select" [value]="holder.gender" #gen>
+          <option selected>Select Gender</option>
+          <option *ngFor="let data of genderValue">{{data}}</option>
+        </select>
+  </div>
+  <div class="col-md-6">
+      <label style="color: rgb(35, 53, 70);margin-top: 10px;"><b>Location</b></label>
+      <input type="text" class="form-control" placeholder="Location" [value]="holder.location" #loc>
+  </div>
+  <div class="col-md-12 text-center">
+      <button type="button" mat-flat-button class="addButtons"
+      (click)="getCustomerValue(first, last, mail, mob, pass, dob, gen, loc)" style="width: 200px; margin: 10px">Update</button>
+      <button type="button"  mat-flat-button   (click)="cancel()" style="width: 200px" class="addButtons">Cancel</button>
+  </div>
+</div>
+
+</mat-card>
+
+
+<!-- <div class="pageBoxLg">
+    <div class="row">
+        <label class="pageBoxLg-label "><h6>Edit Customer</h6></label>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h6>Customer Details</h6>
+        <hr>
+      </div>
+      
+      <div class="col-md-3">
+          <label><b>First Name</b></label>
+          <input type="text" class="form-control" [value]="holder.firstName" placeholder="First Name" #first>
+      </div>
+      <div class="col-md-3">
+          <label><b>Last Name</b></label>
+          <input type="text" class="form-control" [value]="holder.lastName" placeholder="Last Name" #last>
+      </div>
+      <div class="col-md-3">
+          <label><b>Email_ID</b></label>
+          <input type="email" class="form-control" [value]="holder.emailId" placeholder="Email-ID" #mail>
+      </div>
+      <div class="col-md-3">
+          <label><b>Mobile Number</b></label>
+          <input type="number" class="form-control" [value]="holder.mobileNumber" placeholder="Mobile Number" #mob>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+          <h6>More Information</h6>
+          <hr>
+      </div>
+      <div class="col-6">
+          <label><b>Password</b></label>
+          <input type="password" class="form-control" [value]="holder.password" placeholder="Password" #pass>
+      </div>
+      <div class="col-md-6">
+          <label><b>Date of Birth</b></label>
+          <input type="date" class="form-control"  [value]="holder.dateOfBirth | date:'yyyy-MM-dd'" 
+          (ngModelChange)="holder.dateOfBirth = $event" placeholder="Date of birth" #dob>
+      </div>
+      <div class="col-md-6">
+          <label><b>Gender</b></label>
+          <select class="browser-default custom-select" [value]="holder.gender" #gen>
+              <option selected>Select Gender</option>
+              <option *ngFor="let data of genderValue">{{data}}</option>
+            </select>
+      </div>
+      <div class="col-md-6">
+          <label><b>Location</b></label>
+          <input type="text" class="form-control" placeholder="Location" [value]="holder.location" #loc>
+      </div>
+      <div class="col-md-12 text-center">
+          <button type="button" class="btn btn-dark" 
+          (click)="getCustomerValue(first, last, mail, mob, pass, dob, gen, loc)" style="width: 200px; margin: 10px">Submit</button>
+          <button type="button" class="btn btn-dark " (click)="cancel()" style="width: 200px">Cancel</button>
+      </div>
+    </div>
+  </div> -->

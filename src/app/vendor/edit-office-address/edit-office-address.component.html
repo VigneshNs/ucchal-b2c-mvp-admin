@@ -1,0 +1,102 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Address Line 1</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.officeAddressLine1}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Address Line 2</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.officeAddressLine2}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>City</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.officeCity}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>State</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.officeState}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Pincode</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.officePincode}}
+    </div>
+  </div>
+
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address Line 1</label>
+          <input type="text" class="form-control" [value]="profileData.officeAddressLine1 || null" #add1
+            formControlName="officeAddressLine1" placeholder="Address Line 1">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address Line 2</label>
+          <input type="text" class="form-control" [value]="profileData.officeAddressLine2 || null" #add2
+            formControlName="officeAddressLine2" placeholder="Address Line 2">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" class="form-control" [value]="profileData.officeCity || null" #city formControlName="officeCity"
+            placeholder="City" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" [value]="profileData.officeState || null" #state formControlName="officeState"
+            placeholder="State">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Pincode</label>
+          <input type="text" class="form-control" [value]="profileData.officePincode || null" #pin
+            formControlName="officePincode" placeholder="Pincode">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(add1, add2, city, state, pin)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

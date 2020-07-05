@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4 form-group">
+      <mat-form-field>
+        <mat-label>Select Vendor</mat-label>
+        <mat-select #category [value]="vendorStore?.vendorName"  (selectionChange)="filterByVendor($event)">
+          <mat-option disabled>select</mat-option>
+          <mat-option *ngFor="let data of vendorModel" [value]="data.vendorName">{{data.vendorName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4 form-group">
+      <button class="btnBac" [ngClass]="{'selectCondition': selectedVendor === null}" (click)="onDownload()">Download</button>
+    </div>
+    <div class="col-md-4 form-group">
+      <button class="btnBac" (click)="onUpload()">Upload</button>
+    </div>
+    <div class="col-md-12 form-group">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" [ngClass]="{'selectCondition': selectedVendor === null}">
+              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+            <i class="fa fa-sort-desc aeroClass" (click)="onClickDropdown()"></i>
+            <div class="dropdown-menu" [ngClass]="{'selectedDropdown': showDropDown}">
+             <!--  <h6 class="dropdown-header">Dropdown header</h6> -->
+              <a class="dropdown-item showHand" [ngClass]="{'selectedItem': selectType === 'currentPage'}"  (click)="onPageSelect('currentPage')">This Page</a>
+              <a class="dropdown-item showHand" [ngClass]="{'selectedItem': selectType === 'allPage'}" (click)="onPageSelect('allPage')">All Pages</a>
+            </div>
+            </th>
+            <th scope="col">Image</th>
+            <th scope="col">Product Details</th>
+            <th scope="col">Category</th>
+            <th scope="col">SP</th>
+            <th scope="col">VP</th>
+            <th scope="col">MRP</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of productModel">
+            <th scope="row" [ngClass]="{'selectCondition': selectedVendor === null}">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(data.INTsku) : null"
+            [checked]="selection.isSelected(data.INTsku)" [aria-label]="checkboxLabel(data.INTsku)">
+          </mat-checkbox>
+            </th>
+            <td><img [src]="data.productImage[0].productImageName" style="width: 50px; height: 50px;"></td>
+            <td>{{data.productName}} <br>
+           <label class="headLabel">SKU:</label> {{data.sku}} <label class="headLabel">INTSku:</label> {{data.INTsku}}</td>
+           <td>{{data.subCagegoryName === undefined ? data.superCategoryName : data.subCagegoryName}}</td>
+            <td class="priceHover"><span>{{data.sp | currency: 'INR'}}  </span><span> <mat-icon class="onEditPric" (click)="onEditPrice(data, 'sp', 'Selling Price')" color="primary">edit</mat-icon> </span> </td>
+            <td class="priceHover">{{data.vp | currency: 'INR'}}<span> <mat-icon class="onEditVP" (click)="onEditPrice(data, 'vp', 'Vendor Price')" color="primary">edit</mat-icon> </span></td>
+            <td class="priceHover">{{data.mrp | currency: 'INR'}} <span> <mat-icon class="onEditMrp" (click)="onEditPrice(data, 'mrp', 'MRP')" color="primary">edit</mat-icon> </span></td>
+            <td class="priceHover">{{data.discount}}% <span> <mat-icon class="onEditDiscount" (click)="onEditPrice(data, 'discount', 'Discount')" color="primary">edit</mat-icon> </span></td>
+            <td class="qtyHover">{{data.quantity}} <mat-icon class="onEditQty" color="primary" (click)="onEditQuantity(data)">edit</mat-icon></td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination text-center ">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="getPage(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </a>
+        </li>
+  
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="getPage(pager.currentPage - 1)"><i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page, 'selectedPage': pager.currentPage === page}">
+            <a (click)="getPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="getPage(pager.currentPage + 1)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="getPage(pager.totalPages)"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+    </div>
+  </div>
+</div>

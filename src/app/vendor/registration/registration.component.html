@@ -1,0 +1,619 @@
+<div class="pageBoxLg">
+  <form [formGroup]="registrationForm"  >
+    <div class="row">
+      <label class="pageBoxLg-label pblabel">
+   Registration
+      </label>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Contract Details</h5>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Name<span class="asterisc">*</span> </label>
+          <input type="text" class="form-control" formControlName="vendorName" placeholder="Name" required>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Email_ID<span class="asterisc">*</span></label>
+          <input type="email" class="form-control" formControlName="vendorEmailId" placeholder="Email" required>
+          <p style="color: crimson">{{temp?.result }} </p>
+        </div>
+      </div>
+     
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Mobile Number<span class="asterisc">*</span></label>
+          <input class="form-control" formControlName="vendorMobileNumber"
+           id="phonenum" type="number"  required>  
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="form-group">
+          <label>Password<span class="asterisc">*</span></label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Type</label>
+          <select class="browser-default custom-select" formControlName="vendorType">
+            <option selected>Select</option>
+            <option *ngFor="let data of VendorType" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Contact Person</label>
+          <input type="text" class="form-control" formControlName="vendorContactPerson" placeholder="Name">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Contact Person Mobile Number</label>
+          <input type="number" class="form-control" formControlName="vendorContactPersonMobileNumber"
+            placeholder="Mobile Number">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Contact Person E-MailId</label>
+          <input type="email" class="form-control" formControlName="vendorContactPersonEmailId"
+            placeholder="Vendor Contact Person E-mailID">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Vendor Contact Person Designation</label>
+          <input type="text" class="form-control" formControlName="vendorContactPersonDesignation"
+            placeholder="Designation">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Merchandise Division</label>
+          <select class="browser-default custom-select" formControlName="merchandiseDivision">
+            <option selected>Select</option>
+            <option *ngFor="let data of MerchandiseDivision" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Company Status</label>
+          <select class="browser-default custom-select" formControlName="companyStatus">
+            <option selected>Select</option>
+            <option *ngFor="let data of CompanyStatus" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Contract Number</label>
+          <input type="text" class="form-control" formControlName="contractNumber" placeholder="Number">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Contract StartDate</label>
+          <input type="date" class="form-control" formControlName="contractStartDate" placeholder="date">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Contract EndDate</label>
+          <input type="date" class="form-control" formControlName="contractEndDate" placeholder="date">
+        </div>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Address Details</h5>
+        <hr>
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <label>
+              <h6>Office Address</h6>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line1</label>
+              <input type="text" class="form-control" formControlName="officeAddressLine1" placeholder="adderss">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line2</label>
+              <input type="text" class="form-control" formControlName="officeAddressLine2" placeholder="adderss">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" formControlName="officeCity" placeholder="City">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" class="form-control" formControlName="officeState" placeholder="State">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Pincode</label>
+              <input type="text" class="form-control" formControlName="officePincode" placeholder="Pincode">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <label>
+              <h6>Supply Location Address</h6>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line1</label>
+              <input type="text" class="form-control" formControlName="supplyAddressLine1" placeholder="adderss">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Address Line2</label>
+              <input type="text" class="form-control" formControlName="supplyAddressLine2" placeholder="adderss">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" formControlName="supplyCity" placeholder="City">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" class="form-control" formControlName="supplyState" placeholder="State">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Pincode</label>
+              <input type="text" class="form-control" formControlName="supplyPincode" placeholder="Pincode">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Payment Details</h5>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Currency</label>
+          <select class="browser-default custom-select" formControlName="currency">
+            <option selected>Select</option>
+            <option *ngFor="let data of Currency" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+
+        <div class="form-group">
+          <label>Credit Period/ Payment Days</label>
+          <select class="browser-default custom-select" formControlName="paymentDay">
+            <option selected>Select</option>
+            <option *ngFor="let data of PaymentDay" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Credit Limit</label>
+          <input type="number" class="form-control" formControlName="creditLimit" placeholder="Credit Limit">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Taxes Type</label>
+          <select class="browser-default custom-select" formControlName="taxesType">
+            <option selected>Select</option>
+            <option *ngFor="let data of TaxesType" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Other Payment Terms</label>
+          <input type="text" class="form-control" formControlName="otherPaymentTerm" placeholder="Other Payment Terms">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Forms Required</label>
+          <input type="text" class="form-control" formControlName="formsRequired" placeholder="Forms required">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Mode of Payment</label>
+          <select class="browser-default custom-select" formControlName="modeOfPayment">
+            <option selected>Select</option>
+            <option *ngFor="let data of modePay" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Permanent A/C Number</label>
+          <input type="text" class="form-control" formControlName="panNo" placeholder="PAN NO">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Tax Information Network</label>
+          <input type="text" class="form-control" formControlName="tinNo" placeholder="TIN NO">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Central Sales Tax</label>
+          <input type="text" class="form-control" formControlName="cstNo" placeholder="CST NO">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Goods & Service Tax</label>
+          <input type="text" class="form-control" formControlName="gstNo" placeholder="GST NO">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Tax Assessment.No</label>
+          <input type="text" class="form-control" formControlName="tanNo" placeholder="TAN NO">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Bank Name</label>
+          <input type="text" class="form-control" formControlName="bankName" placeholder="Bank Name">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Bank Branch</label>
+          <input type="text" class="form-control" formControlName="bankBranch" placeholder="Bank Branch">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Bank Address</label>
+          <input type="text" class="form-control" formControlName="bankAddress" placeholder="Bank Address">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Bank Account Number</label>
+          <input type="number" class="form-control" formControlName="bankAccountNumber"
+            placeholder="Bank Account Number">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>MICR Code (9 digit)</label>
+          <input type="text" class="form-control" maxlength="9" formControlName="micrCode" placeholder="MICR Code">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>NEFT Code (11 digit)</label>
+          <input type="text" class="form-control" maxlength="11" formControlName="neftCode" placeholder="NEFT Code">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>RTGS Code (11 digit)</label>
+          <input type="text" class="form-control" maxlength="11" formControlName="rtgsCode" placeholder="RTGS Code">
+        </div>
+      </div>
+
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Delivery Details</h5>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Service Level Standards 'On Time' - OT</label>
+          <input type="text" class="form-control" formControlName="slsOT" placeholder="slsOT">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Service Level Standards 'In Full' - Case Fill</label>
+          <input type="text" class="form-control" formControlName="slsIFC" placeholder="slsIFC">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Service Level Standards 'In Full' - Line Fill</label>
+          <input type="text" class="form-control" formControlName="slsIFL" placeholder="slsIFL">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Delivery Mode</label>
+          <select class="browser-default custom-select" formControlName="deliveryMode">
+            <option selected>Select</option>
+            <option *ngFor="let data of DeliveryMode" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Transport cost(s) paid by</label>
+          <select class="browser-default custom-select" formControlName="transportCostPaidBy">
+            <option selected>Select</option>
+            <option *ngFor="let data of TransportCost" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Returns of Goods</label>
+          <select class="browser-default custom-select" formControlName="returnOfGoods">
+            <option selected>Select</option>
+            <option *ngFor="let data of ReturnsofGood" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Min.Order Size (QTY)</label>
+          <input type="text" class="form-control" formControlName="minOrderSizeQty" placeholder="Qty">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Min.Order Size (Amount)</label>
+          <input type="text" class="form-control" formControlName="minOrderSizeAmt" placeholder="Amount">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Catalogue images to be arranged by</label>
+          <select class="browser-default custom-select" formControlName="cateImgAssignBy">
+            <option selected>Select</option>
+            <option *ngFor="let data of CatalogImgAssingBy" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>If photoshoot by Ucchal, charges borne by</label>
+          <select class="browser-default custom-select" formControlName="chargesOfPhotoShopBy">
+            <option selected>Select</option>
+            <option *ngFor="let data of ChargesOfPhotoshop" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Photoshoot charges(if applicable)</label>
+          <input type="text" class="form-control" formControlName="photosCharge" placeholder="Photo charges">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Business Model</label>
+          <select class="browser-default custom-select" formControlName="businessModel">
+            <option selected>Select</option>
+            <option *ngFor="let data of BusinessModel" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Default Delivery Location</label>
+          <select class="browser-default custom-select" formControlName="defaultDeliveyLocation">
+            <option selected>Select</option>
+            <option *ngFor="let data of DefaultDeliveryLocation" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Performance Details</h5>
+        <hr>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Performance Target</label>
+          <input type="text" class="form-control" formControlName="target" placeholder="Target">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Unconditional Discount</label>
+          <input type="text" class="form-control" formControlName="unconditionalDiscount" placeholder="Discount">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Target Discount</label>
+          <input type="text" class="form-control" formControlName="tradingDiscount" placeholder="Discount">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Order Size</label>
+          <input type="text" class="form-control" formControlName="orderSize" placeholder="Order Size">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Cash Discount</label>
+          <input type="text" class="form-control" formControlName="cashDiscount" placeholder="Cash Discount">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Cash Discount Paid in(days)</label>
+          <input type="text" class="form-control" formControlName="cashDiscountPaid" placeholder="Cash Discount">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Promotional Programs</label>
+          <input type="text" class="form-control" formControlName="promotionalProgram"
+            placeholder="Promotional Program">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Mailer/ Catalogue Participation</label>
+          <input type="text" class="form-control" formControlName="catalogueParticipation" placeholder="Participation">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>New Launches</label>
+          <input type="text" class="form-control" formControlName="newLaunches" placeholder="New Launches">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Theme Participation</label>
+          <input type="text" class="form-control" formControlName="themeParticipation"
+            placeholder="Theme Participation">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Specilalization</label>
+          <input type="text" class="form-control" formControlName="specilalization" placeholder="Specilalization">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Liquidation Offer</label>
+          <input type="text" class="form-control" formControlName="liquidationOffer" placeholder="Liquidation Offer">
+        </div>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Upload</h5>
+        <hr>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Cancelled Cheque</label>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <input type="file" name="file" class="btn btnPink btn-block" id="file"
+            (change)="cancelledChequeFileInput($event.target.files)">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <img *ngFor="let url1 of urls1" [src]="url1" style="width: 100px; height: auto;" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Digital Signature</label>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <input type="file" name="file" class="btn btnPink btn-block" id="file"
+            (change)="digitalSignatureFileInput($event.target.files)">
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <img *ngFor="let url2 of urls2" [src]="url2" style="width: 100px; height: auto;" />
+        </div>
+      </div>
+
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h5>Signing Authorities</h5>
+        <hr>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Vendor Authorised Representative</label>
+          <input type="text" class="form-control" formControlName="vendorAuth"
+            placeholder="Vendor Authorised Representative">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" formControlName="vendDate" placeholder="date">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Ucchal Authorised Representative</label>
+          <input type="text" class="form-control" formControlName="companyAuth"
+            placeholder="Ucchal Authorised Representative">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" formControlName="companyDate" placeholder="date">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Registered by</label>
+          <input type="text" class="form-control" formControlName="regBy" placeholder="Ucchal Authorised Representative">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" formControlName="regDate" placeholder="date">
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+
+      <div class="col-md-12 text-center ">
+
+
+        <button type="button" mat-flat-button color="primary" style="width: 200px; margin: 10px"
+        [disabled]="!registrationForm.valid"
+         (click)="onSubmit(registrationForm)">Register</button>
+        <p style="color: crimson">{{temp?.result }} </p>
+        <button type="button" mat-flat-button color="primary" (click)="cancel()" style="width: 200px">Cancel</button>
+        <!-- <button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbTooltip="Tooltip on top">
+            Tooltip on top
+          </button> -->
+      </div>
+
+
+    </div>
+  </form>
+</div>

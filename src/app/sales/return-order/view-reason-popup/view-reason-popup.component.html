@@ -1,0 +1,21 @@
+
+<div class="container">
+  <button type="button" class="close" (click)="onClick()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row">
+    <div class="col-md-4 form-group">
+      <label>Reason</label>
+    </div>
+    <div class="col-md-4 form-group">
+      {{data.reason}}
+    </div>
+    <div class="col-md-4 form-group"></div>
+    <div class="col-md-4 form-group">
+      <label>Description</label>
+    </div>
+    <div class="col-md-8 form-group">
+      {{data.description}}
+    </div>
+  </div>
+</div>

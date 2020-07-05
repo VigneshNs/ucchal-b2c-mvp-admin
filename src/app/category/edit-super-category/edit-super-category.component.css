@@ -1,0 +1,90 @@
+.selectValue {
+  cursor: pointer;
+}
+
+.ctrlCard {
+  margin: 15px;
+  background-color: #f2f3f8 !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,.125);
+
+}
+
+.cancleNow {
+  background-color: #FF5778;
+  color: #fff;
+}
+
+.deleteNow {
+  background-color: red;
+  color: #fff;
+}
+
+.cancleNow:focus {
+  outline: none;
+}
+
+.imgCard {
+  width: 100%;
+  height: auto;
+  margin: 10px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #f2f3f8;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+.pageBoxLg {
+    border: 1px solid #c8ced3;
+    color: #3f51b5;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #f2f3f8 !important;
+    margin: 25px;
+    margin-top: 58px;
+  }
+.ctrlNowOne{
+    padding: 16px;
+}
+.addButtons {
+    margin: 10px;
+    background-color: #8f9bb3;
+    color: #fff;
+    border-radius: 27%;
+  }
+  
+  .addButtons:focus {
+    outline: none; 
+  }
+  .gridRow{
+    box-shadow: none !important;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.125);
+  }
+  .gridRowz{
+    box-shadow: none !important;
+    padding: 2px !important;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: #8f9bb3;
+    color: rgb(8, 6, 6);
+    border-radius: 5px;
+  }
+
+  .gridRowz .form-group{
+    margin-top: 10px;
+  }
+  .iconBtn{
+    background-color: #8f9bb3;
+    color: rgb(19, 12, 12) !important;
+  }
+  .rowEdit{
+    color: rgb(14, 12, 12);
+  }
+  .iconBtn:focus{
+outline: none;
+  }

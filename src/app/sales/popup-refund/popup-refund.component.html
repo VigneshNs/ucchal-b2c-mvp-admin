@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 form-group">
+      <label>Payment Mode</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{data.paymentMode | titlecase}}
+    </div>
+    <div class="col-md-5 form-group"></div>
+    <div class="col-md-4 form-group">
+      <label>Refund Amount</label>
+    </div>
+    <div class="col-md-3">
+      {{data.initiatedTotal - data.total}}
+      <!-- <input type="text" placeholder="Refund Amount" class="form-control"> -->
+    </div>
+    <div class="col-md-5 form-group"></div>
+    <div class="col-md-4">
+      <button class="btn btn-primary mr-5"(click)="onRefund(data)">Pay</button>
+      <button class="btn btn-primary" (click)="onClick()">Cancel</button>
+    </div>
+  </div>
+</div>

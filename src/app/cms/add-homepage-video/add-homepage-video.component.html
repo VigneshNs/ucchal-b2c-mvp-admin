@@ -1,0 +1,114 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Homepage / Add Video</p>
+    </div>
+<mat-card>
+    <mat-card class="pageBoxLg " >
+        <label  class="pageBoxLg-label pblabel">Add video </label>
+     
+      <form [formGroup]="VideoForm" novalidate style="padding-top:60px">
+        <div class="container-fluid">
+          <div class="row">
+          
+            <div class="form-group col-md-6">
+             
+              <div class="form-group col-md-12">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Video Title" formControlName="videoTitle" >
+                  <!-- <mat-error *ngIf="VideoForm.controls['videoTitle'].errors?.required">
+                    Video Title
+                     <strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+              </div>
+              <div class="form-group col-md-12">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Video Link" formControlName="videoLink" >
+                  <!-- <mat-error *ngIf="VideoForm.controls['videoLink'].errors?.required">
+                    Video Link
+                     <strong>required</strong> 
+                    </mat-error>-->
+                </mat-form-field>
+              </div>
+              <div class="form-group col-md-12">
+                <button mat-flat-button color="primary"  type="reset" (click)="createHomepageVideo()"
+                  [disabled]='!VideoForm.valid' class="saveNow">Save </button>
+                <button class="categorycancelbutton" mat-flat-button color="primary"  (click)="cancel()">Cancel</button>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row"  *ngIf="!showNoData">
+            <table mat-table [dataSource]="homepageData" class="container-fluid ">
+            
+              <ng-container matColumnDef="videoTitle">
+                <th mat-header-cell *matHeaderCellDef>
+                  <h5>Title </h5>
+                </th>
+                <td mat-cell *matCellDef="let element" style="width: 100px;"> {{element.videoTitle}} </td>
+              </ng-container>
+              <ng-container matColumnDef="videoLink">
+                <th mat-header-cell *matHeaderCellDef>
+                  <h5>Link</h5>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.videoLink}} </td>
+              </ng-container>
+              <ng-container matColumnDef="addedDate">
+                <th mat-header-cell *matHeaderCellDef>
+                  <h5>Added date</h5>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.addedDate}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef><h5>Status</h5></th>
+                <td mat-cell *matCellDef="let element">
+                    <label class="switch ">
+                        <input type="checkbox" (change)="changeStatus($event, element._id)" [checked]="element.publish === true">
+                        <span class="slider round"></span>
+                      </label>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>
+                  <h5>Action</h5>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button mat-sm-button color="primary"
+                  (click)="openDialog(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+                </td>
+              </ng-container>
+              <!-- <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef><h5>Action</h5></th>
+                <td mat-cell *matCellDef="let element">
+                    <div class=" vcenter form-group">
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+              
+                        <a class="nav-link selectCursor" (click)="Edit(element)" >Edit</a>
+                        <a class="nav-link selectCursor"(click)="openDialog(element)">Delete</a>
+                      </mat-menu>
+                    </div>
+                    
+                </td>
+              </ng-container> -->
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+          <div *ngIf="showNoData" class="nodata"> No results found</div>
+    
+
+
+
+
+
+
+      </form>
+    </mat-card>
+</mat-card>

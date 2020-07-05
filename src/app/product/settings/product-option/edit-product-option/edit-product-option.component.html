@@ -1,0 +1,169 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Product / Manage Product Size / Edit</p>
+  </div>
+<mat-card class="pageBoxLg card" style="background: #f0f3f5">
+  <form [formGroup]="optionDetailsForm"  (ngSubmit)="optionDetailsForm.valid  && updateProductOption(optionName.value, optionDetailsForm)" novalidate>
+    <div class="flex grid">
+      <div class="card">
+        <mat-card class="flex gridBody">
+          <div class="gridField">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Option Name</mat-label>
+                <input matInput placeholder="Option Name" formControlName="optionName"
+                 [value]="productOptionModel?.optionName" #optionName>
+                <mat-error *ngIf="optionDetailsForm.controls['optionName'].errors?.required">
+                  Option Name
+                  <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="grid" formArrayName="optionValue">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group p-2">
+              <button class="btn" (click)="addForm()" type="button" mat-flat-button color="primary"> 	<mat-icon>add_circle</mat-icon> Add Size</button> 
+          </div>
+        </div>
+        <div class="col-md-10">
+
+        </div>
+      </div>
+
+
+<mat-card class="flex gridBody card">
+      <div class="row" *ngFor="let account of productOptionValueForms.controls; let i=index"
+        [formGroupName]="i">
+        <div class="col-md-4">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Option Value Name</mat-label>
+              <input matInput formControlName="optionValueName" placeholder="option Value Name">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Sort Order</mat-label>
+              <input matInput formControlName="sortOrder" placeholder="Sort Order">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding: 10px;">
+          <div class="form-group">
+            <a (click)="deleteRequirements(i)">
+              <mat-icon class="matDelete">delete</mat-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-8">
+
+      </div>
+      <div class="col-md-4 col-4">
+          <button mat-flat-button color="primary" class="btn btnNow" type="submit">Save</button>
+          <button class="btn" (click)="cancelOption()"  class="btn btnNow" type="button" value="cancel" mat-flat-button color="primary">Cancel</button>
+      </div>
+
+    </div>
+  </form>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="pageBoxLg">
+    <form [formGroup]="optionDetailsForm"  (ngSubmit)="optionDetailsForm.valid  && updateProductOption(optionName.value, optionDetailsForm)" novalidate>
+      <div class="flex grid">
+        <div class="card">
+          <div class="flex gridBody">
+            <div class="gridField">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Option Name</mat-label>
+                  <input matInput placeholder="Option Name" formControlName="optionName"
+                   [value]="productOptionModel?.optionName" #optionName>
+                  <mat-error *ngIf="optionDetailsForm.controls['optionName'].errors?.required">
+                    Option Name
+                    <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid" formArrayName="optionValue">
+        <div class="row gridRow">
+          <div class="col-md-2">
+            <div class="form-group p-2">
+              <input class="btn btn-sm btn-danger" (click)="addForm()" type="button" value="Add Size">
+            </div>
+          </div>
+          <div class="col-md-10">
+  
+          </div>
+        </div>
+        <div class="row gridRow" *ngFor="let account of productOptionValueForms.controls; let i=index"
+          [formGroupName]="i">
+          <div class="col-md-4">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Option Value Name</mat-label>
+                <input matInput formControlName="optionValueName" placeholder="option Value Name">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Sort Order</mat-label>
+                <input matInput formControlName="sortOrder" placeholder="Sort Order">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4" style="padding: 10px;">
+            <div class="form-group">
+              <a (click)="deleteRequirements(i)">
+                <mat-icon>clear</mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-8 col-8">
+  
+        </div>
+        <div class="col-md-2 col-2">
+          <div class="form-group  float-right">
+            <input class="btn btn-md btn-danger"
+             type="submit" value="save">
+          </div>
+        </div>
+        <div class="col-md-2 col-2">
+          <div class="form-group float-right">
+            <input class="btn btn-md btn-primary" (click)="cancelOption()" type="button" value="cancel">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> -->

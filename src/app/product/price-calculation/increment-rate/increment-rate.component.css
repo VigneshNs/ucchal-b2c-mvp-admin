@@ -1,0 +1,16 @@
+#percent-sign {
+    top: 8px;
+    right: 0;
+    color: #555;
+    position: absolute;
+    z-index: 1;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

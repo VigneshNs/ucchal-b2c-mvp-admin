@@ -1,0 +1,102 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Address Line 1</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.supplyAddressLine1}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Address Line 2</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.supplyAddressLine2}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>City</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.supplyCity}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>State</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.supplyState}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Pincode</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.supplyPincode}}
+    </div>
+  </div>
+
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address Line 1</label>
+          <input type="text" class="form-control" [value]="profileData.supplyAddressLine1 || null" #add1
+            formControlName="supplyAddressLine1" placeholder="Address Line 1">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address Line 2</label>
+          <input type="text" class="form-control" [value]="profileData.supplyAddressLine2 || null" #add2
+            formControlName="supplyAddressLine2" placeholder="Address Line 2">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" class="form-control" [value]="profileData.supplyCity || null" #city formControlName="supplyCity"
+            placeholder="City" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" [value]="profileData.supplyState || null" #state formControlName="supplyState"
+            placeholder="State">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Pincode</label>
+          <input type="text" class="form-control" [value]="profileData.supplyPincode || null" #pin
+            formControlName="supplyPincode" placeholder="Pincode">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(add1, add2, city, state, pin)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

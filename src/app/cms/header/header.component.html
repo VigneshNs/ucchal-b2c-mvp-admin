@@ -1,0 +1,75 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <mat-card class="newNow">
+        <p style="padding-top: 21px;padding-left: 20px"> Homepage > Header </p>
+      </mat-card>
+   
+    </div>
+<mat-card class="pageBoxLg ">
+    <!-- <label style="padding-top: 8px;padding-bottom: 8px" class="pageBoxLg-label">Header Details</label> -->
+  
+  <form [formGroup]="HeaderForm" novalidate style="padding-top:60px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group col-md-6">
+         <h5 style="color: #6c757d !important;">Add (Logo)</h5>
+        
+          <div>
+            <mat-card>
+            <img *ngFor="let url of urls" [src]="url" class="editImage" >
+          </mat-card>
+          </div>
+          <div>
+            <input type="file" name="file" class="btn btnPink btn-block" id="file"
+              (change)="handleFileInput($event.target.files)">
+          </div>
+          <div class="savebutton">
+              <div *ngIf="showImageError">
+                  <p style="color: crimson"> Required Image Size </p>
+                </div>
+          <button class="addButtons"  mat-raised-button type="submit" (click)="checkImageDimension()"
+            [disabled]='!HeaderForm.valid'>Save</button>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="chooseimages"><h5><b>Current (Logo)</b></h5></label>
+        
+          <div class="form-group col-md-12 ">
+            <mat-card>
+            <img *ngFor="let url of headerModel" [src]="url.logoImageName" class="editImage" />
+          </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>
+
+
+<!-- <div class="pageBoxLg ">
+  <label class="pageBoxLg-label ">Add Header Details
+  </label>
+  <form [formGroup]="HeaderForm" novalidate style="padding-top:60px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Logo</label>
+          <div>
+            <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+          </div>
+          <div>
+            <input type="file" name="file" class="btn btnPink btn-block" id="file"
+              (change)="handleFileInput($event.target.files)">
+          </div>
+          <button mat-raised-button color="accent" type="submit" (click)="addTemplate()"
+            [disabled]='!HeaderForm.valid'>Save</button>
+        </div>
+        <div class="form-group col-md-6">
+          <label> Current Logo</label>
+          <div class="form-group col-md-12">
+            <img *ngFor="let url of headerModel" [src]="url.logoImageName" style="width: 100px; height: 100px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> -->

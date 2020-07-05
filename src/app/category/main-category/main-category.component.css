@@ -1,0 +1,116 @@
+.NewOne {
+  background-color: #FF5778;
+  margin: 5px;
+}
+
+.selectCursor {
+  cursor: pointer;
+}
+
+.checked {
+  margin: 15px
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 1.25em 0 !important;
+}
+
+.btn-primary {
+  margin-left: 15px;
+  width: 200px;
+  cursor: pointer;
+}
+
+th {
+  background: #255d80  !important;
+  color: #fff;
+}
+
+.imgCard {
+  width: 215px;
+  height: 185px;
+  margin: 10px;
+}
+
+.imageNow {
+  width: 180px;
+  height: 145px;
+}
+
+.matIcon {
+  background-color: #FF5778;
+}
+
+td {
+  background: #fff;
+
+}
+
+.button:focus {
+  outline: none !important;
+
+}
+
+.mat-icon-button:focus {
+  outline: none !important;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  color: #3f51b5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #ebedef;
+  margin: 25px;
+  margin-top: 58px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #ebedef;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+.imgEdit{
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+}
+.addButtons {
+  margin: 10px;
+  background-color: #255d80 ;
+  color: #fff;
+  border-radius: 27%;
+  position: relative;
+  left: -25%;
+}
+
+.addButtons:focus {
+  outline: none; 
+}
+.ctrlBtnA{
+  position: relative;
+  left: -5px;
+}
+.iconBtn{
+  background-color: #255d80 ;
+  margin-top: 10px;
+}
+.selectCursor{
+  color: #000;
+}
+.selectCursor:hover{
+  background-color: #255d80 ;
+  color: #fff !important;
+}
+.iconBtn:focus{
+  outline: none;
+    }

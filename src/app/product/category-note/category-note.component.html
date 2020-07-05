@@ -1,0 +1,68 @@
+<div class="grid">
+    <div class="row gridRow">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="offset-md-3 col-md-6 offset-md-3">
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <mat-select (selectionChange)="categorySelected($event)">
+                <mat-option *ngFor="let sup of superCategoryModel" [value]="sup">
+                  {{sup.categoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="offset-md-3 col-md-6 offset-md-3" *ngIf="supCategoryDetails?.mainCategory.length > 0">
+            <mat-form-field>
+              <mat-label>Main Category</mat-label>
+              <mat-select (selectionChange)="categoryMainCategory($event)">
+                <mat-option *ngFor="let main of supCategoryDetails?.mainCategory" [value]="main">
+                  {{main.mainCategoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="offset-md-3 col-md-6 offset-md-3" *ngIf=" mainCategoryDetails?.subCategory.length > 0">
+            <mat-form-field>
+              <mat-label>Sub Category</mat-label>
+              <mat-select>
+                <mat-option  (onSelectionChange)="categorySubCategory($event)" 
+                *ngFor="let sub of mainCategoryDetails?.subCategory" [value]="sub">
+                  {{sub.subCategoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+              
+              <button class="btn btn-md btn-primary" *ngIf="active === true"
+              
+               (click)="showInput()">Add Note</button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="showNote === true">
+    <div class="col-md-8">
+      <input  type="text" #note>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="createNote(note.value)">submit</button>
+    </div>
+    <br>
+  </div>
+
+  <div class="row"> 
+    <div class="col-md-6 gridRow pa" *ngFor="let note of displayNote">
+      <h5>{{note.superCategoryName}} <span *ngIf="note.subCategoryName"> >> {{note.subCategoryName}} </span></h5>
+      <p>{{note.note}}</p>
+
+      <input type="text" [value]="note.note" [hidden]="note.edit === false" #newNote>
+      <button class="btn btn-primary" [hidden]="note.edit === false" (click)="updateNote(note,newNote.value)">Update</button>
+      <button class="btn pull-right" [hidden]="note.edit === true" (click)="editNote(note._id,note)"><mat-icon>edit</mat-icon></button>
+      <button class="btn pull-right" [hidden]="note.edit === true" (click)="deleteNote(note._id)"><mat-icon>delete</mat-icon></button>
+    </div>
+  </div>

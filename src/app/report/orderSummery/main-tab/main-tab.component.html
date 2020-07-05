@@ -1,0 +1,80 @@
+<mat-card class="row productMoreInfo" >
+
+  <div class="col-md-12">
+      <form [formGroup]="reportForm">
+          <div class="row pt-3 container">
+            <div class="col-md-3  text-right">
+              <button color="primary"  class="btnMat" mat-flat-button  (click)="getDownload()"> <i class="fa fa-download" aria-hidden="true"></i> Download</button>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker1" formControlName="startDate" placeholder="Enter start date">
+              <mat-datepicker-toggle matSuffix [for]="picker1">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker2" formControlName="endDate" placeholder="Enter end date">
+              <mat-datepicker-toggle matSuffix [for]="picker2">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <button color="primary"  class="btnMat" mat-flat-button (click)="getDate()">Submit</button>
+          </div>
+          </div>
+          </form>
+  </div>
+
+  <div class="col-md-12">
+    <nav class="multipleNav">
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+      <a  [class.activeClass]="selectedItemTab === acc.name" (click)="selectedTab(acc.name)" class="nav-item nav-link" 
+      id="nav-profile-tab" data-toggle="tab" role="tab"
+      aria-controls="nav-profile"  aria-selected="false"
+      *ngFor="let acc of orderDetails"  routerLinkActive
+        #rla="routerLinkActive"  >
+        <h4 [class.activeHeading]="selectedItemTab == acc.name" class="tabHeading" role="presentation">
+       <b>{{acc.name}}</b>
+      </h4>
+      </a>
+        </div>
+    </nav>
+  </div>
+  <!-- <div class="col-md-12">
+    <div class="container">
+      <div class="m-3"  id="nav-profile" role="tabpanel"
+      aria-labelledby="nav-profile-tab">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-md-12">
+    <div class="container">
+        <div class="m-3"  id="nav-profile" *ngIf="selectedItemTab === 'By Status'" role="tabpanel"
+        aria-labelledby="nav-profile-tab">
+        <app-order-status [newData]="newData" [confrimData]="confrimData" [cancelData]="cancelData"
+        (orderStatusValue)="downloadOrderStatus($event)" [isOrderStatusDownload]="isOrderStatusDownload"
+        [newTotal]="newTotal" [confrimTotal]="confrimTotal" [cancelTotal]="cancelTotal">
+        </app-order-status>
+        </div>
+        <div class="m-3"  id="nav-profile" *ngIf="selectedItemTab === 'By Financial Status'" role="tabpanel"
+        aria-labelledby="nav-profile-tab">
+        <app-financial-status [pendingData]="pendingData" [successData]="successData"
+        (financialValue)="downloadOrderStatus($event)" [isFinancialStatusDownload]="isFinancialStatusDownload"
+         [pendingTotal]="pendingTotal" [successTotal]="successTotal"></app-financial-status>
+        </div>
+        <div class="m-3"  id="nav-profile" *ngIf="selectedItemTab === 'By Payment Mode'" role="tabpanel"
+        aria-labelledby="nav-profile-tab">
+        <app-payment-mode-status [paymentGateData]="paymentGateData" [cashOnDeliveryData]="cashOnDeliveryData"
+        (paymentStatusValue)="downloadOrderStatus($event)" [isPaymentStatusDownload]="isPaymentStatusDownload"
+         [paymentGateTotal]="paymentGateTotal" [cashOnDeliveryTotal]="cashOnDeliveryTotal"></app-payment-mode-status>
+        </div>
+    </div>
+  </div>
+</mat-card>

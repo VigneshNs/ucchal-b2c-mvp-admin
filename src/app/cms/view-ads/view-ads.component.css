@@ -1,0 +1,90 @@
+.pageBoxLg {
+  border: 1px solid #c8ced3;
+  color: #3f51b5;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 13px;
+  background-color: #f2f3f8;
+  margin: 25px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #f2f3f8;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .54);
+}
+
+.pblabel {
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.addButton:focus {
+  outline: none;
+}
+
+.addButtons {
+  margin: 10px;
+  background-color: #8f9bb3;
+  color: #fff;
+  border-radius: 27%;
+}
+
+.addButtons:focus {
+  outline: none; 
+}
+
+th {
+  background: #8f9bb3 !important;
+  color: #fff !important;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.matImage {
+  width: 301px;
+  /* padding: 10px;
+      margin: 10px; */
+  margin-left: 20px;
+}
+
+.deleteLine {
+  color: #FF5778;
+}
+
+.deleteIcon {
+  background-color: #FF5778;
+  color: #fff;
+}
+
+.matCardz {
+  margin: 17px !important;
+}
+
+.mat-icon-button:focus {
+  outline: none;
+}
+
+.mat-icon-button {
+  color: #fff;
+  background-color: #8f9bb3;
+}
+
+.selectCursor {
+  cursor: pointer;
+
+}
+
+.selectCursor:hover {
+  color: #fff !important;
+  background: #8f9bb3;
+}

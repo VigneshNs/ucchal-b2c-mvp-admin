@@ -1,0 +1,152 @@
+<!-- <div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Product /  Size Guide / Edit</p>
+  </div>
+<div class="pageBoxLg">
+<form [formGroup]="sizeGuideForm">
+<div class="row container">
+  <div class="col-md-12 text-start">
+      <label  class="pageBoxLg-label pblabel">Edit Size Guide</label>
+    
+  </div>
+  <div class="col-md-12"></div>
+  <div class="col-md-6">
+      <mat-form-field appearance="outline">
+          <mat-label >Size Guide Title</mat-label>
+          <input matInput formControlName="title" [ngModel]="holder?.title" type="text">
+          <mat-error *ngIf="sizeGuideForm.controls['title'].errors?.required">
+            Size Guide Title is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  </div>
+  <div class="col-md-6" *ngIf="!isImageChanes">
+      <img [src]="sizeGuideUrl + holder?._id + '/' + holder?.imageName" style="width: 180px; height: 145px;" />
+      <mat-icon class="selectValue" (click)="changeImage()">edit</mat-icon>
+  </div>
+  <div class="col-md-6" *ngIf="isImageChanes">
+      <label>
+          <input type="file" (change)="handleFileInput($event.target.files)" >
+        </label>
+        <label *ngFor="let url of urls">
+            <img class="img-fluid" [src]="url" width="100px" height="100px" />
+        </label>
+        <mat-icon (click)="cancelImageUpdate()">cancel</mat-icon>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-1 text-center">
+    <button mat-raised-button color="primary" (click)="submitUpdate(sizeGuideForm)">Update</button>
+  </div>
+  <div class="col-md-1 text-center">
+    <button mat-raised-button color="primary" (click)="cancelUpdate()">Cancel</button>
+  </div>
+</div>
+</form>
+</div> -->
+
+<!-- <div class="pageBoxLg">
+  <form [formGroup]="sizeGuideForm">
+  <div class="row container">
+    <div class="col-md-12 text-center">
+      <label> Edit Size Guide </label>
+    </div>
+    <div class="col-md-6">
+        <mat-form-field appearance="outline">
+            <mat-label >Size Guide Title</mat-label>
+            <input matInput formControlName="title" [ngModel]="holder?.title" type="text">
+            <mat-error *ngIf="sizeGuideForm.controls['title'].errors?.required">
+              Size Guide Title is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="col-md-6" *ngIf="!isImageChanes">
+        <img [src]="sizeGuideUrl + holder?._id + '/' + holder?.imageName" style="width: 180px; height: 145px;" />
+        <mat-icon class="selectValue" (click)="changeImage()">edit</mat-icon>
+    </div>
+    <div class="col-md-6" *ngIf="isImageChanes">
+        <label>
+            <input type="file" (change)="handleFileInput($event.target.files)" >
+          </label>
+          <label *ngFor="let url of urls">
+              <img class="img-fluid" [src]="url" width="100px" height="100px" />
+          </label>
+          <mat-icon (click)="cancelImageUpdate()">cancel</mat-icon>
+    </div>
+    <div class="col-md-6 text-center">
+      <button mat-raised-button color="primary" (click)="submitUpdate(sizeGuideForm)">Update</button>
+    </div>
+    <div class="col-md-6 text-center">
+      <button mat-raised-button color="primary" (click)="cancelUpdate()">Cancel</button>
+    </div>
+  </div>
+</form>
+</div> -->
+<div class="row">
+  <div class="col-md-3 form-group">
+    <label>Category</label>
+  </div>
+  <div class="col-md-9">
+   : {{data.subCategoryName ? data.subCategoryName : data.superCategoryName}}
+  </div>
+  <div class="col-md-3 form-group">
+    <label>Vendor Name</label>
+  </div>
+  <div class="col-md-9">
+   <mat-form-field >
+    <mat-select #vend  [ngModel]="data.vendorName"
+      placeholder="Select Vendor">
+      <mat-option *ngFor="let vendor of vendorModel" (onSelectionChange)="selectVendor( $event, vendor)" [value]="vendor.vendorName">
+        {{vendor.vendorName | titlecase}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <div class="col-md-3">
+    <label>Size char(CM)</label>
+  </div>
+  <div class="col-md-9" *ngIf="!isEditCM">
+    <img [src]="sizeGuideImageUrl + data._id + '/' + data.sizeChartCM" style="width: 200px;" >
+    <span><mat-icon (click)="onCM()">edit</mat-icon></span>
+  </div>
+  <div class="col-md-9" *ngIf="isEditCM">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="file"  (change)="handleFileInputCM($event.target.files)" class="checked">
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 pb-2" *ngFor="let url of urlCM">
+                <img class="img-fluid"  style="width: 200px" [src]="url"/>
+             </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+      <label>Size char(Inches)</label>
+    </div>
+    <div class="col-md-9" *ngIf="!isEditInches">
+      <img [src]="sizeGuideImageUrl + data._id + '/' + data.sizeChartInches" style="width: 200px;" >
+      <span><mat-icon (click)="onEditInches()">edit</mat-icon></span>
+    </div>
+    <div class="col-md-9" *ngIf="isEditInches">
+      <div class="row">
+          <div class="col-md-3">
+              <input type="file"  (change)="handleFileInputInches($event.target.files)" class="checked">
+          </div>
+          <div class="col-md-6">
+              <div class="col-md-12 pb-2" *ngFor="let url of urlInches">
+                  <img class="img-fluid"  style="width: 200px" [src]="url"/>
+               </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group text-center">
+      <span class=" pr-2">
+          <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+      </span>
+      <span>
+          <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+      </span>
+      
+      
+    </div>
+</div>

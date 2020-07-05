@@ -1,0 +1,7 @@
+<div style="font-size: 16px;padding-bottom: 10px" mat-dialog-content>
+    Are you sure you want to delete this?
+   </div>
+   <div mat-dialog-actions>
+     <button style="margin-left: 60px" mat-button color="primary" (click)="onNoClick()">No</button>
+     <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+   </div>

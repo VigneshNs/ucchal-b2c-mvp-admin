@@ -1,0 +1,93 @@
+<mat-card class="pageBoxLg ">
+  <h4 style="color: #8f9bb3 !important; margin-top: 10px;">Add Footer Details
+  </h4>
+  <form [formGroup]="FooterForm" novalidate style="padding-top:60px">
+    <div class="container-fluid">
+      <mat-card class="matCardNow">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <h4 style="color: #8f9bb3 !important; margin-top: 10px;"> Details : </h4>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Address" formControlName="address" style="width: 2500px"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Contact Number" formControlName="contactNo" type="number">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Alternative Contact Number" type="number"
+                  formControlName="alternativeContactNo">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email ID" type="email" formControlName="mailId">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Map Source" formControlName="map">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <h4 style="color: #8f9bb3 !important; margin-top: 10px;"> Social Media Links : </h4>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Instagram Link" formControlName="instagramLink">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Facebook Link" formControlName="facebookLink">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Pintrest Link" formControlName="pintrestLink">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Google Plus Link" formControlName="googlePlusLink">
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Twitter Link" formControlName="twitterLink">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <h4 style="color: #8f9bb3 !important; margin-top: 10px;">About Us Preview : </h4>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="About Us Preview" formControlName="aboutUsPreview"
+                  style="width: 2500px"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <h4 style="color: #8f9bb3 !important; margin-top: 10px;"> Logo : </h4>
+            <div>
+              <img *ngFor="let url of urls" [src]="url" style="width: 100px; height: 50px;" />
+            </div>
+            <div>
+              <input type="file" name="file" class="btn btnPink btn-block" id="file"
+                (change)="handleFileInput($event.target.files)">
+            </div>
+            <div class="form-group col-md-12">
+              <button class="addButtons" mat-raised-button color="accent" type="submit" (click)="addFooter()"
+                [disabled]='!FooterForm.valid'>Save</button>
+              <br>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,37 @@
+.cardCtrl{
+    width: 25%;
+    padding: 25px;
+    border-radius: 60%;
+    margin: 10px;
+}
+.card-titlez{
+    font-size: 30px !important;
+}
+.ctrlAll{
+    height: 150px;
+    border: 1px solid #5e606f;
+}
+.card-header{
+background-color: #27293d;
+border-bottom: 1px solid #5e606f;
+height: 52px;
+}
+.card-body{
+background-color: #27293d;
+color: #f13637;
+}
+.newOne{
+    color: #d0d0d5;
+    height: 54px;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+.graphCtrl{
+    padding: 15px;
+    height: 50% !important;
+    background-color: #27293d !important;
+    border-radius: 5px;
+    border: 1px solid #5e606f;
+    color: #a6a6af !important;
+box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12) !important;
+}

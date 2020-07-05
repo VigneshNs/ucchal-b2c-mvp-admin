@@ -1,0 +1,103 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Customer / Inquiries </p>
+  </div>
+
+<div class="pageBoxLg">
+  <label  class="pageBoxLg-label pblabel"> Inquiries</label>
+
+
+
+
+<div class="row"    *ngIf="!showNoData">
+
+
+
+
+  <table mat-table [dataSource]="inquiryModel" matSort class="container-fluid ">
+
+
+
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef>
+       <b><h5 style="text-align: start">Customer Name</h5></b>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a (click)="showOrderDetails(element)">{{element.customerName}}</a> </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>
+       <b><h5>Description</h5></b>
+      </th>
+      <td mat-cell *matCellDef="let element" style="width: 45%; padding: 5px">
+        <a (click)="showOrderDetails(element)">
+          {{element.description}}
+        </a>
+      </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="emailId" style="padding-left: 20px;">
+      <th mat-header-cell *matHeaderCellDef><b><h5>EmailID</h5></b>
+      </th>
+      <td mat-cell *matCellDef="let element"> <h5 >{{element.emailId}} </h5></td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef> <h5 style="text-align: start">Country</h5>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+</div>
+<div *ngIf="showNoData" class="nodata"> No results found</div>
+</div>
+
+
+
+
+
+
+<!-- <div class="pageBoxLg">
+<div class="row">
+  <table mat-table [dataSource]="contactModel" matSort class="container-fluid ">
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef> Customer Name
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a (click)="showOrderDetails(element)">{{element.customerName}}</a> </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>
+        Description
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a (click)="showOrderDetails(element)"> {{element.description}} </a> </td>
+    </ng-container>
+    <ng-container matColumnDef="emailId">
+      <th mat-header-cell *matHeaderCellDef> EmailID<br>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="mobileNumber">
+      <th mat-header-cell *matHeaderCellDef> Mobile Number<br>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+</div>
+</div> -->

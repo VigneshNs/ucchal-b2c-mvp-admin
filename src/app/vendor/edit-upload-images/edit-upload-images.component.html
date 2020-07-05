@@ -1,0 +1,62 @@
+<div class="row gridRow border p-5">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <label>
+          <h5>Cancelled Cheque</h5>
+        </label>
+        <hr>
+      </div>
+      <div class="col-md-12" *ngIf="!showCheque">
+        <img [src]="vendorImageUrl +  'vendor/' + this.userId + '/' + 'cancelcheque' + '/' + profileData?.cancelledCheque"
+          style="width: 300px; height: auto;" />
+      </div>
+      <div class="col-md-12" *ngIf="!showCheque">
+        <button class="btn btn-md btn-primary" (click)="editCheque()">Edit</button>
+      </div>
+      <div class="col-md-12" *ngIf="showCheque">
+        <input type="file" name="file" class="btn btnPink btn-block" id="file"
+          (change)="cancelledChequeFileInput($event.target.files)">
+      </div>
+
+      <div class="col-md-12" *ngIf="showCheque">
+        <img *ngFor="let url1 of urls1" [src]="url1" style="width: 100px; height: auto;" />
+      </div>
+
+      <div class="col-md-12" *ngIf="showCheque">
+        <button class="btn btn-md btn-primary" (click)="updateCancelCheque()">Upload</button>
+        <button class="btn btn-md btn-primary" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <label>
+          <h5>Digital Signature</h5>
+        </label>
+
+        <hr>
+      </div>
+      <div class="col-md-12" *ngIf="!showDigital">
+        <img [src]="vendorImageUrl +  'vendor/' + this.userId + '/' + 'digitalsignature' + '/' + profileData?.digitalSignature"
+          style="width: 300px; height: auto;" />
+      </div>
+      <div class="col-md-12" *ngIf="!showDigital">
+        <button class="btn btn-md btn-primary" (click)="editDigital()">Edit</button>
+      </div>
+      <div class="col-md-12" *ngIf="showDigital">
+        <input type="file" name="file" class="btn btnPink btn-block" id="file"
+          (change)="digitalSignatureFileInput($event.target.files)">
+      </div>
+      <div class="col-md-12" *ngIf="showDigital">
+        <img *ngFor="let url2 of urls2" [src]="url2" style="width: 100px; height: auto;" />
+      </div>
+      <div class="col-md-12" *ngIf="showDigital">
+        <button class="btn btn-md btn-primary" (click)="uploadDigitalSignature()">Upload</button>
+        <button class="btn btn-md btn-primary" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

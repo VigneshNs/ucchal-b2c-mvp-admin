@@ -1,0 +1,15 @@
+.pa{
+    padding: 20px;
+}
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}

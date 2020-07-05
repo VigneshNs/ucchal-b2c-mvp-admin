@@ -1,0 +1,266 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Name </label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorName}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Mobile Number</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorMobileNumber}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor E-Mail ID</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorEmailId}}
+    </div>
+  </div>
+  <div class="col-md-2">
+      <div class="form-group">
+        <label>Password</label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        : {{profileData?.password}}
+      </div>
+    </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Type</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorType}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Contact Person</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorContactPerson}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Contact Person Mobile Number</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorContactPersonMobileNumber}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Contact Person EmailID</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorContactPersonEmailId}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Contact Person Designation</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorContactPersonDesignation}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Merchandise Division</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.merchandiseDivision}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Company Status</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.companyStatus}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Contract Number</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.contractNumber}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>ContractDate</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.contractDate | date}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Contract Start Date</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.contractStartDate | date}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Contract End Date</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.contractEndDate | date}}
+    </div>
+  </div>
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Name <span class="asterisc">*</span></label>
+          <input type="text" class="form-control" [ngModel]="profileData.vendorName" #name formControlName="vendorName"
+            placeholder="Vendor Name" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor MobileNumber <span class="asterisc">*</span></label>
+          <input type="number" class="form-control" [ngModel]="profileData.vendorMobileNumber" #mob
+            formControlName="vendorMobileNumber" placeholder="Vendor Mobile Number" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Email_ID <span class="asterisc">*</span></label>
+          <input type="email" class="form-control" [ngModel]="profileData.vendorEmailId" #emal
+            formControlName="vendorEmailId" placeholder="Vendor Email_ID" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Type</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.vendorType" #venty
+            formControlName="vendorType" (ngModelChange)="profileData.vendorType=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of VendorType" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Contact Person</label>
+          <input type="text" class="form-control" [value]="profileData.vendorContactPerson" #vencop
+            formControlName="vendorContactPerson" placeholder="Vendor Contact Person">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Contact Person Mobile Number</label>
+          <input type="number" class="form-control" [value]="profileData.vendorContactPersonMobileNumber" #venpemob
+            formControlName="vendorContactPersonMobileNumber" placeholder="Vendor Contact Person Mobile Number">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Contact Person E-mailID</label>
+          <input type="email" class="form-control" [value]="profileData.vendorContactPersonEmailId" #venpeemail
+            formControlName="vendorContactPersonEmailId" placeholder="Vendor Contact Person Email_ID">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Contact Person Designation</label>
+          <input type="text" class="form-control" [value]="profileData.vendorContactPersonDesignation"
+            formControlName="vendorContactPersonDesignation" #vencpd placeholder="Vendor Contact Person Designation">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Merchandise Division</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.merchandiseDivision" #merDiv
+            formControlName="merchandiseDivision" (ngModelChange)="profileData.merchandiseDivision=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of MerchandiseDivision" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Company Status</label>
+          <select class="browser-default custom-select" [ngModel]="profileData.companyStatus" #comStat
+            formControlName="companyStatus" (ngModelChange)="profileData.companyStatus=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of CompanyStatus" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Contract Number</label>
+          <input type="text" class="form-control" [value]="profileData.contractNumber" #conNum
+            formControlName="contractNumber" placeholder="Contract Number">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Contract StartDate</label>
+          <input type="date" class="form-control" [value]="profileData.contractStartDate | date:'yyyy-MM-dd'"
+            (ngModelChange)="profileData.contractStartDate = $event" #contstardate formControlName="contractStartDate">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Contract EndDate</label>
+          <input type="date" class="form-control" [value]="profileData.contractEndDate | date:'yyyy-MM-dd'"
+            (ngModelChange)="profileData.contractEndDate = $event" #contenddate formControlName="contractEndDate">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)=" contractForm.valid && update(name, mob, emal, venty, vencop, venpemob, venpeemail, vencpd, merDiv, comStat, conNum, contstardate, contenddate)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

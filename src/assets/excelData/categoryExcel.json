@@ -1,0 +1,19 @@
+{
+    
+    "category": [
+      {
+        "categoryName": "Bridal",
+        "templateId": "5d779d9a122db12c209453a0",
+        "categoryLink": "https://product-microservice-image.s3.ap-south-1.amazonaws.com/excel/5d779d9a122db12c2094539a/5d779d9a122db12c209453a0/Bridal.xlsx"
+      },
+      {
+        "categoryName": "Anarkali",
+        "templateId": "5d79dad35b61e322805a5245",
+        "categoryLink": "https://product-microservice-image.s3.ap-south-1.amazonaws.com/excel/5d79dad35b61e322805a5240/5d79dad35b61e322805a5245/Anarkali.xlsx"
+      },
+      {
+        "categoryName": "Saree",
+        "categoryLink": "https://product-microservice-image.s3.ap-south-1.amazonaws.com/excel/1/2/Saree_export_1568698586954.xlsx"
+      }
+    ]
+  }

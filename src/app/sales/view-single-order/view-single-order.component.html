@@ -1,0 +1,517 @@
+<div *ngIf="!loader">
+  <img src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader" />
+</div>
+<div *ngIf="loader">
+  <form [formGroup]="orderForm">
+      <div class="container-fluid " style="padding-left: 50px; padding-right: 50px; margin-top: 25px;">
+          <div *ngIf="loader">
+            <form [formGroup]="orderForm">
+              <div class="row">
+                <div class="col-md-6 card">
+                  <mat-card class="cardOne">
+                   
+                    <div class="row">
+                      <div class="col-md-12 form-group">
+                       <label> Order  <b> {{orderModel?.orderId}}</b> Details</label>
+                      </div>
+                      <div class="col-md-6 form-group"></div>
+                      <div class="col-md-6 form-group text-right">
+                        <button class="btn btn-primary" [disabled]="confirm === false" (click)="poGenerate()">PO Generate</button>
+                      </div>
+                      <div class="col-md-3 form-group"> <label>Date created</label></div>
+                      <div class="col-md-6 form-group">  <b> {{orderModel?.orderDate | date: 'dd/MM/yyyy hh:mm a'}}</b></div>
+                      <div class="col-md-3 form-group"></div>
+                      <div class="col-md-3 form-group"> <label>Status</label></div>
+                      <div class="col-md-6 form-group"> <mat-form-field class="full-width">
+                        <mat-select placeholder="Status Update" formControlName="statusType"
+                          [ngModel]="orderModel.orderStatus || null">
+                          <mat-option *ngFor="let data of status" [value]="data">
+                            {{data}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-3 form-group"> 
+                      <div *ngIf="orderModel.orderStatus !== 'Out For Delivery'">
+                        <button mat-raised-button color="primary" (click)="updateStatus()">Update Status</button>
+                      </div>
+                  </div>
+                    <div class="col-md-4 form-group">
+                     <p *ngIf="showBombinoError === true">{{bombinoError}}</p>
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <button mat-raised-button color="primary" (click)="getPickupDate()"
+                      [disabled]="orderModel.orderStatus !== 'Ready To Ship'" >Request To Bombino</button>
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <button mat-raised-button color="primary" (click)="cancelOrder()"
+                      [disabled]="orderModel.awbNo === undefined">Cancel Bombino Order</button>
+                    </div>
+                    <div class="col-md-3 form-group">
+                      <label>AWB No</label>
+                    </div>
+                    <div class="col-md-4 form-group">
+                      {{orderModel?.awbNo === undefined ? 'Not Assign' : orderModel?.awbNo}}
+                    </div>
+                    <div class="col-md-5 form-group" > 
+                    <button mat-raised-button color="primary" (click)="downloadBombinoBill()"
+                     [hidden]="orderModel?.awbNo === undefined">
+                    Download Bombino Bill
+                    </button></div>
+                   
+                    </div>
+                   
+                    
+                    
+                   <!--  <div>
+                    
+                      <div>
+                       
+        
+                      </div>
+                      <div *ngIf="orderModel.orderStatus === 'Out For Delivery'">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="AWB No" formControlName="AWBNo" required>
+                        </mat-form-field>
+                      </div>
+        
+                      
+                     
+                      <div>
+                        <button mat-raised-button color="primary" (click)="getPickupDate()"
+                         [disabled]="orderModel.orderStatus !== 'Ready To Ship'" >Request To Bombino</button>
+                      </div>
+                      <div>
+                        <button mat-raised-button color="primary" (click)="cancelOrder()"
+                         [disabled]="orderModel.awsNo === undefined">Cancel Order</button>
+                      </div>
+                    </div> -->
+                    
+                  </mat-card>
+                </div>
+        
+        
+        
+        
+        
+        
+                <div class="col-md-6">
+                  <div class="row">
+                      <div class="col-md-12">
+                  <mat-card class="cardTwo">
+                    
+                      <b>Customer Details</b>
+                      <div>
+                        <b> {{customerDetail?.firstName}}</b>
+                      </div>
+        
+        
+                      <div>
+                        {{customerDetail?.emailId}}
+                      </div>
+                      <div>
+                        {{customerDetail?.mobileNumber}}
+                      </div>
+              
+                  </mat-card>
+                </div>
+                
+        
+        
+                  <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                    <mat-card class="cardThree" style="margin-top: 10px;">
+                     
+                        <div *ngFor="let data of orderModel.addressDetails">
+                          <b>Delivery Address</b>
+                          <div>
+                            <b> {{data.name}}</b>
+                          </div>
+                          <div>
+                            {{data.building}}
+                          </div>
+                          <div>
+                            {{data.streetAddress}}
+                          </div>
+                          <div>
+                            {{data.landmark}}
+                          </div>
+                          <div>
+                            {{data.city}} - {{data.pincode}}
+                          </div>
+                          <div>
+                            {{data.state}}
+                          </div>
+                          <div>
+                            Mobile Number : <b>{{data.mobileNumber}}</b>
+                          </div>
+                        </div>
+                      
+                    </mat-card>
+                  </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+    <!-- ========================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row mt-5">
+      <div class="col-md-12 ">
+        <!-- <div class="row pageBoxLg-header">
+          <div class="col-md-3">
+            <p>Product Details</p>
+          </div>
+          <div class="col-md-1">
+            <p>Product Name</p>
+          </div>
+          <div class="col-md-1">
+            <p>Price</p>
+          </div>
+          <div class="col-md-1">
+            <p>Discount</p>
+          </div>
+          <div class="col-md-1">
+            <p>Quantity</p>
+          </div>
+          <div class="col-md-1">
+            <p>INT SKU Code</p>
+          </div>
+          <div class="col-md-1">
+            <p>Vendor's SKU Code</p>
+          </div>
+          <div class="col-md-1">
+            <p>Body Height</p>
+          </div>
+          <div class="col-md-1">
+            <p>Plus Size Charge</p>
+          </div>
+          <div class="col-md-1">
+            <p>Tailoring Service Type</p>
+          </div>
+          <div class="col-md-1">
+            <p>Review</p>
+          </div>
+          <div class="col-md-1">
+            <p>PO Status</p>
+          </div>
+        </div> -->
+        <div *ngFor="let data of orderModel?.cart; let i = index">
+          <div class="row " *ngFor="let prod of orderModel?.orderedProducts ; let j = index">
+            <!-- <div class="col-md-1">
+
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j" class="text-center">
+                    <img class="img-fluid" style="height: 150px;width:200px;"
+                      [src]="childdata.productImage[0].productImageName">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+                    <p>{{childdata.productName}}</p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p>{{childdata.price | number : '1.2-2'}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p>{{childdata.discount}} %</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p>{{data.qty}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p>{{childdata.INTsku}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+                    <p>{{childdata.sku}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+                    <p>{{data.bodyHeight}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+                    <p>{{childdata.sizeWisePrice !== undefined ? childdata.sizeWisePrice : 'None'}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+                    <p *ngIf="data.tailoringService === true">
+                      <span *ngFor="let val of orderModel?.measurement">
+                        <a *ngIf="data.isMeasurement === true && data.serviceId === val._id"
+                          (click)="getMeasurment(val, childdata)">Measurement</a></span>
+                      <a *ngIf="data.isUnstitched === true">Unstitched</a></p>
+                    <p *ngIf="data.tailoringService === false">None</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p (click)="openDialog(childdata)">View</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child ">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j">
+
+                    <p >{{data.purchaseOrderStatus === undefined ? 'Not Create': data.purchaseOrderStatus}}</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="col-md-3">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j" class="text-center">
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <img class="img-fluid" style="height: 150px;width:200px;"
+                  [src]="childdata.productImage[0].productImageName">
+                </div>
+                <div class="col-md-7 form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                     <label> <p>{{childdata.productName}}</p></label>
+                    </div>
+                    <div class="col-md-12">
+                     <div class="row">
+                       <div class="col-md-5">
+                        <label>Price :</label> 
+                       </div>
+                       <div class="col-md-7">
+                        <p>{{childdata.price | number : '1.2-2'}}</p>
+                       </div>
+                     </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-5">
+                         <label>Discount :</label> 
+                        </div>
+                        <div class="col-md-7">
+                          <p>{{childdata.discount}} %</p>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-5">
+                         <label>Quantity :</label> 
+                        </div>
+                        <div class="col-md-7">
+                          <p>{{data.qty}}</p>
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j" class="text-center">
+                    <div class="row">
+                      <div class="col-md-5 form-group">
+                        <label><p>INT SKU Code :</p></label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p>{{childdata.INTsku}}</p>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <label><p>Vendor's SKU Code :</p></label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p>{{childdata.sku}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j" class="text-center">
+                    <div class="row">
+                      <div class="col-md-5 form-group">
+                        <label>Body Height :</label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p>{{data.bodyHeight}}</p>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <label>Size Wise Price :</label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p>{{childdata.sizeWisePrice !== undefined ? childdata.sizeWisePrice : 'None'}}</p>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <label>Tailoring Service :</label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p *ngIf="data.tailoringService === true">
+                          <span *ngFor="let val of orderModel?.measurement">
+                            <a *ngIf="data.isMeasurement === true && data.serviceId === val._id"
+                              (click)="getMeasurment(val, childdata)">Measurement</a></span>
+                          <a *ngIf="data.isUnstitched === true">Unstitched</a></p>
+                        <p *ngIf="data.tailoringService === false">None</p>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <label>Review</label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p (click)="openDialog(childdata)">View</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div *ngFor="let singledata of prod">
+                <div *ngFor="let childdata of singledata.child">
+                  <div *ngIf="childdata.INTsku === data.INTsku && i === j" class="text-center">
+                    <div class="row">
+                      <div class="col-md-5 form-group">
+                        <label>PO Status : </label>
+                      </div>
+                      <div class="col-md-7 form-group">
+                        <p >{{data.purchaseOrderStatus === undefined ? 'Not Create': data.purchaseOrderStatus}}</p>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <label>Item Status :</label>
+                      </div>
+                      <div class="col-md-7 form-group" *ngIf="data.confirmationItemStatus !== 'cancel'">
+                        <p>{{data.confirmationItemStatus}}</p>
+                      </div>
+                      <div class="col-md-7 form-group" *ngIf="data.confirmationItemStatus === 'cancel'">
+                        <span>{{data.confirmationItemStatus}}</span>(<span class="clicK" (click)="openCancelReason(data)">Cancel Reason</span>)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12" [ngClass]="{'textStrike': orderModel.cancelCoupon === true}">
+            <p ><b *ngIf="isCoupon">({{orderModel?.coupon[0].couponCode}})</b><b>Coupon: </b><b
+                *ngIf="!isCoupon">None</b><b *ngIf="isCoupon"> {{orderModel?.coupon[0].typeValue}}<span
+                  *ngIf="orderModel?.coupon[0].amountType === 'Percentage'">%</span></b></p>
+          </div>
+          <div class="col-md-12">
+            <p ><b>Shipping: {{orderModel?.shipingFees}}</b></p>
+          </div>
+          <div class="col-md-12">
+            <p ><b>Paid Amount: {{orderModel?.initiatedTotal}}</b></p>
+          </div>
+          <div class="col-md-5"></div>
+          <div class="col-md-3 text-right">
+            <button class="btn btn-primary" (click)="onRefund(orderModel)" [disabled]="!showRefund || !confirm">Refund</button>
+          </div>
+          <div class="col-md-4">
+            <p ><b>Refund Amount: {{orderModel?.initiatedTotal - orderModel?.total}}</b></p>
+          </div>
+          <div class="col-md-12 ">
+
+            <p ><b>Total: {{orderModel?.total | number : '1.2-2'}}</b></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+<!-- ====================================================== -->

@@ -1,0 +1,142 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>OrderID</label>
+        </div>
+        <div class="col-md-6">
+          {{returnModel.orderId}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>ReturnID</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.returnId}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Status</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.returnStatus}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Date</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.creationDate | date}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row" *ngIf="returnModel.awbNo !== undefined">
+        <div class="col-md-6 form-group">
+          <label>AWB No</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.awbNo}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Service Name & Address</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.serviceNameAndAddress}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Shippment Date</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{returnModel.shippmentDate | date}}
+        </div>
+        <div class="col-md-6 form-group" *ngIf="returnModel.returnStatus !== 'shipped'">
+          <label>Received Date</label>
+        </div>
+        <div class="col-md-6 form-group" *ngIf="returnModel.returnStatus !== 'shipped'">
+          {{returnModel.receivedDate | date}}
+        </div>
+        <div class="col-md-6 form-group">
+          <mat-form-field class="example-full-width">
+            <mat-select #selectElem (selectionChange)="onStatusChange($event)"
+              placeholder="Shippment Status">
+              <mat-option *ngFor="let data of shippment" [value]="data">
+                {{data }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 form-group">
+          <button class="btn btn-primary" (click)="onStatus()">submit</button>
+        </div>
+        
+        
+      </div>
+    </div>
+   
+    <!-- <div class="col-md-3 form-group">Image</div>
+    <div class="col-md-4 form-group">Product Name</div>
+    <div class="col-md-2 form-group">INT Sku</div>
+    <div class="col-md-2 form-group">Sku</div>
+    <div class="col-md-1 form-group">Action</div> -->
+    <div *ngFor="let ret of returnModel.cart">
+
+    <div *ngFor="let cart of orderModel?.cart; let i = index">
+      <div  class="col-md-12 form-group" *ngFor="let product of orderModel?.orderedProducts; let j = index">
+        <div *ngIf="product[0]._id === cart.productId && i === j && cart._id === ret.cartId">
+          <div class="row" *ngFor="let child of product[0].child">
+            <div class="col-md-12">
+            <div class="row" *ngIf="cart.INTsku === child.INTsku">
+            <div class="col-md-2 form-group">
+              <img [src]="child.productImage[0].productImageName" style="width: 100px;">
+            </div>
+            <div class="col-md-3 form-group">
+              <div class="row">
+                <label> {{child.productName}}</label>
+              </div>
+              <div class="row">
+                {{child.price | currency: 'INR'}}
+              </div>
+            </div>
+            <div class="col-md-1 form-group">
+             {{child.INTsku}}
+            </div>
+            <div class="col-md-2 form-group">
+           
+            {{child.sku}}
+            </div>
+            <div class="col-md-2 form-group">
+              <a class="nav-link selectCursor" (click)="onReason(ret)">View Reason</a>
+              
+            </div>
+            <div class="col-md-2 form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <mat-select #selectElem (selectionChange)="onSelectReason(selectElem.value, ret)"
+                    [disabled]="!validReturn || returnModel.returnStatus !== 'initiated'" [(value)]="ret.returnItemStatus" 
+                      placeholder="Action">
+                      <mat-option *ngFor="let data of action" [value]="data">
+                        {{data }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12" *ngIf="ret.rejectionApply">
+                  <textarea (keyup)="onKey($event, ret)" cols="30" rows="5" ></textarea>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-12 form-group text-right">
+    <p *ngIf="showRejectionError" style="color: red;"> fill Rejection Reason</p>
+    <button class="btn btn-primary" *ngIf="returnModel.returnStatus === 'initiated'"  [disabled]='!finalResponse' (click)="onApply()">Apply</button>
+  </div>
+  </div>
+</div>

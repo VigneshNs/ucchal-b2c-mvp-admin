@@ -1,0 +1,175 @@
+<div class="row container-fluid">
+ 
+              <div class="col-md-12 text-right">
+                 <h1 >
+                     <button class="addButton" mat-flat-button color="primary"  [routerLink]="['/cms/thirdrow']"> <i
+                         class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> <a style="padding-left: 10px;">Add </a>  </button>
+                 </h1>
+               </div>
+
+             <div class="container">
+                 <table class="table table-bordered">
+                   <tbody>
+                     <tr>
+                       <td>Tag Name :</td>
+                       <td>{{thirdModel?.title}}</td>
+                     </tr>
+                     <tr>
+                       <td>Tag Description :</td>
+                       <td>{{thirdModel?.description}}</td>
+                       
+                     </tr>
+                     <tr>
+                       <td>Number of Product :</td>
+                       <td> {{productLength}}</td>
+                     </tr>
+
+                     <tr>
+                       <td>Status :</td>
+                       <td> {{thirdModel?.publish === true ? 'Publish': 'UnPublish'}}</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+
+
+
+
+               <div class="col-md-2">
+                 <div class="form-group">
+                     <label class="switch ">
+                         <input type="checkbox"  (change)="changeStatus($event, thirdModel?._id)" [checked]="thirdModel?.publish === true">
+                         <span class="slider round"></span>
+                       </label>
+                 </div>
+               </div>
+               <div class="row col-md-12">
+                   <div class="col-md-5"></div>
+               <div class="col-md-1">
+                 <div class="form-group">
+                     <button class="addButton" mat-flat-button color="primary" (click)="editRow(thirdModel?._id)">Edit  </button>
+                 
+                 </div>
+               </div>
+               <div class="col-md-1">
+                 <div class="form-group">
+                     <button class="addButton" mat-flat-button color="primary" (click)="openDialog(thirdModel?._id)">Delete  </button>
+                 </div>
+               </div>
+</div>
+    
+ </div>
+
+
+<!-- <div class="row container-fluid">
+        <div class="col-md-12">
+          <div class="form-group text-right">
+              <button type="button" [routerLink]="['/cms/thirdrow']" class="btn btn-light">Add</button>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+              <button matTooltip="Edit" (click)="editRow(thirdModel?._id)" mat-mini-fab color="primary"><mat-icon style="color: #fff"> edit </mat-icon>
+              </button>
+              
+          
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group text-right">
+            <button type="button" (click)="deleteRow(thirdModel?._id)" class="btn btn-light">Delete</button>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+    
+          </div>
+        </div>
+        <div class="col-md-3 ">
+          <div class="form-group">
+          <label>
+          Tag Name :
+        </label>
+      </div>
+        </div>
+        <div class="col-md-5 ">
+          <div class="form-group">
+          {{thirdModel?.title}}
+        </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+    
+          </div>
+        </div>
+    
+        <div class="col-md-2">
+          <div class="form-group">
+    
+          </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="form-group">
+            <label>
+            Tag Description :
+          </label>
+        </div>
+          </div>
+          <div class="col-md-5 ">
+            <div class="form-group">
+            {{thirdModel?.description}}
+          </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+                <label class="switch ">
+                    <input type="checkbox" (change)="changeStatus($event, thirdModel?._id)" [checked]="thirdModel?.publish === true">
+                    <span class="slider round"></span>
+                  </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                
+              </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="form-group">
+                <label>
+                Number of Product :
+              </label>
+            </div>
+              </div>
+              <div class="col-md-5 ">
+                <div class="form-group">
+                {{productLength}}
+              </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                    
+                  </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                    <label>
+                    Status :
+                  </label>
+                </div>
+                  </div>
+                  <div class="col-md-5 ">
+                    <div class="form-group">
+                    {{thirdModel?.publish === true ? 'Publish': 'UnPublish'}}
+                  </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      
+                    </div>
+                  </div>
+      </div> -->

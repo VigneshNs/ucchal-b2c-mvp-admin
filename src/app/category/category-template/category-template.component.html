@@ -1,0 +1,76 @@
+<div class="grid">
+    <div class="row gridRow">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="offset-md-3 col-md-6 offset-md-3">
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <mat-select (selectionChange)="categorySelected($event)">
+                <mat-option *ngFor="let sup of superCategoryModel" [value]="sup">
+                  {{sup.categoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="offset-md-3 col-md-6 offset-md-3" *ngIf="supCategoryDetails?.mainCategory.length > 0">
+            <mat-form-field>
+              <mat-label>Main Category</mat-label>
+              <mat-select (selectionChange)="categoryMainCategory($event)">
+                <mat-option *ngFor="let main of supCategoryDetails?.mainCategory" [value]="main">
+                  {{main.mainCategoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="offset-md-3 col-md-6 offset-md-3" *ngIf="supCategoryDetails?.mainCategory.length > 0">
+            <mat-form-field>
+              <mat-label>Sub Category</mat-label>
+              <mat-select>
+                <mat-option  (onSelectionChange)="categorySubCategory($event)" 
+                *ngFor="let sub of mainCategoryDetails?.subCategory" [value]="sub">
+                  {{sub.subCategoryName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+         <!--  <div class="form-group" *ngIf="dataSubDeatils.length !== 0">
+              
+              <button class="btn btn-md btn-primary" 
+              
+               (click)="downloadExcel()">Download Excel</button>
+      </div> -->
+      <div class="form-group" *ngIf="superExcelEnable">
+
+          <button class="btn btn-md btn-primary" (click)="downloadSuperExcel()">Download Excel</button>
+        </div>
+        <div class="form-group" *ngIf="subExcelEnable">
+  
+          <button class="btn btn-md btn-primary" (click)="downloadSubExcel()">Download Excel</button>
+        </div>
+        <div class="form-group" *ngIf="mainExcelEnable">
+  
+          <button class="btn btn-md btn-primary" (click)="downloadMainExcel()">Download Excel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row gridRow m-5">
+     
+     <div class="col-md-6">
+        <div class="alert alert-danger" role="alert" [hidden]="!excelUploadError">
+           Excel Upload must be category Name
+        </div>
+       <h5>Upload Template</h5>
+       <label>
+         <input type="file" (change)="handleFileInputSingle($event.target.files)">
+       </label>
+     </div>
+     <div class="col-md-6">
+       <div class="form-group  float-right">
+         <input class="btn btn-md btn-danger" (click)="uploadExcel()" [disabled]="!fileToUpload" type="button" value="save">
+       </div>
+     </div>
+   </div>

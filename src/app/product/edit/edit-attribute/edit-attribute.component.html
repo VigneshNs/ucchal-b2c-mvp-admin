@@ -1,0 +1,39 @@
+<div class="grid" *ngIf="!editProductModel?.attributeEdit">
+  <button class="btn btn-primary" (click)="editAttribute()">Edit</button>
+  <div class="row gridRow">
+      <div class="col-md-4" *ngFor="let data of attributeModel">
+          <div class="form-group">
+            <label class="title">{{data.field}}</label>
+            <div>
+              {{data.value}}
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="grid" *ngIf="editProductModel?.attributeEdit">
+    <button class="btn btn-primary" (click)="updateAttribute()">Update</button>
+  <button class="btn btn-primary" (click)="cancelAttribute()">Cancel</button>
+  <div class="row gridRow" *ngFor="let catData of categoryAttributeModel">
+      <div class="col-md-12" *ngFor="let attri of attributeModel">
+          <mat-form-field *ngIf="attri.field === catData.fieldName && catData.fieldType === 'Dropdown'">
+              <mat-label class="title">{{attri.field}}</mat-label>
+              <mat-select (selectionChange)="selectedAttribute($event, attri.field)"
+               [value]="attri.value" >
+                <mat-option *ngFor="let data of catData.fieldValue" [value]="data.fieldAttributeValue">
+                  {{data.fieldAttributeValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+      <div class="col-md-12" *ngFor="let attri of attributeModel">
+          <mat-form-field appearance="outline" *ngIf="attri.field === catData.fieldName && catData.fieldType === 'Text'">
+              <mat-label class="title">{{attri.field}}</mat-label>
+              <input matInput (keyup)="onKey($event, attri.field)"
+               #prodName [value]="attri.value" >
+  
+            </mat-form-field>
+      </div>
+  </div>
+  
+</div>

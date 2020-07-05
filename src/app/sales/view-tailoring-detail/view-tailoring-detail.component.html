@@ -1,0 +1,290 @@
+ <button type="button" class="close" (click)="close()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <table class="table table-striped">
+    <tbody *ngFor="let val of data.tailoringData; let i = index">
+      <tr>
+        <th>{{i + 1}}</th>
+        <td>{{val.name}}</td>
+        <td>{{val.value}}<span *ngIf="val.styleImage && val.value !== 'As Shown'"><img [src]="measurementImageUrl + val.measureID + '/' + val.styleImage" style="width: 70px"></span>
+        <span *ngIf="val.styleImage && val.value === 'As Shown'"><img [src]="val.productImage" style="width: 70px"></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!--<table class="table table-striped">
+      <thead>
+        <tr>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="data.typeName">
+          <th>Type</th>
+          <td>{{data.typeName}}</td>
+        </tr>
+        <tr *ngIf="data.typeDescription">
+          <th>Discription</th>
+          <td> {{data.typeDescription}}</td>
+        </tr>
+        <tr *ngIf="data.aroundBust">
+          <th>aroundBust</th>
+          <td> {{data.aroundBust}}</td>
+        </tr>
+        <tr *ngIf="data.aroundAboveWaist">
+            <th>Around Above Waist</th>
+            <td>   {{data.aroundAboveWaist}}</td>
+          </tr>
+         <tr *ngIf="data.blouseLength">
+            <th>Blouse Length</th>
+            <td>  {{data.blouseLength}}</td>
+        </tr>
+        <tr *ngIf="data.frontNeckStyle">
+           <th>Front Neck Style</th>
+           <td> {{data.frontNeckStyle}} <img [src]="measurementImageUrl + data.measureID + '/' + data.frontImage" style="width: 70px;"></td> 
+        </tr>
+          <tr *ngIf="data.frontNeckDepth">
+             <th>Front Neck Depth</th>
+             <td> {{data.frontNeckDepth}}</td>
+          </tr>
+          <tr *ngIf="data.backNeckStyle">
+              <th>Back Neck Style</th>
+              <td> {{data.backNeckStyle}} <img [src]="measurementImageUrl + data.measureID + '/' + data.backImage" style="width: 70px;"></td>
+           </tr>
+           <tr *ngIf="data.backNeckDepth">
+              <th>Back Neck Depth</th>
+              <td> {{data.backNeckDepth}}</td>
+           </tr>
+           <tr *ngIf="data.sleeveStyle">
+              <th>Sleeve Style</th>
+              <td> {{data.sleeveStyle}} <img [src]="measurementImageUrl + data.measureID + '/' + data.sleeveImage" style="width: 70px;"></td>
+           </tr>
+           <tr *ngIf="data.aroundArm">
+              <th>Around Arm</th>
+              <td> {{data.aroundArm}}</td>
+           </tr>
+           <tr *ngIf="data.closingSide">
+              <th>Closing Side</th>
+              <td> {{data.closingSide}}</td>
+           </tr>   
+           <tr *ngIf="data.closingWith">
+              <th>Closing With</th>
+              <td> {{data.closingWith}}</td>
+           </tr> 
+           <tr *ngIf="data.lining">
+              <th>Lining</th>
+              <td> {{data.lining}}</td>
+           </tr> 
+           <tr *ngIf="data.specialInstruction">
+              <th>Special Instruction</th>
+              <td> {{data.specialInstruction}}</td>
+           </tr> 
+           <tr *ngIf="data.aroundHip">
+            <th>Around Hip</th>
+            <td> {{data.aroundHip}}</td>
+         </tr> 
+         <tr *ngIf="data.kameezLength">
+          <th>Kameez Length</th>
+          <td> {{data.kameezLength}}</td>
+       </tr> 
+       <tr *ngIf="data.kameezClosingSide">
+        <th>Kameez Closing Side</th>
+        <td> {{data.kameezClosingSide}}</td>
+     </tr> 
+     <tr *ngIf="data.kameezClosingWith">
+      <th>Kameez Closing With</th>
+      <td> {{data.kameezClosingWith}}</td>
+   </tr> 
+   <tr *ngIf="data.bottomStyle">
+    <th>Bottom Style</th>
+    <td> {{data.bottomStyle}} <img [src]="measurementImageUrl + data.measureID + '/' + data.bottomImage" style="width: 70px;"></td>
+ </tr> 
+ <tr *ngIf="data.fitOption">
+  <th>Fit Option</th>
+  <td> {{data.fitOption}}</td>
+</tr> 
+<tr *ngIf="data.aroundWaist">
+  <th>Around Waist</th>
+  <td> {{data.aroundWaist}}</td>
+</tr> 
+<tr *ngIf="data.aroundThigh">
+  <th>Around Thigh</th>
+  <td> {{data.aroundThigh}}</td>
+</tr> 
+<tr *ngIf="data.aroundKnee">
+  <th>Around Knee</th>
+  <td> {{data.aroundKnee}}</td>
+</tr> 
+<tr *ngIf="data.aroundCalf">
+  <th>Around Calf</th>
+  <td> {{data.aroundCalf}}</td>
+</tr> 
+<tr *ngIf="data.aroundBottom">
+  <th>Around Bottom</th>
+  <td> {{data.aroundBottom}}</td>
+</tr> 
+<tr *ngIf="data.bottomLength">
+  <th>Bottom Length</th>
+  <td> {{data.bottomLength}}</td>
+</tr> 
+<tr *ngIf="data.waistClosingSide">
+  <th>Waist Closing Side</th>
+  <td> {{data.waistClosingSide}}</td>
+</tr> 
+<tr *ngIf="data.waistClosingWith">
+  <th>Waist Closing With</th>
+  <td> {{data.waistClosingWith}}</td>
+</tr> 
+<tr *ngIf="data.choliLength">
+  <th>Choli Length</th>
+  <td>{{data.choliLength}}</td>
+</tr>
+<tr *ngIf="data.choliClosingSide">
+    <th>Choli Closing Side</th>
+    <td>{{data.choliClosingSide}}</td>
+  </tr>
+  <tr *ngIf="data.choliClosingWith">
+      <th>Choli Closing With</th>
+      <td>{{data.choliClosingWith}}</td>
+    </tr>
+    <tr *ngIf="data.lehengaLength">
+        <th>Lehenga Length</th>
+        <td>{{data.lehengaLength}}</td>
+      </tr>
+      <tr *ngIf="data.lehengaClosingSide">
+          <th>Lehenga Closing Side</th>
+          <td>{{data.lehengaClosingSide}}</td>
+        </tr>
+        <tr *ngIf="data.lehengaClosingWith">
+            <th>Lehenga Closing With</th>
+            <td>{{data.lehengaClosingWith}}</td>
+          </tr>
+           <tr *ngIf="data.price">
+              <th>Price</th>
+              <td> {{data.price}}</td>
+           </tr> 
+           <tr *ngIf="data.discount">
+              <th>Discount</th>
+              <td> {{data.discount}}</td>
+           </tr> 
+                 
+      </tbody>
+    </table> -->
+<div class="row">
+  <div class="col-md-12 text-center">
+      <button class="btn btn-primary" (click)="onPrint()">Download</button>
+      <!-- <button class="btn btn-primary" (click)="dropboxUrl()">converter</button> -->
+  </div>
+  <canvas id="canvas" ></canvas>
+</div>
+
+
+
+
+
+
+
+<!-- 
+<div class="row">
+  <div class="col-md-3 form-group">
+    <label>Type</label>
+  </div>
+  <div class="col-md-3 form-group">
+    {{data.typeName}}
+  </div>
+  <div class="col-md-3 form-group">
+    <label>Discription</label>
+  </div>
+  <div class="col-md-3 form-group">
+    {{data.typeDescription}}
+  </div>
+  <div class="col-md-3 form-group">
+    <label>aroundBust</label>
+  </div>
+  <div class="col-md-3 form-group">
+    {{data.aroundBust}}
+  </div>
+  <div class="col-md-3 form-group">
+      <label>Around Above Waist</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{data.aroundAboveWaist}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Blouse Length</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{data.blouseLength}}
+    </div>
+    <div class="col-md-3 form-group">
+        <label>Front Neck Style</label>
+      </div>
+      <div class="col-md-3 form-group">
+        {{data.frontNeckStyle}}
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Front Neck Depth</label>
+      </div>
+      <div class="col-md-3 form-group">
+        {{data.frontNeckDepth}}
+      </div>
+      <div class="col-md-3 form-group">
+          <label>Back Neck Style</label>
+        </div>
+        <div class="col-md-3 form-group">
+          {{data.backNeckStyle}}
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Back Neck Depth</label>
+        </div>
+        <div class="col-md-3 form-group">
+          {{data.backNeckDepth}}
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Sleeve Style</label>
+          </div>
+          <div class="col-md-3 form-group">
+            {{data.sleeveStyle}}
+          </div>
+          <div class="col-md-3 form-group">
+            <label>Around Arm</label>
+          </div>
+          <div class="col-md-3 form-group">
+            {{data.aroundArm}}
+          </div>
+          <div class="col-md-3 form-group">
+              <label>Closing Side</label>
+            </div>
+            <div class="col-md-3 form-group">
+              {{data.closingSide}}
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Closing With</label>
+            </div>
+            <div class="col-md-3 form-group">
+              {{data.closingWith}}
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Lining</label>
+              </div>
+              <div class="col-md-3 form-group">
+                {{data.lining}}
+              </div>
+              <div class="col-md-3 form-group">
+                <label>Special Instruction</label>
+              </div>
+              <div class="col-md-3 form-group">
+                {{data.specialInstruction}}
+              </div>
+              <div class="col-md-3 form-group">
+                  <label>Price</label>
+                </div>
+                <div class="col-md-3 form-group">
+                  {{data.price}}
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Discount</label>
+                </div>
+                <div class="col-md-3 form-group">
+                  {{data.discount}}
+                </div>
+</div> -->

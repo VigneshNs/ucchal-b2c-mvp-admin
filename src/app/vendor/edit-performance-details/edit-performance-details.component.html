@@ -1,0 +1,220 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Performance Target</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.target}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Unconditional Discount</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.unconditionalDiscount}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Target Discount</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.tradingDiscount}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Order Size</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.orderSize}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Cash Discount</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.cashDiscount}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Cash Discount Paid in(days)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.cashDiscountPaid}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Promotional Programs</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.promotionalProgram}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Mailer/ Catalogue Participation</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.catalogueParticipation}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>New Launches</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.newLaunches}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Theme Participation</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.themeParticipation}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Specilalization</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.specilalization}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Liquidation Offer</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.liquidationOffer}}
+    </div>
+  </div>
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Performance Target</label>
+          <input type="text" class="form-control" [ngModel]="this.profileData.target" #payDay formControlName="target"
+            placeholder="Performance Target">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Unconditional Discount</label>
+          <input type="text" class="form-control" [ngModel]="this.profileData.unconditionalDiscount" #payDay
+            formControlName="unconditionalDiscount" placeholder="Unconditional Discount">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Target Discount</label>
+          <input type="text" class="form-control" [ngModel]="profileData.tradingDiscount" #credit
+            formControlName="tradingDiscount" placeholder="Target Discount">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Order Size</label>
+          <input type="text" class="form-control" [ngModel]="profileData.orderSize" #credit formControlName="orderSize"
+            placeholder="Order Size">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Cash Discount</label>
+          <input type="text" class="form-control" [ngModel]="profileData.cashDiscount" #otherterm
+            formControlName="cashDiscount" placeholder="Cash Discount">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Cash Discount Paid in(days)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.cashDiscountPaid" #formreq
+            formControlName="cashDiscountPaid" placeholder="Cash Discount Paid in(days)">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Promotional Programs</label>
+          <input type="text" class="form-control" [ngModel]="profileData.promotionalProgram" #formreq
+            formControlName="promotionalProgram" placeholder="Promotional Programs">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Mailer/ Catalogue Participation</label>
+          <input type="text" class="form-control" [ngModel]="profileData.catalogueParticipation"
+            formControlName="catalogueParticipation" #merDiv placeholder="Mailer/ Catalogue Participation">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>New Launches</label>
+          <input type="text" class="form-control" [ngModel]="profileData.newLaunches" formControlName="newLaunches"
+            #merDiv placeholder="New Launches">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Theme Participation</label>
+          <input type="text" class="form-control" [ngModel]="profileData.themeParticipation" #conNum
+            formControlName="themeParticipation" placeholder="Theme Participation">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Specilalization</label>
+          <input type="text" class="form-control" [ngModel]="profileData.specilalization" #contstardate
+            placeholder="Specilalization" formControlName="specilalization">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Liquidation Offer</label>
+          <input type="text" class="form-control" [ngModel]="profileData.liquidationOffer" #contenddate
+            placeholder="Liquidation Offer" formControlName="liquidationOffer">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(name, mob, emal, venty, vencop, venpemob, vencpd, merDiv, comStat, conNum, contstardate, contenddate)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,197 @@
+<div class="container">
+  <div class="pageBoxLg">
+    <form [formGroup]="walletForm">
+    <div class="row">
+      <div class="col-md-3 form-group">
+        <label>Minimum Coin :</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control" formControlName="minCoin" placeholder="Minimum Coin For adding">
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Maximum Coin :</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control" formControlName="maxCoin" placeholder="Maximum Coin For adding">
+      </div>
+     
+      <div class="col-md-3 form-group">
+        <label>Validation Period(Month):</label>
+      </div>
+      <div class="col-md-3 form-group">
+        <input type="number" class="form-control" formControlName="vaildationPeriodForCoin" placeholder="Wallet Validation Period(Month)">
+      </div>
+      <div class="col-md-3 form-group"></div>
+      <div class="col-md-3 form-group"></div>
+      <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label style="font: 15px">Loyalty Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Loyalty Amount:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="loyaltyFixedAmount" placeholder="Fixed Amount" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Loyalty Coin:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="loyaltyFixedCoin" placeholder="Fixed Coin" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number"  formControlName="loyaltyUsingPercentage" placeholder="Using Percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onLoyalMin()" formControlName="loyaltyMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" [readonly]="!isMinLoyalty" formControlName="loyaltyminimumOrder" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onLoyalMax()" formControlName="loyaltyMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" [readonly]="!isMaxLoyalty" formControlName="loyaltyMaximumOrder" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Activity Wallet</label>
+        </div>
+        <!-- <div class="col-md-3 form-group">
+          <label>Coin For Video</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" formControlName="activityAddingVideo" placeholder="Add Coin For Video Upload">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Coin For Photo</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" formControlName="activityAddingImage" placeholder="Add Coin For Photo Upload">
+        </div> -->
+        <div class="col-md-3 form-group">
+          <label>Coin For Regsitration</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" class="form-control" formControlName="activityFirstTimeRegistration" placeholder="Add Coin For First time Registration">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="activityUsingPercentage" placeholder="Using Percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onActivityMin()" formControlName="activityMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinActivity" formControlName="activityMinimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onActivityMax()" formControlName="activityMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxActivity" formControlName="activityMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Event Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="eventUsingPercentage" placeholder="using percentage" class="form-control">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onEventMin()" formControlName="eventMinimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinEvent" formControlName="eventMinimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onEventMax()" formControlName="eventMaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxEvent" formControlName="eventMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="col-md-12 form-group boX">
+      <div class="row">
+        <div class="col-md-12 text-center form-group">
+          <label>Refer Wallet</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" formControlName="referusingPercentage" class="form-control" placeholder="Using Percentage">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label> Enable Minimum Order</label>
+          </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onReferMin()"  formControlName="referminimunCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMinRefer" formControlName="referminimumOrder" class="form-control" placeholder="Minimum Order Amount">
+        </div>
+        <div class="col-md-3 form-group"></div>
+        <div class="col-md-3 form-group">
+          <label>Enable Maximum Order</label>
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="checkbox" (change)="onReferMax()" formControlName="referaximumCondition">
+        </div>
+        <div class="col-md-3 form-group">
+          <input type="number" [readonly]="!isMaxRefer" formControlName="referMaximumOrder" class="form-control" placeholder="Maximum Order Amount">
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-12 form-group text-center">
+      <button class="btn btn-primary mr-2" (click)="onSubmit()">Submit</button>
+      <button class="btn btn-primary">Cancel</button>
+    </div>
+    </div>
+  </form>
+  </div>
+</div>

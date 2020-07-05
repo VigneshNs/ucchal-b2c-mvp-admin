@@ -1,0 +1,235 @@
+<form [formGroup]="productForm">
+  <div class="grid">
+    <div class="row bordeR" >
+      <div class="col-md-12 " *ngIf="!productModel?.guideEdit">
+        <div class="row roW">
+          <div class="col-md-4">
+            <div class="form-group text-right">
+              <label>Size Guide Name</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group text-left">
+              :  {{productModel?.sizeGuideName}}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="sizeGuideEdit(productModel)">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="productModel?.guideEdit">
+        <div class="row roW">
+          <div class="col-md-4">
+          <mat-form-field>
+              <mat-select  placeholder="Select the Size Guide" (selectionChange)="changes($event)"
+                [(value)]="productModel.sizeGuideName" #size>
+                <mat-option *ngFor="let data of sizeguideData" [value]="data">
+                  {{data.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="saveSizeGuide(size.value)">Save</button>
+            </div>
+          </div>
+          </div>
+      </div>
+     <!--  <div class="col-md-12">
+          <input class="btn btn-sm btn-danger" (click)="addProductSiz(productForm, productModel._id)">
+      </div> -->
+    </div>
+    <div class="row" *ngIf="editProductModel?.sizeEdit">
+      <div class="col-md-2">
+        <mat-form-field>
+          <mat-select (selectionChange)="selectOptionValue($event)" placeholder="Select the Option"
+            [value]="productModel?.sizeVariantId" [disabled]="true">
+            <mat-option *ngFor="let option of productOptionModel" [value]="option._id">
+              {{option.optionName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div [hidden]="!selectValueOptions" class="alert alert-danger">
+          Select Option Value
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="grid" formArrayName="optionValue">
+          <div class="row gridRow">
+            <div class="col-md-6">
+              <div class="form-group p-2">
+                <input class="btn btn-sm btn-danger" (click)="addForm()" type="button" value="Add Size">
+              </div>
+            </div>
+            <div class="col-md-6" *ngIf="productOptionValueForms.controls.length > 0">
+              <div class="form-group float-right">
+                <input class="btn btn-sm btn-danger" (click)="addProductVariant(productForm, productModel._id)"
+                  type="button" value="Save">
+              </div>
+            </div>
+          </div>
+          <div class="row gridRow" *ngFor="let account of productOptionValueForms.controls; let i=index"
+            [formGroupName]="i">
+            <div class="col-md-2">
+              <!--  <div class="form-group">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Option Value Name</mat-label>
+                            <input matInput formControlName="optionValueName" placeholder="option Value Name">
+                          </mat-form-field>
+                        </div> -->
+              <mat-form-field class="example-full-width">
+                <mat-select placeholder="Select the Size" formControlName="sizeName">
+                  <mat-option *ngFor="let optionValue of productOptionValue" [value]="optionValue.optionValueName">
+                    {{optionValue.optionValueName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>SKU</mat-label>
+                  <input matInput formControlName="sku" placeholder="SKU">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Quantity</mat-label>
+                  <input matInput formControlName="sizeQuantity" placeholder="Quantity">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Price</mat-label>
+                  <input matInput formControlName="sizePrice" placeholder="Price">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-1" style="padding: 10px;">
+
+            </div>
+            <div class="col-md-1" style="padding: 10px;">
+              <div class="form-group">
+                <a (click)="deleteForm(i)">
+                  <mat-icon>clear</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="editProductModel?.sizeEdit">
+      <div class="grid" *ngFor="let data of productModel?.productVariant">
+        <div class="row gridRow" *ngIf="!data.showDiv">
+          <div class="col-md-2">
+            <div class="form-group">
+              {{data.sizeName}}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              {{data.sku}}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+
+              {{data.sizeQuantity}}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              {{data.sizePrice}}
+            </div>
+          </div>
+
+          <div class="col-md-1" style="padding: 10px;">
+            <div class="form-group">
+              <a (click)="edit(productModel.productVariant, data._id)">
+                <mat-icon class="rowEdit">edit</mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row gridRow" *ngIf="data.showDiv">
+          <div class="col-md-2">
+            <!--  <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Option Value Name</mat-label>
+                        <input matInput formControlName="optionValueName" placeholder="option Value Name">
+                      </mat-form-field>
+                    </div> -->
+            <mat-form-field class="example-full-width">
+              <mat-select (selectionChange)="selectOptionValueName($event)" placeholder="Select the Size" #sizeName
+                [(value)]="data.sizeName">
+                <mat-option *ngFor="let optionValue of productOptionValue" [value]="optionValue.optionValueName">
+                  {{optionValue.optionValueName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>SKU</mat-label>
+                <input matInput [readonly]="true" [value]="data.sku" placeholder="SKU">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input matInput [value]="data.sizeQuantity" placeholder="Quantity" #sizeQuantity>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput [value]="data.sizePrice" placeholder="Price" #sizePrice>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding: 10px;">
+            <div class="form-group">
+
+              <!-- <mat-icon>clear</mat-icon> -->
+              <input class="btn btn-sm btn-danger"
+                (click)="editProductVariant(productModel._id, data._id, sizeName.value, sizeQuantity.value, sizePrice.value)"
+                type="button" value="Save">
+
+            </div>
+          </div>
+          <div class="col-md-1" style="padding: 10px;">
+            <div class="form-group">
+
+              <!-- <mat-icon>clear</mat-icon> -->
+              <input class="btn btn-sm btn-primary" (click)="deleteVariant(data._id, productModel._id)"
+               type="button"
+                value="Delete">
+            </div>
+          </div>
+          <div class="col-md-1" style="padding: 10px;">
+            <div class="form-group">
+              <a class="rowDelete"  (click)="cancelVariant(productModel.productVariant)" >
+                <mat-icon>clear</mat-icon>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

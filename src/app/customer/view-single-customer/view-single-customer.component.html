@@ -1,0 +1,89 @@
+<div class="pageBoxLg">
+  <div class="row">
+    <div class="col-md-12 form-group text-center">
+      <label>Customer Details</label>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>First Name</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.firstName}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Last Name</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.lastName}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Email-ID</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.emailId}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Mobile Number</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.mobileNumber}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Date Of Birth</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :   {{holder?.dateOfBirth | date}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Creation Date</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :   {{holder?.date | date}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Gender</label>
+    </div>
+    <div class="col-md-3 form-group">
+     :  {{holder?.gender}} 
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Location</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.location}}
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Status</label>
+    </div>
+    <div class="col-md-3 form-group">
+    :  {{holder?.publish === true ? 'Enable' : 'Disable'}}
+    </div>
+    <div class="col-md-12 form-group">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Building NO</th>
+                <th scope="col">Street Name</th>
+                <th scope="col">Land Mark</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Pincode</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let data of holder?.addressDetails; let i = index">
+              <tr>
+                <th scope="row">{{i + 1}}</th>
+                <td>{{data.name}}</td>
+                <td>{{data.building}}</td>
+                <td>{{data.streetAddress}}</td>
+                <td>{{data.landmark}}</td>
+                <td>{{data.city}}</td>
+                <td>{{data.state}}</td>
+                <td>{{data.pincode}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>

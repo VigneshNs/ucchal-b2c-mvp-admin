@@ -1,0 +1,35 @@
+.box {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+.bordeR {
+    border: 1px solid #1c4561;
+    margin-top: 5px;
+    cursor: pointer;  
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+
+    display: block;
+    position: relative;
+
+}
+.bordeR:hover{
+    background-color: #1c4561;
+    color:  white !important;
+}
+.loader{
+    margin-top: 100px;
+    width: 300px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .btn-info{
+      background-color: #1c4561;
+      color: #fff;
+  }

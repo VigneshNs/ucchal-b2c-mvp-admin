@@ -1,0 +1,46 @@
+/* .vdivide [class*='col-']:not(:last-child):after {
+    background: #e0e0e0;
+    width: 1px;
+    content: "";
+    display:block;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    min-height: 70px;
+  } */
+  .fa-shopping-bag {
+      color: dodgerblue;
+  }
+  .fa-credit-card {
+      color: indigo;
+  }
+  .fa-users {
+      color: yellowgreen;
+  }
+  .fa-file-text {
+      color: teal;
+  }
+  .pageBoxl {
+    /* border: 1px solid ; */
+    margin: 10px 10px 10px 10px;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .pageBox1 {
+    margin: 10px 10px 10px 50px;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .pageBox2 {
+    margin: 10px 0px 10px 3px;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  

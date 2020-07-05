@@ -1,0 +1,326 @@
+<!-- <button class="btn btn-primary" (click)="addNew()">Add</button> -->
+
+<!-- <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Measurement Name</th>
+        <th scope="col">Added Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let data of holder; let i = index">
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{data.measurementName}}</td>
+        <td>{{data.creationDate | date}}</td>
+        <td>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+            <mat-menu #menu="matMenu">
+                <a class="nav-link selectCursor" (click)="getEdit(data._id)" >Edit</a>
+                <a class="nav-link selectCursor" (click)="getStyleEdit(data._id)" >Style Edit</a>
+           </mat-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <button class="btn btn-primary" *ngIf="holder.length === 0" (click)="addNew()">Add</button>
+  <div class="row" *ngFor="let data of holder; let i = index">
+    <div class="col-md-6">
+      <button class="btn btn-primary" (click)="getEdit(data._id)">Edit</button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-primary" (click)="getStyleEdit(data._id)">Style Edit</button>
+    </div>
+    <div class="col-md-6 pa" >
+      <h4>Measurement Type</h4>
+      <div class="row" *ngFor="let d of data.measurementType; let i = index">
+        <div class="col-md-4">
+          {{d.typeName}} :
+        </div> 
+        <div class="col-md-8">
+          {{d.typeDescription}}
+        </div>
+      </div>
+      <!-- <h4>Closing With</h4>
+      <div class="col-md-3" *ngFor="let d of data.closingWith; let i = index">
+          {{d}}
+        </div>
+        <h4>Closing Side</h4>
+        <div class="col-md-3" *ngFor="let d of data.closingSide; let i = index">
+            {{d}}
+          </div> -->
+    </div>
+    <div class="col-md-12">
+      <h3>Lehenga Measurement</h3>
+      <div class="row" *ngFor="let da of data.lehengaMeasurement; let i = index">
+                  <div class="col-md-6 pa" >
+            <h4>Lehenga Closing Side</h4>
+           <p *ngFor="let d of da.lehengaClosingSide; let i = index"> {{d}} </p>
+          </div>
+         
+          <div class="col-md-6 pa" >
+              <h4>Lehenga Closing With</h4>
+             <p *ngFor="let d of da.lehengaClosingWith; let i = index"> {{d}} </p>
+            </div>
+   
+    <div class="col-md-6 pa" *ngFor="let d of da.aroundWaist; let i = index">
+      <div class="row">
+      <div class="col-md-8">
+      <h4> Around Waist</h4>
+      Minimum Value : {{d.min}} <br>
+      Maximum Value : {{d.max}} <br>
+      Description : {{d.description}} </div>
+      <div class="col-md-4">
+      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+            style="width: 250px;" />  </div>
+            </div>
+    </div>
+    <div class="col-md-6 pa" *ngFor="let d of da.aroundHip; let i = index">
+        <div class="row">
+            <div class="col-md-8">
+            <h4> Around Hip</h4>
+            Minimum Value : {{d.min}} <br>
+            Maximum Value : {{d.max}} <br>
+            Description : {{d.description}} </div>
+            <div class="col-md-4">
+            <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                  style="width: 250px;" />  </div>
+                  </div>
+      </div>
+      <div class="col-md-6 pa" *ngFor="let d of da.lehengaLength; let i = index">
+          <div class="row">
+              <div class="col-md-8">
+              <h4> Lehenga Length</h4>
+              Minimum Value : {{d.min}} <br>
+              Maximum Value : {{d.max}} <br>
+              Description : {{d.description}} </div>
+              <div class="col-md-4">
+              <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                    style="width: 250px;" />  </div>
+                    </div>
+        </div>
+          <!-- <div class="col-md-6 pa" *ngFor="let d of da.aroundThigh; let i = index">
+              <div class="row">
+                  <div class="col-md-8">
+                  <h4>Around Thigh</h4>
+                  Minimum Value : {{d.min}} <br>
+                  Maximum Value : {{d.max}} <br>
+                  Description : {{d.description}} </div>
+                  <div class="col-md-4">
+                  <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                        style="width: 250px;" />  </div>
+                        </div>
+            </div>
+            <div class="col-md-6 pa" *ngFor="let d of da.aroundWaist; let i = index">
+                <div class="row">
+                    <div class="col-md-8">
+                    <h4>Around Waist</h4>
+                    Minimum Value : {{d.min}} <br>
+                    Maximum Value : {{d.max}} <br>
+                    Description : {{d.description}} </div>
+                    <div class="col-md-4">
+                    <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                          style="width: 250px;" />  </div>
+                          </div>
+              </div>
+              <div class="col-md-6 pa" *ngFor="let d of da.bottomLength; let i = index">
+                  <div class="row">
+                      <div class="col-md-8">
+                      <h4> Bottom Length</h4>
+                      Minimum Value : {{d.min}} <br>
+                      Maximum Value : {{d.max}} <br>
+                      Description : {{d.description}} </div>
+                      <div class="col-md-4">
+                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                            style="width: 250px;" />  </div>
+                            </div>
+                </div>
+                <div class="col-md-6 pa" *ngFor="let d of data.sleeveLength; let i = index">
+                    <div class="row">
+                        <div class="col-md-8">
+                        <h4>Sleeve Length</h4>
+                        Minimum Value : {{d.min}} <br>
+                        Maximum Value : {{d.max}} <br>
+                        Description : {{d.description}} </div>
+                        <div class="col-md-4">
+                        <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                              style="width: 250px;" />  </div>
+                              </div>
+                  </div> -->
+                  <!-- <div class="col-md-12 pa">
+                    <h4>Bottm Style</h4>
+                  <app-carousel-item>
+                  <div appCarouselItem class="col-md-3" *ngFor="let d of da.bottomStyle; let i = index">
+                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                      style="width: 200px;" /> <br>
+                    {{d.title}}  </div>
+                      </app-carousel-item>
+                      </div> -->
+                      
+                                              </div>
+                                              </div>
+                                              <br>
+                                              <div class="col-md-12">
+                                                <h3>Choli Measurement </h3>
+                                              <div class="row" *ngFor="let da of data.choliMeasurement; let i = index">
+                                               
+                                                  <div class="col-md-4 pa" >
+                                                    <h4>Choli Closing Side</h4>
+                                                   <p *ngFor="let d of da.choliClosingSide; let i = index"> {{d}} </p>
+                                                  </div>
+                                                 
+                                                  <div class="col-md-4 pa" >
+                                                      <h4>Choli Closing With</h4>
+                                                     <p *ngFor="let d of da.choliClosingWith; let i = index"> {{d}} </p>
+                                                    </div>
+                                                    <div class="col-md-4 pa" >
+                                                      <h4>Lining</h4>
+                                                     <p *ngFor="let d of da.lining; let i = index"> {{d}} </p>
+                                                    </div>
+                                              <div class="col-md-6 pa" *ngFor="let d of da.AroundAboveWaist; let i = index">
+                                                  <div class="row">
+                                                  <div class="col-md-8">
+                                                  <h4> Choli Around Above waist</h4>
+                                                  Minimum Value : {{d.min}} <br>
+                                                  Maximum Value : {{d.max}} <br>
+                                                  Description : {{d.description}} </div>
+                                                  <div class="col-md-4">
+                                                  <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                        style="width: 250px;" />  </div>
+                                                        </div>
+                                                </div>
+                                                <!-- <div class="col-md-6 pa" *ngFor="let d of da.aroundArm; let i = index">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                        <h4> Around Arm</h4>
+                                                        Minimum Value : {{d.min}} <br>
+                                                        Maximum Value : {{d.max}} <br>
+                                                        Description : {{d.description}} </div>
+                                                        <div class="col-md-4">
+                                                        <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                              style="width: 250px;" />  </div>
+                                                              </div>
+                                                  </div> -->
+                                                  <div class="col-md-6 pa" *ngFor="let d of da.aroundBust; let i = index">
+                                                      <div class="row">
+                                                          <div class="col-md-8">
+                                                          <h4> Around Bust</h4>
+                                                          Minimum Value : {{d.min}} <br>
+                                                          Maximum Value : {{d.max}} <br>
+                                                          Description : {{d.description}} </div>
+                                                          <div class="col-md-4">
+                                                          <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                style="width: 250px;" />  </div>
+                                                                </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-6 pa" *ngFor="let d of da.aroundHip; let i = index">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                            <h4> Around Hip</h4>
+                                                            Minimum Value : {{d.min}} <br>
+                                                            Maximum Value : {{d.max}} <br>
+                                                            Description : {{d.description}} </div>
+                                                            <div class="col-md-4">
+                                                            <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                  style="width: 250px;" />  </div>
+                                                                  </div>
+                                                      </div> -->
+                                                      <div class="col-md-6 pa" *ngFor="let d of da.choliLength; let i = index">
+                                                          <div class="row">
+                                                              <div class="col-md-8">
+                                                              <h4>Choli Length</h4>
+                                                              Minimum Value : {{d.min}} <br>
+                                                              Maximum Value : {{d.max}} <br>
+                                                              Description : {{d.description}} </div>
+                                                              <div class="col-md-4">
+                                                              <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                    style="width: 250px;" />  </div>
+                                                                    </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6 pa" *ngFor="let d of da.frontNeckDepth; let i = index">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                <h4>Front Neck Depth</h4>
+                                                                Minimum Value : {{d.min}} <br>
+                                                                Maximum Value : {{d.max}} <br>
+                                                                Description : {{d.description}} </div>
+                                                                <div class="col-md-4">
+                                                                <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                      style="width: 250px;" />  </div>
+                                                                      </div>
+                                                          </div> -->
+                                                          <!-- <div class="col-md-6 pa" *ngFor="let d of da.backNeckDepth; let i = index">
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                  <h4> Back Neck Depth</h4>
+                                                                  Minimum Value : {{d.min}} <br>
+                                                                  Maximum Value : {{d.max}} <br>
+                                                                  Description : {{d.description}} </div>
+                                                                  <div class="col-md-4">
+                                                                  <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                        style="width: 250px;" />  </div>
+                                                                        </div>
+                                                            </div> -->
+                                                            <!-- <div class="col-md-6 pa" *ngFor="let d of da.sleeveLength; let i = index">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                    <h4>Sleeve Length</h4>
+                                                                    Minimum Value : {{d.min}} <br>
+                                                                    Maximum Value : {{d.max}} <br>
+                                                                    Description : {{d.description}} </div>
+                                                                    <div class="col-md-4">
+                                                                    <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                          style="width: 250px;" />  </div>
+                                                                          </div>
+                                                              </div>   -->
+                                                              <!-- <div class="col-md-6 pa" *ngFor="let d of da.kameezLength; let i = index">
+                                                                  <div class="row">
+                                                                      <div class="col-md-8">
+                                                                      <h4>Kameez Length</h4>
+                                                                      Minimum Value : {{d.min}} <br>
+                                                                      Maximum Value : {{d.max}} <br>
+                                                                      Description : {{d.description}} </div>
+                                                                      <div class="col-md-4">
+                                                                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                            style="width: 250px;" />  </div>
+                                                                            </div>
+                                                                </div>  -->
+                                                              
+                                                              <div class="col-md-12 pa">
+                                                                  <h4>Front Neck Style</h4>
+                                                                <app-carousel-item>
+                                                                <div appCarouselItem class="col-md-3" *ngFor="let d of da.frontNeckStyle; let i = index">
+                                                                    <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                    style="width: 200px;" /> <br>
+                                                                  {{d.title}}  </div>
+                                                                    </app-carousel-item>
+                                                                    </div>
+                                                              <!-- <div class="col-md-12 pa">
+                                                                  <h4>Back Neck Style</h4>
+                                                              <app-carousel-item>
+                                                                
+                                                                  <div appCarouselItem class="col-md-3" *ngFor="let d of da.backNeckStyle; let i = index">
+                                                                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                      style="width: 200px;" /> <br>
+                                                                    {{d.title}}  </div>
+                                                                      </app-carousel-item>
+                                                                      </div> -->
+                                                                    
+                                                                         
+                                                                              <div class="col-md-12 pa">
+                                                                                  <h4>Sleeve Style</h4>
+                                                                              <app-carousel-item>
+                                                                                
+                                                                                  <div appCarouselItem class="col-md-3" *ngFor="let d of da.sleeveStyle; let i = index">
+                                                                                      <img [src]="measurementImageUrl + data?._id + '/' + d.imageName"
+                                                                                      style="width: 200px;" /> <br>
+                                                                                    {{d.title}}  </div>
+                                                                                      </app-carousel-item>
+                                                                                      </div>           
+                                                              </div>
+                                                              </div>                       
+  </div>

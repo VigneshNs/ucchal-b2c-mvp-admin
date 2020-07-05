@@ -1,0 +1,164 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <p style="padding-top: 21px;padding-left: 20px"> Homepage / Banners / Add</p>
+    </div>
+<mat-card class="pageBoxLg ">
+ <!--    <label  class="pageBoxLg-label pblabel">Add Banners</label> -->
+    <!-- <label>
+      <h5 class="adTitle">Choose an banners here</h5>
+    </label> -->
+    <form [formGroup]="BannerForm" novalidate style="padding-top:30px">
+      <div class="container-fluid">
+        <div class="row pb-5 form-group">
+          <div class="form-group col-md-6"> 
+            <div class="row">
+              <div class="col-md-12">
+              <label class="chooseimages"><h5><b>Choose (images)</b></h5></label>
+            <!-- <label>Here (images) </label> -->
+            <div>
+              <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+            </div>
+            <div>
+              <input type="file" name="file" class="btn btnPink btn-block" id="file"
+                (change)="handleFileInput($event.target.files)">
+            </div>
+            <div *ngIf="this.hide === true">
+                Image required
+              </div>
+            <div *ngIf="showImageNameError">
+              Image Name exists
+            </div>
+            <div *ngIf="showImageError">
+                <p style="color: crimson"> Required Image Size </p>
+              </div>
+          </div>
+          </div>
+            <div class="row form-group borDer p-5">
+              <div class="col-md-12">
+                <label><h3>Image Dimension</h3></label>  
+              </div>
+              <div class="col-md-12">
+                1920 X 650
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <!-- <h5 class="detailsNow">Details</h5> -->
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Banner Position" formControlName="position" type="number" required>
+                <mat-error *ngIf="!BannerForm.controls['position'].errors?.required">
+                  Enter the valid
+                  <strong>Number</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Banner Title" formControlName="bannerTitle" >
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Banner Sub Title" formControlName="bannerSubTitle" >
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Banner Description" formControlName="bannerDescription" ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Banner Button Content" formControlName="buttonContent" >
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Link" formControlName="link" >
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12">
+              <div *ngIf="ImageDimenetionSubmitError">
+                <p style="color: crimson"> Check Image Dimension</p>
+              </div>
+              <button mat-raised-button type="submit" (click)="validation()"
+                [disabled]='!BannerForm.valid' class="saveNow" color="primary">Save</button>
+              <button mat-flat-button color="primary" type="submit" class="categorycancelbutton" (click)="cancel()">Cancel</button>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+
+
+<!-- <div class="pageBoxLg ">
+  <label class="pageBoxLg-label ">Add Banners
+  </label>
+  <form [formGroup]="BannerForm" novalidate style="padding-top:30px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Banner Images</label>
+          <div>
+            <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+          </div>
+          <div>
+            <input type="file" name="file" class="btn btnPink btn-block" id="file"
+              (change)="handleFileInput($event.target.files)">
+          </div>
+          <div *ngIf="this.hide === true">
+              Image required
+            </div>
+          <div *ngIf="showImageNameError">
+            Image Name exists
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Banner Details</label>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Banner Position" formControlName="position" type="number" required>
+              <mat-error *ngIf="!BannerForm.controls['position'].errors?.required">
+                Enter the valid
+                <strong>Number</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Banner Title" formControlName="bannerTitle" >
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Banner Sub Title" formControlName="bannerSubTitle" >
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Banner Description" formControlName="bannerDescription" ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Banner Button Content" formControlName="buttonContent" >
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Link" formControlName="link" >
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <button mat-raised-button type="submit" (click)="validation()"
+              [disabled]='!BannerForm.valid'>Save</button>
+            <button mat-raised-button type="submit" (click)="cancel()">Cancel</button>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> -->

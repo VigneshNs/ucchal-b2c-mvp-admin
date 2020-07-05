@@ -1,0 +1,206 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Product /  How to Measure </p>
+  </div>
+<div class="pageBoxLg">
+  <label style="padding-top: 8px;padding-bottom: 8px" class="pageBoxLg-label">How To Measure</label>
+  <!-- <form [formGroup]="howToMeasureForm"  novalidate> -->
+    <div style="margin-top: 20px" class="row">
+          <div class="col-md-12">
+            <div class="col-md-3 labelcolor">
+              <mat-form-field>
+                <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)"
+                  placeholder="Select Super Category">
+                  <mat-option *ngFor="let category of categoryData" [value]="category">
+                    {{category.categoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 15px" class="col-md-3 ">
+              <mat-form-field style="margin: 19px 0px 19px 0px">
+                <mat-select #selectMain (selectionChange)="selectMainCategory(selectMain.value)"
+                  placeholder="Select Main Category">
+                  <mat-option *ngFor="let category of mainCategoryModel" [value]="category">
+                    {{category.mainCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 15px" class="col-md-3 ">
+              <mat-form-field style="margin: 19px 0px 19px 0px">
+                <mat-select #selectSub (selectionChange)="selectSubCategory(selectSub.value)"
+                  placeholder="Select Sub Category">
+                  <mat-option *ngFor="let category of subCategoryModel" [value]="category">
+                    {{category.subCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-3">
+              <label>Size char(CM)</label>
+            </div>
+            <div class="col-md-3">
+                <input type="file"  (change)="handleFileInputCM($event.target.files)" class="checked">
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 pb-2" *ngFor="let url of urlCM">
+                    <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+                 </div>
+            </div> -->
+            <div class="col-md-3">
+                <label>Image</label>
+              </div>
+              <div class="col-md-3">
+                  <input type="file"  (change)="handleFileInput($event.target.files)" class="checked">
+              </div>
+              <div class="col-md-6">
+                  <div class="col-md-12 pb-2" *ngFor="let url of urlInches">
+                      <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+                   </div>
+              </div>
+            <div>
+                <button style="margin-bottom: 10px;margin-left: 15px"  type="button" mat-raised-button type="button" color="primary" (click)="addHowToMeasure()" matTooltip="Save" >Save
+                  </button>
+                  <!-- <button style="margin-bottom: 10px;margin-left: 15px"  type="button" mat-raised-button type="button" color="primary" (click)="cancelSizeGuide()" matTooltip="Cancel" >Cancel
+                    </button>       -->
+            </div>
+          </div>
+    </div>
+
+    <button [hidden]="showDetail === true" class="btn btn-primary" (click)="addDetails()">Add Details</button>
+    <div [hidden]="showDetail === false" class="pageBoxLg">
+    <div class="container topAlignContainer ">
+      <form [formGroup]="detailsForm">
+        <div>
+            <label  class="pageBoxLg-label pblabel">Add Details</label>
+        
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Title" formControlName="detailHeading"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" formArrayName="details">
+            <div *ngFor="let account of detailForm.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Name " formControlName="name"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Description " formControlName="detail"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <a (click)="deleteDetail(i)">
+                    <mat-icon>clear</mat-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <a (click)="addDetailForm()">
+              <mat-icon class="gridEdit">add_box</mat-icon>
+            </a>
+            <p>Add New</p>
+          </div>
+          <div style="margin-left: 15px">
+              <!-- <button  mat-raised-button type="button" color="primary" (click)="createDetail(detailsForm)">Save</button> -->
+  
+            <button style="margin-left: 10px" mat-raised-button type="button" color="primary" (click)=" hideDetails()">Cancel</button>
+           
+            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+   
+
+  <!-- </form> -->
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="categoryRow">
+
+          <table style="background-color:#fff" mat-table [dataSource]="howToMeasureData" class="container-fluid border text-strong">
+              <ng-container matColumnDef="image1">
+      
+                  <th mat-header-cell *matHeaderCellDef ><h5>Image</h5>  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <img [src]="howToMeasureUrl + element._id + '/' + element.imageName" style="width: 180px; height: 145px;" /> </td>
+      
+                </ng-container>
+                <!-- <ng-container matColumnDef="image2">
+      
+                    <th mat-header-cell *matHeaderCellDef ><h5>SizeGuide Image</h5>  </th>
+                    <td mat-cell *matCellDef="let element">
+                      <img [src]="sizeGuideUrl + element._id + '/' + element.sizeChartInches" style="width: 180px; height: 145px;" /> </td>
+        
+                  </ng-container> -->
+            <ng-container  matColumnDef="title">
+      
+              <th mat-header-cell *matHeaderCellDef><h5>Super Category</h5> </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.superCategoryName}} <br>
+                {{element.mainCategoryName}} <br>
+                {{element.subCategoryName}}
+                <!-- {{element.detai === undefined ? element.superCategoryName : element.subCategoryName }} -->
+              </td>
+      
+            </ng-container>
+            <ng-container  matColumnDef="detail">
+      
+                <th mat-header-cell *matHeaderCellDef><h5>Details</h5> </th>
+                <td mat-cell *matCellDef="let element">
+                  <p *ngFor="let d of element.detail">
+                      {{d.name}}:{{d.detail}}
+                  </p>
+                  
+                  <!-- {{element.detai === undefined ? element.superCategoryName : element.subCategoryName }} -->
+                </td>
+        
+              </ng-container>
+           
+         
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef><h5>Action</h5></th>
+                <td mat-cell *matCellDef="let element"> 
+                  <!-- <button mat-icon-button mat-sm-button color="primary"
+                  (click)="openDialog(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>  -->
+                <div class=" vcenter form-group">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+            
+                      <!-- <a class="nav-link" >View</a>
+                      <a class="nav-link" >Update Status</a> -->
+                      <a class="nav-link selectCursor" [routerLink]="['/product/edithowtomeasure/', element._id]">Edit</a>
+                      <a class="nav-link selectCursor" (click)="openDialog(element._id)">Delete</a>
+                    </mat-menu>
+                  </div>
+               <!--  <button mat-icon-button mat-sm-button color="primary" (click)="edit(element)">
+                  <mat-icon>edit</mat-icon>
+                </button> -->
+              </td>
+               
+              </ng-container>
+           
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      
+      </div>
+  </div>
+
+  

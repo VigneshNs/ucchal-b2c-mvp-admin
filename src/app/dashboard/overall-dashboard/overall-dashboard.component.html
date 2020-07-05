@@ -1,0 +1,120 @@
+<div class="pageBoxLg ">
+  <div class="row">
+    <label class="pageBoxLg-label ">Overall Dashboard</label>
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-3 text-center">
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <i class="fa fa-shopping-bag fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-6 text-left">
+          <div class="col-md-12">
+            <label>
+              <h5>Orders</h5>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <b>
+              <h4>5</h4>
+            </b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <i class="fa fa-credit-card fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-6 text-left">
+          <div class="col-md-12">
+            <label>
+              <h5>Payments</h5>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <b>
+              <h4>500</h4>
+            </b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 ">
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-6 text-left">
+          <div class="col-md-12">
+            <label>
+              <h5>Products</h5>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <b>
+              <h4>{{productCount}}</h4>
+            </b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-6 text-left">
+          <div class="col-md-12">
+            <label>
+              <h5>Customers</h5>
+            </label>
+          </div>
+          <div class="col-md-12">
+            <b>
+              <h4>{{customerCount}}</h4>
+            </b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pageBoxl">
+      <label><h5>Top Selling Products</h5></label>
+  </div>
+  <div class="row ">
+    <div class="col-md-5 pageBox1">
+
+    </div>
+    <div class="col-md-6 pageBoxl">
+      
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 pageBox1">
+        <label><h5>Recent Customers</h5></label>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">MobileNumber</th>
+                <th scope="col" class="text-center">Email-Id</th>
+                <th scope="col" class="text-center">Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let data of recentCustomer">
+              <tr>
+                <th scope="row" class="text-center">{{data.firstName}}</th>
+                <td class="text-center">{{data.mobileNumber}}</td>
+                <td class="text-center">{{data.emailId}}</td>
+                <td class="text-center">{{data.date | date}}</td>
+              </tr>              
+            </tbody>
+          </table>
+    </div>
+    <div class="col-md-6 pageBoxl">
+        <label><h5>Recent Selling Products</h5></label>
+    </div>
+  </div>
+</div>

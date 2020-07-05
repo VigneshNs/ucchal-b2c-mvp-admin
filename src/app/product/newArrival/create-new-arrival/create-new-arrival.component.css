@@ -1,0 +1,17 @@
+.colorAll {
+    color: #fff;
+    font-size: 17px;
+  }
+  .dateCond {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .bor {
+      border: 1px solid black;
+      height: 200px;
+  }
+  .Ico {
+      cursor: pointer;
+  }

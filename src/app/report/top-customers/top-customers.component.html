@@ -1,0 +1,46 @@
+<form [formGroup]="reportForm" style="margin-top: 10px">
+<div class="row pt-3 container">
+  <div class="col-md-3  text-right">
+    <button  color="primary"  class="btnMat" mat-flat-button class="btn"(click)="download()"> <i class="fa fa-download" aria-hidden="true"></i>   Download</button>
+  </div>
+  <div class="col-md-3">
+    <mat-form-field class="example-full-width">
+    <input matInput [matDatepicker]="picker1" formControlName="startDate" placeholder="Enter start date">
+    <mat-datepicker-toggle matSuffix [for]="picker1">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  </div>
+  <div class="col-md-3">
+    <mat-form-field class="example-full-width">
+    <input matInput [matDatepicker]="picker2" formControlName="endDate" placeholder="Enter end date">
+    <mat-datepicker-toggle matSuffix [for]="picker2">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+</div>
+<div class="col-md-3">
+  <button  color="primary" class="btnMat" mat-flat-button class="btn" (click)="getDate()">Submit</button>
+</div>
+</div>
+</form>
+<table class="table container productMoreInfo">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><h5>#</h5></th>
+      <th scope="col"><h5>Name</h5></th>
+      <th scope="col"><h5>Email_ID</h5></th>
+      <th scope="col"><h5>Total Price</h5></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of orderData; let i = index">
+    <tr >
+      <th scope="row">{{i + 1}}</th>
+      <td>{{data.name}}</td>
+      <td>{{data.emailId}}</td>
+      <td>{{data.totalAmount}}</td>
+    </tr>
+  </tbody>
+</table>

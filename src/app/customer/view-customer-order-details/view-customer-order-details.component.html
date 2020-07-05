@@ -1,0 +1,35 @@
+<mat-card class="pageBoxLg">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Order Details</label>
+      </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Orders</th>
+                <th scope="col">View</th>
+                <th scope="col">Date</th>
+                <th scope="col">Updated Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of holder">
+                <th scope="row">{{data.orderId}}</th>
+                <td (click)="viewOrder(data.orderId)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                </td>
+                <td>{{data.orderDate}}</td>
+                <td>{{data.orderUpdatedDate}}</td>
+                <td>{{data.orderStatus}}</td>
+                <td>{{data.total}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</mat-card>

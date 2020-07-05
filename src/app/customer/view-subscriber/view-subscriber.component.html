@@ -1,0 +1,25 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Customer / View  Subscriber </p>
+  </div>
+<div class="pageBoxLg">
+  <label  class="pageBoxLg-label pblabel">Subscriber</label>
+<div class="container" *ngIf="!showNoData">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email_ID</th>
+            <th scope="col">Subscribed On</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let data of subscriberData; let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{data.emailId}}</td>
+            <td>{{data.createOn | date}}</td>
+          </tr>            
+        </tbody>
+      </table>
+</div>
+<div *ngIf="showNoData" class="nodata"> No results found</div>
+</div>

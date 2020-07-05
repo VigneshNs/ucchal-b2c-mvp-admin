@@ -1,0 +1,399 @@
+<div class="container-fluid">
+  <form [formGroup]="settingForm">
+    <div class="row pageBoxLg">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showVendorTypeForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Vendor Type</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showCompanyStatusForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Company Status</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showCurrencyForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Currency</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showTaxesTypeForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Taxes Type</span >
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showModeOfPaymentForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Mode of Payment</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showDeliveryModeForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Delivery Mode</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showReturnsOfGoodsForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Returns of Goods</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showMerchandiseDivisionForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Merchandise Division</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showPaymentForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Payment Days</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showTransportCostForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">TransPort Cost(s) Paid By</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showCatalogueImageArrangeForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Catalogue Image Arranged By</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showChargesOfPhotoShopByForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">If Photoshoot by Ucchal Fashion, Charges born By</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showBusinessModelForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Business Model</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <a (click)="showDefaultDeliveryLocationForm()">
+              <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+              <span class="titleTxt">Default Delivery Location</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md" *ngIf="showVendorType">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="vendorType" placeholder="Vendor Type" required>
+          <button (click)="addVendorType()" [disabled]="!settingForm.controls.vendorType.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.vendorType">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteVendorType(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showCompanyStatus">
+        <div class="row">
+          <span class="newOne">
+          <input type="text" class="form-control" formControlName="companyStatus" placeholder="Company Status" required>
+        </span>
+          <button (click)="addCompanyStatus()" [disabled]="!settingForm.controls.companyStatus.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.companyStatus">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteCompanyStatus(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showCurrency">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="currency" placeholder="Currency" required>
+          <span>
+          <button (click)="addCurrency()" [disabled]="!settingForm.controls.currency.valid"
+            class="btn btn-md btn-primary">ADD</button>
+          </span>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.currency">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteCurrency(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showTaxesType">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="taxesType" placeholder="Taxes Type" required>
+          <button (click)="addTaxesType()" [disabled]="!settingForm.controls.taxesType.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.taxesType">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteTaxesType(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showModeOfPayment">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="modeOfPayment" placeholder="Mode of Payment"
+            required>
+          <button (click)="addModeOfPayment()" [disabled]="!settingForm.controls.modeOfPayment.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.modeOfPayment">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteModeOfPayment(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showDeliveryMode">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="deliveryMode" placeholder="Delivery Mode" required>
+          <button (click)="addDeliveryMode()" [disabled]="!settingForm.controls.deliveryMode.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.deliveryMode">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteDeliveryMode(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showReturnsOfGoods">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="returnsOfGoods" placeholder="Returns Of Goods"
+            required>
+          <button (click)="addReturnOfGoods()" [disabled]="!settingForm.controls.returnsOfGoods.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.returnsOfGoods">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteReturnOfGoods(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showMerchandiseDivision">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="merchandiseDivision"
+            placeholder="Merchandise Division" required>
+          <button (click)="addMerchandiseDivision()" [disabled]="!settingForm.controls.merchandiseDivision.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.merchandiseDivision">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteMerchandiseDivision(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showPaymentDay">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="paymentDay" placeholder="Credit Period/ Payment Days"
+            required>
+          <button (click)="addPaymentDay()" [disabled]="!settingForm.controls.paymentDay.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.paymentDay">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deletePaymentDay(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showTransportCostPaidBy">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="transportCostPaidBy"
+            placeholder="TransPort Cost(s) Paid By" required>
+          <button (click)="addTransportCostBy()" [disabled]="!settingForm.controls.transportCostPaidBy.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.transportCostPaidBy">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteTransportCostBy(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showCateImgAssignBy">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="cateImgAssignBy"
+            placeholder="Catalogue Image Arranged By" required>
+          <button (click)="addCatalogueImageArrange()" [disabled]="!settingForm.controls.cateImgAssignBy.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.cateImgAssignBy">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteCatalogueImageArrange(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showChargesOfPhotoShopBy">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="chargesOfPhotoShopBy"
+            placeholder="If Photoshoot by Ucchal Fashion, Charges born By" required>
+          <button (click)="addChargesOfPhotoShopBy()" [disabled]="!settingForm.controls.chargesOfPhotoShopBy.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.chargesOfPhotoShopBy">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteChargesOfPhotoShopBy(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showBusinessModel">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="businessModel" placeholder="Business Model" required>
+          <button (click)="addBusinessModel()" [disabled]="!settingForm.controls.businessModel.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.businessModel">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteBusinessModel(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md" *ngIf="showDefaultDeliveyLocation">
+        <div class="row">
+          <input type="text" class="form-control" formControlName="defaultDeliveyLocation"
+            placeholder="Default Delivery Location" required>
+          <button (click)="addDefaultDeliveryLocation()" [disabled]="!settingForm.controls.defaultDeliveyLocation.valid"
+            class="btn btn-md btn-primary">ADD</button>
+        </div>
+        <div class="row" *ngFor="let data of holder">
+          <div *ngFor="let val of data.defaultDeliveyLocation">
+            <br>
+            <div class="col-md-1">
+              <div class="form-group">
+                <h6>{{val}}</h6><a (click)="deleteDefaultDeliveryLocation(val)">
+                  <i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

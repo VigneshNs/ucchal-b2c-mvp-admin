@@ -1,0 +1,176 @@
+<div class="container" *ngIf="isEmptyWallet">
+  <div class="row">
+    <div class="col-md-12 col-12 text-center">
+      <button class="btn btn-primary" (click)="onAdd()">Add</button>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!isEmptyWallet">
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Minimum Coin</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{walletModel?.minCoin}}
+    </div>
+    <div class="col-md-6 form-group"> <button class="btn btn-primary text-right" (click)="onEdit()">Edit</button></div>
+    <div class="col-md-3 form-group">
+      <label>Maximum Coin</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{walletModel?.maxCoin}}
+    </div>
+    <div class="col-md-6 form-group"></div>
+    <div class="col-md-3 form-group">
+      <label>Coin Validation Month</label>
+    </div>
+    <div class="col-md-3 form-group">
+      {{walletModel?.vaildationPeriodForCoin}}
+    </div>
+    <div class="col-md-6 form-group"></div>
+    <div class="col-md-12 form-group">
+      <hr>
+      <label>Loyalty Wallet</label>
+    </div>
+    <div class="col-md-6 form-group">
+     
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Loyalty Amount:</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.loyaltyWallet[0].fixedAmount}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Loyalty Coin:</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.loyaltyWallet[0].fixedCoin}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Using Percentage:</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.loyaltyWallet[0].usingPercentage}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Minimum Order Amount</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.loyaltyWallet[0].minimumOrder}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Maximum Order Amount</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.loyaltyWallet[0].maximumOrder}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group">
+      <hr>
+      <label>Activity Wallet</label>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+       <!--  <div class="col-md-6 form-group">
+          <label>Coin For Image</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].addingImage}}
+        </div> -->
+       <!--  <div class="col-md-6 form-group">
+          <label>Coin For Video</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].addingVideo}}
+        </div> -->
+        <div class="col-md-6 form-group">
+          <label>First Time Registration</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].firstTimeRegistration}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 form-group">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Activity Using Percentage</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].usingPercentage}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Activity Minimum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].minimumOrder}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Activity Maximum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.activityWallet[0].maximumOrder}}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12 form-group">
+      <hr>
+      <label>Event Wallet</label>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Event Using Percentage</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.eventWallet[0].usingPercentage}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Event Minimum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.eventWallet[0].minimumOrder}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Event Maximum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.eventWallet[0].maximumOrder}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"></div> -->
+    <!-- <div class="col-md-12 form-group">
+      <hr>
+      <label>Refer Wallet</label>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>Refer Using Percentage</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.referWallet[0].usingPercentage}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Refer Minimum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.referWallet[0].minimumOrder}}
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Refer Maximum Order</label>
+        </div>
+        <div class="col-md-6 form-group">
+          {{walletModel?.referWallet[0].maximumOrder}}
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

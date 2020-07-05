@@ -1,0 +1,188 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+ 
+    <mat-card class="newNow"> 
+    <p style="padding-top: 21px;padding-left: 20px"> Homepage > Ads > Edit</p>
+    </mat-card>
+
+    </div>
+<mat-card class="pageBoxLg ">
+   <!--  <label  class="pageBoxLg-label pblabel">Edit ads </label> -->
+    <!-- <label class="adTitle">Edit ads here
+    </label> -->
+    <form [formGroup]="ADSForm" novalidate style="padding-top:60px">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="form-group col-md-6 " >
+            <div *ngIf = "!imageEdit">
+               <!--  <label class="chooseimages"><h5><b>Edit (images)</b></h5></label> -->
+              <!-- <button mat-mini-fab color="primary" matTooltip="Edit ads"
+                (click)="editImage()" class="editButton"> -->
+                <button mat-mini-fab class="editNow">
+                <mat-icon  (click)="editImage()"> edit </mat-icon>
+              </button>
+              <!-- </button>  -->
+              <mat-card class="matImage">
+                <img [src]="adsModel.adsImageName" class="editImage"/>
+              </mat-card>
+            </div>
+            <div *ngIf ="imageEdit">
+         
+              <!-- <label>Logo </label> -->
+              <div>
+                <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+              </div>
+              <div *ngIf="showImageError">
+                  <p style="color: crimson"> Required Image Size </p>
+                </div>
+              <div>
+                <input type="file" name="file" class="btn btnPink btn-block" id="file"
+                (change)="handleFileInput($event.target.files)">
+              </div>
+              <div class="row borDer">
+                  <div class="col-md-12">
+                    <h3 class="nenow">Image Dimension: 840 X 906</h3>
+                    </div>
+                </div>
+              <div>
+                  <div *ngIf="ImageDimenetionSubmitError">
+                      <p style="color: crimson"> Check Image Dimension</p>
+                    </div>
+                
+                  <button mat-stroked-button class="dimension" (click)="checkImageDimension()" matTooltip="Update Logo"> Save </button>
+                 <!--  <mat-icon> save </mat-icon> -->
+               
+                <button mat-stroked-button class="dimension" matTooltip="Cancel Logo" (click)="cancelImage()">
+                  Remove 
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+         
+            <div class="form-group col-md-12 labelcolor">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Ads Position" #position [value]="adsModel.position" formControlName="position">
+                <mat-error *ngIf="!ADSForm.controls['position'].errors?.required">
+                  Enter the valid
+                  <strong>Number</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-12 labelcolor">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Ads Title" #title [value]="adsModel.adsTitle" formControlName="adsTitle">
+              </mat-form-field>
+            </div>
+  
+            <div class="form-group col-md-12 labelcolor">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Ads Description" #description [value]="adsModel.adsDescription" formControlName="adsDescription">
+              </mat-form-field>
+            </div>
+  
+            <div class="form-group col-md-12 labelcolor">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Link" #link [value]="adsModel.link" formControlName="link">
+              </mat-form-field>
+            </div>
+  
+            <div class="form-group col-md-12 labelcolor">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Button Content" #buttonContent [value]="adsModel.buttonContent" formControlName="buttonContent">
+                </mat-form-field>
+              </div>
+  
+            <div class="form-group col-md-12 labelcolor">
+              <button mat-raised-button type="submit" (click)="creatADS(position.value, title.value, description.value, link.value, buttonContent.value)"
+                [disabled]='!ADSForm.valid' class="saveNow dimension">Update</button>
+     
+             <button mat-flat-button type="submit" (click)="cancel()" class="categorycancelbutton dimension">Cancel</button>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+
+
+<!-- <div class="pageBoxLg ">
+  <label class="pageBoxLg-label ">Edit ADS
+  </label>
+  <form [formGroup]="ADSForm" novalidate style="padding-top:60px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group col-md-6" >
+          <div *ngIf = "!imageEdit">
+            <label>Edit </label> <button mat-icon-button mat-sm-button color="primary" matTooltip="Edit  Logo"
+              (click)="editImage()">
+              <mat-icon> edit </mat-icon>
+            </button>
+            <div>
+              <img [src]="adsModel.adsImageName" style="width: 280px; height: 245px;" />
+            </div>
+          </div>
+          <div *ngIf ="imageEdit">
+            <label>Logo </label>
+            <div>
+              <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+            </div>
+            <div>
+              <input type="file" name="file" class="btn btnPink btn-block" id="file"
+              (change)="handleFileInput($event.target.files)">
+            </div>
+            <div>
+              <button mat-icon-button mat-sm-button color="primary" matTooltip="Update Logo"
+                (click)="updateImage()">
+                <mat-icon> save </mat-icon>
+              </button>
+              <button mat-icon-button mat-sm-button color="primary"
+               matTooltip="Cancel Logo" (click)="cancelImage()">
+                <mat-icon> clear </mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Ads Details</label>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ads Position" #position [value]="adsModel.position" formControlName="position">
+              <mat-error *ngIf="!ADSForm.controls['position'].errors?.required">
+                Enter the valid
+                <strong>Number</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ads Title" #title [value]="adsModel.adsTitle" formControlName="adsTitle">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ads Description" #description [value]="adsModel.adsDescription" formControlName="adsDescription">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Link" #link [value]="adsModel.link" formControlName="link">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Button Content" #buttonContent [value]="adsModel.buttonContent" formControlName="buttonContent">
+              </mat-form-field>
+            </div>
+
+          <div class="form-group col-md-12">
+            <button mat-raised-button type="submit" (click)="creatADS(position.value, title.value, description.value, link.value, buttonContent.value)"
+              [disabled]='!ADSForm.valid'>Save</button>
+            <button mat-raised-button type="submit" (click)="cancel()" >Cancel</button>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div> -->

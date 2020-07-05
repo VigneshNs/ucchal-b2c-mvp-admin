@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <label>{{data.subCategoryName ? data.subCategoryName : data.superCategoryName}}</label>
+  </div>
+  <div class="col-md-5">
+      <div class="input-group mb-3">
+          <mat-form-field>
+            <mat-label>Size</mat-label>
+            <mat-select (selectionChange)="selectedSizeCategory($event)" [ngModel]="data.size">
+              <mat-option   
+              *ngFor="let sub of holder?.fieldValue" [value]="sub.fieldAttributeValue">
+                {{sub.fieldAttributeValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary" (click)="onSubmit(incPer.value)">Submit</button>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+  </div>
+  <div class="col-md-4">
+      <span id="percent-sign">%</span>
+      <input type="number" class="form-control" [ngModel]="data.incPercentage" #incPer placeholder="Inc.Percentage">
+  </div>
+</div>

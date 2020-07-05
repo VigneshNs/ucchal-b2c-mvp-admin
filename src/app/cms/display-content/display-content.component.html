@@ -1,0 +1,36 @@
+<div class="container  mt-5">
+  <div class="row dec" >
+    <div class="col-md-6 form-group">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Offer Content</label>
+          <input class="form-control" #cont type="text">
+        </div>
+        <div class="col-md-12 text-right form-group">
+          <button class="btn btn-primary" (click)="onSubmit('offer')">Submit</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-6 form-group textDec">
+      {{holder?.content}}
+    </div>
+  </div>
+  <div class="row dec" >
+    <div class="col-md-6 form-group">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Emergency Content</label>
+          <input class="form-control" #emg type="text">
+        </div>
+        <div class="col-md-12 text-right form-group">
+          <button class="btn btn-primary" (click)="onSubmit('emergency')">Submit</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-6 form-group textDec">
+      {{holder?.emergencyContent}}
+    </div>
+  </div>
+</div>

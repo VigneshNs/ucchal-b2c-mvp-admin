@@ -1,0 +1,21 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.addcolor{
+  float: right;
+  margin-bottom: 10px;
+}
+
+.newNow {
+  margin-top: 15px;
+  background: #1c4561 ;
+  font-size: 14px;
+  font-weight: 100;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+}

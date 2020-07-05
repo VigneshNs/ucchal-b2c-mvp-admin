@@ -1,0 +1,536 @@
+<form [formGroup]="measurementForm">
+  <div class="row container">
+    <div class="col-md-6">
+        <mat-form-field>
+            <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)"
+            [ngModel]="holder?.superCategoryId"
+            formControlName="superCategoryId"
+              placeholder="Select Super Category">
+              <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
+                {{category.categoryName | titlecase}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <!-- <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <mat-form-field >
+            <mat-select #selectMain (selectionChange)="selectMainCategory(selectMain.value)"
+            [ngModel]="holder?.mainCategoryId"
+            formControlName="mainCategoryId"
+              placeholder="Select Main Category">
+              <mat-option *ngFor="let category of mainCategoryModel" [value]="category._id">
+                {{category.mainCategoryName | titlecase}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+         <!--  <div *ngIf="selectedDisable">
+              <small style="color: red">Select Category </small>
+            </div> -->
+      <!-- </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+          <div style="margin-top: 15px" class="col-md-12 ">
+              <mat-form-field >
+                <mat-select #selectSub 
+                [ngModel]="holder?.subCategoryId"
+                formControlName="subCategoryId"
+                  placeholder="Select Sub Category">
+                  <mat-option *ngFor="let category of subCategoryModel" [value]="category._id">
+                    {{category.subCategoryName | titlecase}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+        </div> -->
+     
+    <div class="col-md-12">
+        <mat-form-field >
+            <mat-label>Measurement Name</mat-label>
+            <input matInput placeholder="Measurement Name" [ngModel]="holder?.measurementName" formControlName="measurementName">
+          </mat-form-field>
+    </div>
+   
+    <div class="col-md-12">
+        <mat-form-field >
+            <mat-label>Amount</mat-label>
+            <input matInput placeholder="Amount" [ngModel]="holder?.price" formControlName="amount">
+          </mat-form-field>
+    </div>
+    
+    <div class="col-md-12">
+        <mat-form-field >
+            <mat-label>Discount</mat-label>
+            <input matInput placeholder="Discount" [ngModel]="holder?.discount" formControlName="discount">
+          </mat-form-field>
+    </div>
+   <br><br>
+    <div class="col-md-10 round">
+      <div formArrayName="measurementType">
+          <div *ngFor="let account of typeForms.controls; let i=index" [formGroupName]="i">
+            <div class="row" >
+              <div class="col-md-12 form-group">
+                  <mat-form-field >
+                      <mat-label>Type Name</mat-label>
+                      <input matInput placeholder="Type Name"
+                      (ngModelChange)="holder.typeName=$event"
+                      formControlName="typeName">
+                    </mat-form-field>
+              </div>
+              
+              <div class="col-md-11 form-group">
+                  <mat-form-field >
+                      <mat-label>Type Description</mat-label>
+                      <textarea matInput placeholder="Type Description"
+                      (ngModelChange)="holder.typeDescription=$event"
+                      formControlName="typeDescription"></textarea>
+                    </mat-form-field>
+              </div>
+              <div class="col-md-1 form-group">
+                  <a (click)="deleteType(i)">
+                      <mat-icon>clear</mat-icon>
+                    </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <br>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="addTypeForm()">Add</button>
+    </div>
+    <div class="col-md-10 round">
+      <div class="row" >
+        <div class="col-md-12">
+            <mat-form-field >
+                <mat-label>Around Bust Minimun Value</mat-label>
+                <input matInput placeholder="Minimum Value" [ngModel]="holder?.aroundBust[0].min" formControlName="aroundBustMin">
+              </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field >
+                <mat-label>Around Bust Maximum Value</mat-label>
+                <input matInput placeholder="Maximum Value" [ngModel]="holder?.aroundBust[0].max" formControlName="aroundBustMax">
+              </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field >
+                <mat-label>Around Bust Description</mat-label>
+                <textarea matInput placeholder="Around Bust Description" [ngModel]="holder?.aroundBust[0].description" formControlName="aroundBustDescription"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="col-md-12" *ngIf="!editAroundBustImg">
+            <img [src]="measurementImageUrl + holder?._id + '/' + holder?.aroundBust[0].imageName"
+            style="width: 180px; height: 145px;" />
+            <button class="btn btn-primary" (click)="editAroundBust()">edit</button>
+        </div>
+        <div class="col-md-12" *ngIf="editAroundBustImg">
+          
+                <label>
+                  <input type="file" (change)="aroundBustImageUpload($event.target.files)" >
+                </label>
+                <div class="alert alert-danger" *ngIf="imageError">
+                  <h4>Please Select the images</h4>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 pb-2" *ngFor="let url of aroundBustImg">
+                    <mat-card>
+                      <img class="img-fluid" [src]="url" />
+                    </mat-card>
+                  </div>
+                </div>
+          <button class="btn btn-primary" (click)="saveAroundBustImage()">save</button>
+          <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Above Waist Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.aroundAboveWaist[0].min"
+                    formControlName="aroundAboveWaistMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Above Waist Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value"
+                    [ngModel]="holder?.aroundAboveWaist[0].max"
+                    formControlName="aroundAboveWaistMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Above Waist Description</mat-label>
+                    <textarea matInput placeholder="Around Above Waist Description"
+                    [ngModel]="holder?.aroundAboveWaist[0].description"
+                    formControlName="aroundAboveWaistDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editAroundAboveWaistImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.aroundAboveWaist[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editAroundAboveWaist()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editAroundAboveWaistImg">
+                    <label>
+                      <input type="file" (change)="aroundAboveWaistImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError1">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of aroundAboveWaistImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveAroundAboveWaistImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Blouse Length Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.blouseLength[0].min"
+                    formControlName="blouseLengthMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Blouse Length Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value"
+                    [ngModel]="holder?.blouseLength[0].max"
+                    formControlName="blouseLengthMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Blouse Length Description</mat-label>
+                    <textarea matInput placeholder="Blouse Length Description"
+                    [ngModel]="holder?.blouseLength[0].description"
+                    formControlName="blouseLengthDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editBlouseLengthImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.blouseLength[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editBlouseLengthWaist()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editBlouseLengthImg">
+                    <label>
+                      <input type="file" (change)="blouseLengthImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError2">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of blouseLengthImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveBlouseLengthImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Front Neck Depth Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.frontNeckDepth[0].min"
+                    formControlName="frontNeckDepthMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Front Neck Depth Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value"
+                    [ngModel]="holder?.frontNeckDepth[0].max"
+                    formControlName="frontNeckDepthMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Front Neck Depth Description</mat-label>
+                    <textarea matInput placeholder="Front Neck Depth Description"
+                    [ngModel]="holder?.frontNeckDepth[0].description"
+                    formControlName="frontNeckDepthDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editFrontNeckDepthImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.frontNeckDepth[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editFrontNeckDepthWaist()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editFrontNeckDepthImg">
+                    <label>
+                      <input type="file" (change)="frontNeckDepthImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError3">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of frontNeckDepthImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveFrontNeckDepthImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Back Neck Depth Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.backNeckDepth[0].min"
+                    formControlName="backNeckDepthMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Back Neck Depth Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value"
+                    [ngModel]="holder?.backNeckDepth[0].max"
+                    formControlName="backNeckDepthMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Back Neck Depth Description</mat-label>
+                    <textarea matInput placeholder="Back Neck Depth Description"
+                    [ngModel]="holder?.backNeckDepth[0].description"
+                    formControlName="backNeckDepthDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editBackNeckDepthImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.backNeckDepth[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editBackNeckDepthWaist()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editBackNeckDepthImg">
+                    <label>
+                      <input type="file" (change)="backNeckDepthImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError4">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of backNeckDepthImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveBackNeckDepthImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Sleeve Length Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.sleeveLength[0].min"
+                    formControlName="sleeveLengthMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Sleeve Length Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value"
+                    [ngModel]="holder?.sleeveLength[0].max"
+                    formControlName="sleeveLengthMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Sleeve Length Description</mat-label>
+                    <textarea matInput placeholder="Sleeve Length Description"
+                    [ngModel]="holder?.sleeveLength[0].description"
+                    formControlName="sleeveLengthDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editSleeveLengthImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.sleeveLength[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editSleeveLength()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editSleeveLengthImg">
+                    <label>
+                      <input type="file" (change)="sleeveLengthImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError5">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of sleeveLengthImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveSleeveLengthImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Arm Minimun Value</mat-label>
+                    <input matInput placeholder="Minimum Value"
+                    [ngModel]="holder?.aroundArm[0].min"
+                    formControlName="aroundArmMin">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Arm Maximum Value</mat-label>
+                    <input matInput placeholder="Maximum Value" 
+                    [ngModel]="holder?.aroundArm[0].max"
+                    formControlName="aroundArmMax">
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-form-field >
+                    <mat-label>Around Arm Description</mat-label>
+                    <textarea matInput placeholder="Around Arm Description"
+                    [ngModel]="holder?.aroundArm[0].description"
+                    formControlName="aroundArmDescription"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-12" *ngIf="!editAroundArmImg">
+                <img [src]="measurementImageUrl + holder?._id + '/' + holder?.aroundArm[0].imageName"
+                style="width: 180px; height: 145px;" />
+                <button class="btn btn-primary" (click)="editAroundArm()">edit</button>
+            </div>
+            <div class="col-md-12" *ngIf="editAroundArmImg">
+                    <label>
+                      <input type="file" (change)="aroundArmImageUpload($event.target.files)" >
+                    </label>
+                    <div class="alert alert-danger" *ngIf="imageError6">
+                      <h4>Please Select the images</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pb-2" *ngFor="let url of aroundArmImg">
+                        <mat-card>
+                          <img class="img-fluid" [src]="url" />
+                        </mat-card>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="saveAroundArmImage()">save</button>
+                    <button class="btn btn-primary" (click)="cancelImage()">cancel</button>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-10 round">
+        <div formArrayName="closingSide">
+            <div *ngFor="let account of closingSideForms.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                    <mat-form-field >
+                        <mat-label>Closing Side</mat-label>
+                        <input matInput placeholder="Closing Side"
+                        (ngModelChange)="holder.closingSide=$event"
+                        formControlName="closingSide">
+                      </mat-form-field>
+                </div>
+              <!--   <div class="col-md-6 form-group"></div> -->
+                
+                <div class="col-md-6 form-group">
+                    <a (click)="deleteClosingSide(i)">
+                        <mat-icon>clear</mat-icon>
+                      </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" (click)="addClosingSideForm()">Add</button>
+      </div>
+      <div class="col-md-10 round">
+          <div formArrayName="closingWith">
+              <div *ngFor="let account of closingWithForms.controls; let i=index" [formGroupName]="i">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                      <mat-form-field >
+                          <mat-label>Closing With</mat-label>
+                          <input matInput placeholder="Closing With"
+                          (ngModelChange)="holder.closingWith=$event"
+                          formControlName="closingWith">
+                        </mat-form-field>
+                  </div>
+                <!--   <div class="col-md-6 form-group"></div> -->
+                  
+                  <div class="col-md-6 form-group">
+                      <a (click)="deleteClosingWith(i)">
+                          <mat-icon>clear</mat-icon>
+                        </a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" (click)="addClosingWithForm()">Add</button>
+        </div>
+        <div class="col-md-10 round">
+            <div formArrayName="lining">
+                <div *ngFor="let account of liningForms.controls; let i=index" [formGroupName]="i">
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                        <mat-form-field >
+                            <mat-label>Lining</mat-label>
+                            <input matInput placeholder="Lining"
+                            (ngModelChange)="holder.lining=$event"
+                            formControlName="lining">
+                          </mat-form-field>
+                    </div>
+                  <!--   <div class="col-md-6 form-group"></div> -->
+                    
+                    <div class="col-md-6 form-group">
+                        <a (click)="deleteLining(i)">
+                            <mat-icon>clear</mat-icon>
+                          </a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary" (click)="addLiningForm()">Add</button>
+          </div>
+          <div class="col-md-12 text-center form-group">
+            <button class="btn btn-primary" (click)="saveMeasurement()">Save</button>
+          </div>
+  </div>
+</form>

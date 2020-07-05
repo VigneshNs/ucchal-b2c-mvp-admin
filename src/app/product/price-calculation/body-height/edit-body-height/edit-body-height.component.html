@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12 form-group">
+        {{data.subCategoryName ? data.subCategoryName : data.superCategoryName}}
+      </div>
+      <div class="col-md-12">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Height" #height aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)='addSize(height.value)'>add</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-primary form-control" (click)="onSubmit()">Submit</button>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-primary form-control" (click)="onCancel()">Cancel</button>
+  </div>
+  </div>
+  </div>
+  <div class="col-md-6 border"  style="height: 200px;">
+    <p *ngFor="let val of data.height">{{val}} <span (click)="clear(val)"><mat-icon class="Ico" >clear</mat-icon></span>	</p>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+
+  <form [formGroup]="productForm">
+      <div class="grid" *ngIf="!editProductModel?.seoEdit">
+          <div class="row">
+            <div class="col-md-8 col-8">
+      
+            </div>
+            <div class="col-md-2 col-2">
+              
+            </div>
+            <div class="col-md-2 col-2">
+              <div class="form-group float-right">
+                <input class="btn btn-md btn-primary" (click)="editProductInfo()" 
+                type="button" value="Edit">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid" *ngIf="!editProductModel?.seoEdit">
+          <div class="row gridRow">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Meta Title</label>
+                <div>
+                  {{productModel?.metaTitle}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+      
+              <div class="form-group">
+                <label>Meta Description</label>
+                <div>
+                  {{productModel?.metaDescription}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+      
+              <div class="form-group">
+                <label>Meta Keyword</label>
+                <div>
+                  {{productModel?.metaKeyword}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid" *ngIf="editProductModel?.seoEdit">
+          
+          <div class="row">
+            <div class="col-md-8 col-8">
+            </div>
+            <div class="col-md-2 col-2">
+              <div class="form-group  float-left">
+                <input class="btn btn-md btn-danger"
+                  (click)="updateProductSeoEvent(metaTitle.value, metaDescription.value, 
+                  metaKeyword.value)"
+                  type="submit" value="save">
+              </div>
+            </div>
+            <div class="col-md-2 col-2">
+              <div class="form-group float-right">
+                <input class="btn btn-md btn-primary" (click)="cancel()" type="button" value="cancel">
+              </div>
+            </div>
+          </div>
+          <div class="row gridRow">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Meta Title</mat-label>
+                    <input matInput placeholder="Meta Title" 
+                    [value]="productModel.metaTitle" #metaTitle
+                    formControlName="metaTitle" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Meta Description</mat-label>
+                    <input matInput placeholder="Meta Description"  #metaDescription
+                    [value]="productModel.metaDescription"
+                    formControlName="metaDescription">
+        
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Meta Keyword</mat-label>
+                    <input matInput placeholder="Meta Keyword"  #metaKeyword
+                    [value]="productModel.metaKeyword"
+                    formControlName="metaKeyword">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+        </div>
+      </form>

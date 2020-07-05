@@ -1,0 +1,431 @@
+<div *ngIf="!loader">
+    <img  src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader"/></div>
+<div *ngIf="loader" class="container-fulid">
+    <div class="row">
+        <div class="text-center heading"><h4>{{singleproduct?.productName}}</h4></div>
+      <div class="col-md-12 row">
+      
+    <div class="col-md-12 row container productDetails" >
+        <div class="col-md-5 row ">
+            <div class="col-md-12" >
+                <img [src]='singleproduct?.productImage[0].productImageName' width="100%" style="margin-left: 10px;">
+            </div>
+           
+            <div  class="col-md-12 row productImages">
+                <!-- <app-carousel-item> -->
+            <!-- <div class="col-md-3 " appCarouselItem *ngFor="let data of singleproduct?.productImage;let i=index"> -->
+                <div class="col-md-3 "  *ngFor="let data of singleproduct?.productImage;let i=index">  
+                <img [src]='data.productImageName' width="100px" [hidden]="i === 0 "> 
+             </div>  
+            <!-- </app-carousel-item> -->
+            </div>
+         
+       </div>
+    
+        <table class="table table-striped col-md-7">
+            <thead>
+              <tr>
+               
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngIf="singleproduct?.brandName">
+               
+                <td class="productName">Brand Name</td>
+                <td>{{singleproduct?.brandName}}</td>
+              </tr>
+              <tr *ngIf="singleproduct?.color">
+               
+                <td class="productName">Color</td>
+                <td> {{singleproduct?.color}}</td>
+              </tr>
+              <tr *ngIf="singleproduct?.dateAdded">
+                
+                <td class="productName">Date Added</td>
+                <td> {{singleproduct?.dateAdded}}</td>
+              </tr>
+              <tr *ngIf="singleproduct?.discount">
+                  <td class="productName">Discount</td>
+                  <td>{{singleproduct?.discount}}</td>
+                </tr>
+               <tr *ngIf="singleproduct?.fabric">
+                  <td class="productName">Fabric</td>
+                  <td>  {{singleproduct?.fabric}}</td>
+              </tr>
+              <tr *ngIf="singleproduct?.hsnCode">
+                 <td class="productName"> Hsn Code</td>
+                 <td> {{singleproduct?.hsnCode}}</td>
+              </tr>
+                <tr  *ngIf="singleproduct?.superCategoryName">
+                   <td class="productName">Super Category Name</td>
+                   <td> {{singleproduct?.superCategoryName}}</td>
+                </tr>
+                <tr *ngIf="singleproduct?.mainCategoryName">
+                    <td class="productName">Main Category Name</td>
+                    <td> {{singleproduct?.mainCategoryName}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.subCategoryName">
+                    <td class="productName">Sub Category Name</td>
+                    <td> {{singleproduct?.subCategoryName}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.manufactureInfo">
+                    <td class="productName">Manufacture Info</td>
+                    <td> {{singleproduct?.manufactureInfo}}</td>
+                 </tr>
+                 <tr  *ngIf="singleproduct?.mrp">
+                    <td class="productName">MRP</td>
+                    <td> {{singleproduct?.mrp}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.price">
+                    <td class="productName">Price</td>
+                    <td> {{singleproduct?.price}}</td>
+                 </tr>   
+                 <tr *ngIf="singleproduct?.quantity">
+                    <td class="productName">Quantity</td>
+                    <td> {{singleproduct?.quantity}}</td>
+                 </tr> 
+                 <tr  *ngIf="singleproduct?.sku">
+                    <td class="productName">SKU</td>
+                    <td> {{singleproduct?.sku}}</td>
+                 </tr> 
+                 <tr *ngIf="singleproduct?.sp">
+                    <td class="productName">Selling Price</td>
+                    <td> {{singleproduct?.sp}}</td>
+                 </tr> 
+                 <tr *ngIf="singleproduct?.ttsPortol">
+                    <td class="productName">TtsPortol</td>
+                    <td > {{ singleproduct?.ttsPortol}}</td>
+                 </tr> 
+                 <tr *ngIf="singleproduct?.ttsVendor">
+                    <td class="productName">Tts Vendor</td>
+                    <td> {{singleproduct?.ttsVendor}}</td>
+                 </tr> 
+                 <tr *ngIf="singleproduct?.variation">
+                    <td class="productName">Variation</td>
+                    <td> {{singleproduct?.variation}}</td>
+                 </tr> 
+                 <tr *ngIf="singleproduct?.variationType">
+                    <td class="productName">Variation Type</td>
+                    <td> {{singleproduct?.variationType}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.vendorName">
+                    <td class="productName">Vendor Name</td>
+                    <td> {{singleproduct?.vendorName}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.vp">
+                    <td class="productName">Vendor Price</td>
+                    <td> {{singleproduct?.vp}}</td>
+                 </tr>    
+                 <tr *ngIf="singleproduct?.weight">
+                    <td class="productName">weight</td>
+                    <td> {{singleproduct?.weight}}</td>
+                 </tr>
+                 <tr *ngIf="singleproduct?.productName">
+                    <td class="productName">Product Name</td>
+                    <td> {{singleproduct?.productName}}</td>
+                 </tr>
+                 <tr *ngFor="let data of singleproduct?.child">
+                  <td class="productName"> Child products</td>
+                  <td> {{data.productName}}</td>
+               </tr>
+                 <tr *ngIf="singleproduct?.productDescription">
+                    <td class="productName">Product Description</td>
+                    <td> {{singleproduct?.productDescription}}</td>
+                 </tr>
+    
+            </tbody>
+          </table>
+        <!-- <div class="col-md-12 row productImages" > -->
+            <!-- <div class="col-md-3" >
+                <img [src]='data.productImageName' width="100px" >
+            </div>
+            <div class="col-md-3" >
+                <img [src]='data.productImageName' width="100px" >
+            </div>
+            <div class="col-md-3" >
+                <img [src]='data.productImageName' width="100px" >
+            </div>
+            -->
+             
+         <!-- </div> -->
+        </div>
+  
+      </div>
+    </div>
+    </div>
+
+
+
+
+
+<!-- <div class="container-fulid">
+    <div class="row">
+        <div class="text-center heading"><h4>{{singleproduct?.productName}}</h4></div>
+      <div class="col-md-12 row">
+         
+       <div class="col-md-5 ">
+          <div class="col-md-12" *ngIf="singleproduct?.productImage[0].productImageName">
+              
+             <img [src]='singleproduct?.productImage[0].productImageName' class="productImage"> 
+          </div>
+          <div class="col-md-12 row productImages">
+              <div class="col-md-3" *ngIf="singleproduct?.productImage[1].productImageName">
+                  <img [src]='singleproduct?.productImage[1].productImageName' width="100px" >
+              </div>
+              <div class="col-md-3" *ngIf="singleproduct?.productImage[2].productImageName">
+                  <img [src]='singleproduct?.productImage[2].productImageName' width="100px" >
+              </div>
+              <div class="col-md-3" *ngIf="singleproduct?.productImage[3].productImageName">
+                  <img [src]='singleproduct?.productImage[3].productImageName' width="100px" >
+              </div>
+             
+               
+           </div>
+       </div>
+    <div class="col-md-7 grid productDetails" >
+        <div class="row">
+          <div class="row col-md-12" *ngIf="singleproduct?.brandName">
+            <div class="productheading">Brand Name :</div>
+            <div class="productvalues">{{singleproduct?.brandName}}</div>
+          </div>
+          
+           
+          <div class="row col-md-12" *ngIf="singleproduct?.color">
+            <div class="productheading">Color :</div>
+            <div class="productvalues">{{singleproduct?.color}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.dateAdded" >
+            <div class="productheading">Date Added :</div>
+            <div class="productvalues">{{singleproduct?.dateAdded}}</div>
+          </div>
+           
+          <div class="row col-md-12" *ngIf="singleproduct?.discount" >
+            <div class="productheading">Discount :</div>
+            <div class="productvalues">{{singleproduct?.discount}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.fabric" >
+            <div class="productheading">Fabric :</div>
+            <div class="productvalues">{{singleproduct?.fabric}}</div>
+          </div>
+           
+          <div class="row col-md-12" *ngIf="singleproduct?.hsnCode" >
+            <div class="productheading">hsn Code :</div>
+            <div class="productvalues">{{singleproduct?.hsnCode}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.superCategoryName" >
+            <div class="productheading">Super Category Name :</div>
+            <div class="productvalues">{{singleproduct?.superCategoryName}}</div>
+          </div>
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.mainCategoryName" >
+            <div class="productheading">Main Category Name :</div>
+            <div class="productvalues">{{singleproduct?.mainCategoryName}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.subCategoryName" >
+            <div class="productheading">Sub Category Name :</div>
+            <div class="productvalues">{{singleproduct?.subCategoryName}}</div>
+          </div>
+          
+           
+          <div class="row col-md-12" *ngIf="singleproduct?.manufactureInfo" >
+            <div class="productheading">Manufacture Info :</div>
+            <div class="productvalues">{{singleproduct?.manufactureInfo}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.mrp" >
+            <div class="productheading">MRP :</div>
+            <div class="productvalues">{{singleproduct?.mrp}}</div>
+          </div>
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.price" > 
+            <div class="productheading"> Price :</div>
+            <div class="productvalues">{{singleproduct?.price}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.quantity" > 
+            <div class="productheading">Quantity :</div>
+            <div class="productvalues">{{singleproduct?.quantity}}</div>
+          </div>
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.sku" > 
+            <div class="productheading">SKU :</div>
+            <div class="productvalues">{{singleproduct?.sku}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.sp" > 
+            <div class="productheading">Selling Price :</div>
+            <div class="productvalues">{{singleproduct?.sp}}</div>
+          </div>
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.ttsPortol" > 
+            <div class="productheading">Tts Portol :</div>
+            <div class="productvalues">{{singleproduct?.ttsPortol}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.ttsVendor" > 
+            <div class="productheading" >Tts Vendor :</div>
+            <div class="productvalues">{{singleproduct?.ttsVendor}}</div>
+          </div>
+          
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.variation" > 
+            <div class="productheading">Variation :</div>
+            <div class="productvalues">{{singleproduct?.variation}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.variationType" > 
+            <div class="productheading">Variation Type :</div>
+            <div class="productvalues">{{singleproduct?.variationType}}</div>
+          </div>
+          
+        
+          <div class="row col-md-12" *ngIf="singleproduct?.variationType" > 
+            <div class="productheading">Vendor Name :</div>
+            <div class="productvalues">{{singleproduct?.vendorName}}</div>
+          </div>
+
+          <div class="row col-md-12" *ngIf="singleproduct?.vp" > 
+            <div  class="productheading">Vendor Price :</div>
+            <div class="productvalues">{{singleproduct?.vp}}</div>
+          </div>
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.weight" > 
+            <div class="productheading">Weight :</div>
+            <div class="productvalues">{{singleproduct?.weight}}</div>
+          </div>  
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.productDescription" > 
+            <span class="productheading ">Product Description :</span>
+            <span class="productvalues ">{{singleproduct?.productDescription}}</span>
+          </div>   
+          
+          <div class="row col-md-12" *ngIf="singleproduct?.productName" > 
+            <div *ngFor="let data of singleproduct?.child" class="productheading" >  Child products :</div>
+            <div *ngFor="let data of singleproduct?.child" class="productvalues" >{{data.productName}}</div>
+          </div>  
+
+          </div>
+       -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+        <div class="col-md-12" *ngIf="singleproduct?.brandName">
+         <h5>Brand Name :{{singleproduct?.brandName}}</h5>
+        </div>
+        <div class="col-md-12">
+            <h5>Color :{{singleproduct?.color}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Date Added :{{singleproduct?.dateAdded}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Fabric :{{singleproduct?.fabric}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>HSN Code :{{singleproduct?.hsnCode}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Discount :{{singleproduct?.discount}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Main Category Name :{{singleproduct?.mainCategoryName}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Manufacture Info :{{singleproduct?.manufactureInfo}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>MRP :{{singleproduct?.mrp}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Price :{{singleproduct?.price}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Product Name :{{singleproduct?.productName}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Quantity :{{singleproduct?.quantity}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>SKU :{{singleproduct?.sku}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Selling Price :{{singleproduct?.sp}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Sub Category Name :{{singleproduct?.subCategoryName}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Super Category Name :{{singleproduct?.superCategoryName}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Tts Portol :{{singleproduct?.ttsPortol}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Tts Vendor :{{singleproduct?.ttsVendor}}</h5>
+      </div>
+    
+      <div class="col-md-12">
+          <h5>Variation :{{singleproduct?.variation}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Variation Type :{{singleproduct?.variationType}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Vendor Name :{{singleproduct?.vendorName}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Weight :{{singleproduct?.weight}}</h5>
+      </div>
+      <div class="col-md-12">
+          <h5>Vendor Price :{{singleproduct?.vp}}</h5>
+      </div>
+    
+    
+      <div class="col-md-12">
+          <h5>Product Description :{{singleproduct?.productDescription}}</h5>
+      </div>
+      <div class="col-md-12" *ngFor="let data of singleproduct?.child">
+         <h5>  Child products : {{data.productName}}</h5>
+      </div> -->
+      
+     <!-- <div class="col-md-6">
+          <h5>Manufacture Info :{{singleproduct?.variation}}</h5>
+      </div>
+      <div class="col-md-6">
+          <h5>Manufacture Info :{{singleproduct?.variation}}</h5>
+      </div> -->
+    
+    
+    
+    
+    
+    
+      <!-- </div>
+    
+      </div>
+    </div>
+    </div> -->

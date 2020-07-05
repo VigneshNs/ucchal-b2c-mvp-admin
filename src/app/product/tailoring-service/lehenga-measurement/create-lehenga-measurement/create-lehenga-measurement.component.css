@@ -1,0 +1,6 @@
+div.round {
+    border: 1px solid rgb(29, 26, 26);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+  }

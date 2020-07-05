@@ -1,0 +1,351 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Currency</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.currency}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Payment Day</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.paymentDay}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Credit Limit</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.creditLimit}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Taxes Type</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.taxesType}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Other Payment Term</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.otherPaymentTerm}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Forms Required</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.formsRequired}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Mode of Payment</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.modeOfPayment}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Permanent A/C Number</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.panNo}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tax Information Network</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.tinNo}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Central Sales Tax</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.cstNo}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Goods & Service Tax</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.gstNo}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tax Assessment.No</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.tanNo}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Bank Name</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.bankName}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Bank Branch</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.bankBranch}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Bank Address</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.bankAddress}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Bank Account Number</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.bankAccountNumber}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>MICR Code (9 digit)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.micrCode}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>NEFT Code (11 digit)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.neftCode}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>RTGS Code (11 digit)</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.rtgsCode}}
+    </div>
+  </div>
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Currency</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.currency" #currency
+            (ngModelChange)="profileData.currency=$event" formControlName="currency">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of Currency" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Credit Period/ Payment Days</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.paymentDay" #payDay
+            (ngModelChange)="profileData.paymentDay=$event" formControlName="paymentDay">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of PaymentDay" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Credit Limit</label>
+          <input type="number" class="form-control" [ngModel]="profileData.creditLimit" #credit
+            formControlName="creditLimit" placeholder="Credit Limit">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Taxes Type</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.taxesType" #taxesty
+            formControlName="taxesType" (ngModelChange)="profileData.taxesType=$event">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of TaxesType" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Other Payment Terms</label>
+          <input type="text" class="form-control" [ngModel]="profileData.otherPaymentTerm" #otherterm
+            formControlName="otherPaymentTerm" placeholder="Other Payment Terms">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Forms Required</label>
+          <input type="text" class="form-control" [ngModel]="profileData.formsRequired" #formreq
+            formControlName="formsRequired" placeholder="Forms Required">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Mode of Payment</label>
+          <select class="browser-default custom-select" [(ngModel)]="profileData.modeOfPayment" #venty
+            (ngModelChange)="profileData.modeOfPayment=$event" formControlName="modeOfPayment">
+            <!-- <option selected>Select</option> -->
+            <option *ngFor="let data of modePay" [value]="data">{{data}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Permanent A/C Number</label>
+          <input type="text" class="form-control" [ngModel]="profileData.panNo" formControlName="panNo" #merDiv
+            placeholder="Permanent A/C Number">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Tax Information Network</label>
+          <input type="text" class="form-control" [ngModel]="profileData.tinNo" formControlName="tinNo" #merDiv
+            placeholder="Tax Information Network">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Central Sales Tax</label>
+          <input type="text" class="form-control" [ngModel]="profileData.cstNo" #conNum formControlName="cstNo"
+            placeholder="Central Sales Tax">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Goods & Service Tax</label>
+          <input type="text" class="form-control" [ngModel]="profileData.gstNo" #contstardate
+            placeholder="Goods & Service Tax" formControlName="gstNo">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Tax Assessment.No</label>
+          <input type="text" class="form-control" [ngModel]="profileData.tanNo" #contenddate
+            placeholder="Tax Assessment.No" formControlName="tanNo">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bank Name</label>
+          <input type="text" class="form-control" [ngModel]="profileData.bankName" #contenddate placeholder="Bank Name"
+            formControlName="bankName">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bank Branch</label>
+          <input type="text" class="form-control" [ngModel]="profileData.bankBranch" #contenddate
+            placeholder="Bank Branch" formControlName="bankBranch">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bank Address</label>
+          <input type="text" class="form-control" [ngModel]="profileData.bankAddress" #contenddate
+            placeholder="Bank Address" formControlName="bankAddress">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bank Account Number</label>
+          <input type="text" class="form-control" [ngModel]="profileData.bankAccountNumber" #contenddate
+            placeholder="Bank Account Number" formControlName="bankAccountNumber">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>MICR Code (9 digit)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.micrCode" #contenddate
+            placeholder="MICR Code (9 digit)" formControlName="micrCode">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>NEFT Code (11 digit)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.neftCode" #contenddate
+            placeholder="NEFT Code (11 digit)" formControlName="neftCode">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>RTGS Code (11 digit)</label>
+          <input type="text" class="form-control" [ngModel]="profileData.rtgsCode" #contenddate
+            placeholder="RTGS Code (11 digit)" formControlName="rtgsCode">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(name, mob, emal, venty, vencop, venpemob, vencpd, merDiv, comStat, conNum, contstardate, contenddate)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

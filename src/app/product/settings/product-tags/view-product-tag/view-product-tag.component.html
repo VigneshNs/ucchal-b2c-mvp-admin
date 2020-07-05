@@ -1,0 +1,133 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+  <p style="padding-top: 21px;padding-left: 20px"> Product /  Product Tag</p>
+  </div>
+<div class="pageBoxLg">
+  <label  class="pageBoxLg-label pblabel">Product Tags</label>
+  <mat-card class="pageBoxLg">
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <div class="form-group p-2">
+          <button class="btn" (click)="addProductTag()" type="submit" mat-flat-button color="primary">
+              <i
+              class="fa fa-plus-circle fa-2x" aria-hidden="true"></i><a style="padding-left: 15px;">Add Tag </a>  </button>
+      </div>
+    </div>
+    <div class="col-md-10">
+    </div>
+  </div>
+  <div class="row"  *ngIf="!showNoData">
+  <table mat-table [dataSource]="productTagModel" class="container-fluid border text-strong tablesuper">
+   
+      <ng-container matColumnDef="tagName">
+  
+        <th mat-header-cell *matHeaderCellDef><h5>Tag Name</h5></th>
+        <td mat-cell *matCellDef="let element">
+            {{element.tagName}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="position">
+  
+          <th mat-header-cell *matHeaderCellDef><h5>Position</h5></th>
+          <td mat-cell *matCellDef="let element">
+              {{element.position}}
+          </td>
+        </ng-container>
+    
+     
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef><h5>Action</h5></th>
+        <td mat-cell *matCellDef="let element">
+          
+            <div class=" vcenter form-group">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+              <mat-menu #menu="matMenu">
+      
+                <a class="nav-link selectCursor" (click)="editProductTag(element._id)"  >Edit</a>
+                <a class="nav-link selectCursor" (click)="openDialog(element._id)">Delete</a>
+              </mat-menu>
+            </div>
+         
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="showNoData" class="nodata"> No results found</div>
+
+</mat-card>
+</div>
+
+
+<!-- <div class="pageBoxLg">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group p-2">
+          <input class="btn btn-sm btn-danger" (click)="addProductTag()" type="submit" 
+          value="Add Tag">
+        </div>
+      </div>
+      <div class="col-md-10">
+      </div>
+    </div>
+    <div class="row gridRowHeader display-none-small">
+      <div class="col-md-2 vcenterHeader">
+        <div class="form-group">
+          <label></label>
+        </div>
+      </div>
+      <div class="col-md-2 vcenterHeader">
+        <div class="form-group">
+          <label>Tag Name</label>
+        </div>
+      </div>
+      <div class="col-md-2 vcenterHeader">
+        <div class="form-group">
+        <label>Position</label>
+        </div>
+      </div>
+      <div class="col-md-2 vcenterHeader">
+        <div>
+        
+        </div>
+      </div>
+      <div class="col-md-2 vcenterHeader">
+        <div class="form-group">
+        
+        </div>
+      </div>
+      <div class="col-md-2 vcenterHeader">
+        <div class="form-group">
+          <label>Action</label>
+        </div>
+      </div>
+    </div>
+    <div class="row gridRow" *ngFor="let data of productTagModel">
+      <div class="col-md-2 col-6">
+       
+      </div>
+      <div class="col-md-2 col-6">
+          <label class="displayRow">Tag Name:</label>
+        {{data.tagName}}
+      </div>
+      <div class="col-md-2 col-6">
+      {{data.position}}
+      </div>
+      <div class="col-md-2 col-6">
+        <label class="displayRow">Brand Status:</label>
+      
+      </div>
+      <div class="col-md-2 col-6">
+  
+      </div>
+      <div class="col-md-1 col-6">
+        <mat-icon class="rowEdit" (click)="editProductTag(data._id)">edit</mat-icon>
+      </div>
+      <div class="col-md-1 col-6">
+        <mat-icon class="rowDelete" (click)="deleteProductTag(data._id)">delete</mat-icon>
+      </div>
+    </div>
+  </div> -->

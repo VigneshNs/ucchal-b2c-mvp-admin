@@ -1,0 +1,84 @@
+<div class="pageBoxLg">
+  <form [formGroup]="tailoringForm">
+    <div class="row">
+      <div class="col-md-12 form-group text-center">
+        <!-- <label>Add Ready to wear</label> -->
+      </div>
+      <div class="col-md-5 form-group">
+          <mat-form-field>
+              <input matInput formControlName="serviceName"  type="text" placeholder="serviceName">
+              <mat-error *ngIf="tailoringForm.controls['serviceName'].errors?.required">
+                Service Name
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+      </div>
+      <div class="col-md-7 form-group"></div>
+      <div class="col-md-5 form-group">
+          <mat-form-field>
+              <input matInput formControlName="price"  type="number" placeholder="Price">
+              <mat-error *ngIf="tailoringForm.controls['price'].errors?.required">
+                Price
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+      </div>
+      <div class="col-md-7 form-group"></div>
+      <div class="col-md-5 form-group">
+          <mat-form-field>
+              <input matInput formControlName="discount"  type="number" placeholder="Discount">
+            </mat-form-field>
+      </div>
+      <div class="col-md-7 form-group"></div>
+      <div class="col-md-5 form-group">
+        <mat-form-field>
+          <mat-select formControlName="measurement" placeholder="measurement" multiple>
+            <mat-option *ngFor="let data of measurementData" [value]="data">
+              {{data}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-7 form-group"></div>
+      <div class="col-md-5 form-group">
+        <mat-form-field>
+          <mat-select formControlName="selectedCategory" placeholder="Select Category">
+            <mat-option *ngFor="let data of categoryData" [value]="data">
+              {{data.categoryName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-7 form-group"></div>
+      <div class="col-md-3">
+        <label>Size char Image(CM)</label>
+      </div>
+      <div class="col-md-3">
+          <input type="file"  (change)="handleFileInput($event.target.files)" class="checked">
+      </div>
+      <div class="col-md-6">
+          <div class="col-md-12 pb-2" *ngFor="let url of urls">
+              <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+           </div>
+      </div>
+      <div class="col-md-3">
+        <label>Size char Image(Inches)</label>
+      </div>
+      <div class="col-md-3">
+          <input type="file"  (change)="handleFileInputInches($event.target.files)" class="checked">
+      </div>
+      <div class="col-md-6">
+          <div class="col-md-12 pb-2" *ngFor="let url of urlInches">
+              <img class="img-fluid"  style="width: 280px; height: 245px;" [src]="url"/>
+           </div>
+      </div>
+      <div class="col-md-6 form-group text-center">
+        <button class="btn" (click)="onSubmit()">Submit</button>
+      </div>
+      <div class="col-md-6 form-group text-center">
+        <button class="btn" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

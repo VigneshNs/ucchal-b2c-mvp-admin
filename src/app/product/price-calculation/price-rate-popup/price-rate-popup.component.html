@@ -1,0 +1,21 @@
+<button type="button" class="close" (click)="close()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+<div class="row">
+  <div class="col-md-6 form-group">
+    <input type="text" class="form-control" #countryName placeholder="Country Name">
+  </div>
+  <div class="col-md-6 form-group">
+      <input type="text" class="form-control" #countryCode placeholder="Country Code">
+  </div>
+  <div class="col-md-6 form-group">
+    <input type="text" class="form-control" #currencyCode placeholder="Currency Code">
+  </div>
+  <div class="col-md-6 form-group">
+      <input type="text" class="form-control" #currencySymbol placeholder="Currency Symbol">
+  </div>
+  
+  
+  <div class="col-md-4 form-group"><button class="btn btn-primary" (click)="onCreate(countryName.value, countryCode.value, currencyCode.value, currencySymbol.value)" class="form-control">Create</button></div>
+  
+</div>

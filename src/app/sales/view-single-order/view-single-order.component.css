@@ -1,0 +1,70 @@
+.mat-tooltip {
+    color: yellow !important;
+  }
+  .pageBoxLg {
+    border: 1px solid #c8ced3;
+    color: #1b2e46;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #ebedef  !important;
+    margin: 25px;
+    margin-top: 58px;
+  }
+  clicK:hover {
+    cursor: pointer !important;
+    text-decoration: underline !important;
+    color: brown !important;
+  }
+  .pageBoxLg-header {
+    border: 1px solid #c8ced3;
+    color: #e2e4e5;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #255d80  !important;
+    margin: 25px;
+    margin-top: 58px;
+  }
+  .addButtons {
+    margin: 10px;
+    background-color: #255d80;
+    color: #fff;
+    border-radius: 27%;
+   
+  }
+  th{
+      background-color: #255d80 !important;color: #fff;
+  }
+  
+  .addButtons:focus {
+    outline: none; 
+  }
+  .cardOne{
+    /* padding: 15px; margin: 10px; */
+    background-color: #ebedef;
+  }
+  .cardTwo{
+  /*   position: relative;
+    left: 20%;
+    top: 70%; */
+    background-color: #ebedef;
+  }
+  .cardThree{
+/*     position: relative;
+    left: 20%;
+    top: 40%; */
+    background-color: #ebedef;
+  }
+  .loader{
+    margin-top: 100px;
+    width: 300px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .textStrike {
+    text-decoration: line-through;
+}

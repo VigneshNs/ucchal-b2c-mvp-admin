@@ -1,0 +1,145 @@
+<div class="flex categoryRow">
+  <div class="card">
+    <div class="flex categoryBody">
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Brand Name</mat-label>
+            <input matInput placeholder="Brand Name" [value]="brand?.brandName || null" #brandName>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Brand Title</mat-label>
+            <input matInput placeholder="Brand Title" [value]="brand?.brandTitle || null" #brandTitle>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Brand Description</mat-label>
+            <input matInput placeholder="Brand Description" [value]="brand?.brandDescription || null" #brandDescription>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Brand Content</mat-label>
+            <input matInput placeholder="Brand Content" [value]="brand?.brandContent || null" #brandContent>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <!--  <mat-form-field appearance="outline">
+                    <mat-label>Brand Status</mat-label>
+                    <input matInput placeholder="Brand Status" formControlName="brandStatus">
+                    <mat-error *ngIf="!brandForm.controls['brandStatus'].errors?.required">
+                      Brand Status
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> -->
+          <mat-form-field>
+            <mat-select [(value)]="brand.brandStatus" placeholder="Please Select Status" #brandStatus>
+              <mat-option *ngFor="let stat  of activeStatus" [value]="stat">
+                {{stat }}
+              </mat-option>
+            </mat-select>
+
+            <div *ngIf="selectStatus">
+              <small style="color: red">Select Status</small>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Meta Title</mat-label>
+            <input matInput placeholder="Meta Title" [value]="brand?.metaTitle || null " #metaTitle>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Meta Description</mat-label>
+            <input matInput placeholder="Meta Description" [value]="brand?.metaDescription || null" #metaDescription>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Meta Content</mat-label>
+            <input matInput placeholder="Meta Content" [value]="brand?.metaContent || null" #metaContent>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="brandField">
+        <div class="form-group">
+
+          <label>Brand Images</label>
+
+          <div *ngIf="imageEdit">
+            <input type="file" name="file" class="btn btnPink btn-block" id="file"
+              (change)="handleFileInput($event.target.files)">
+          </div>
+          <div *ngIf="showImageNameError">
+            Image Name exists
+          </div>
+        </div>
+
+      </div>
+      <div class="brandField">
+
+        <div *ngIf="!imageEdit">
+          <img [src]="brand.brandImageName" style="width: 280px; height: 245px;" />
+          <button mat-icon-button mat-sm-button color="primary" matTooltip="Update">
+            <mat-icon (click)="editImage()"> edit </mat-icon>
+          </button>
+        </div>
+        <div *ngIf="imageEdit">
+          <label> </label>
+          <div *ngFor="let url of urls">
+            <img [src]="url" style="width: 280px; height: 245px;" />
+          </div>
+
+          <button mat-icon-button mat-sm-button color="primary" matTooltip="Update" (click)="updateImage()">
+            <mat-icon> save </mat-icon>
+          </button>
+          <button mat-icon-button mat-sm-button color="primary" matTooltip="Cancel" (click)="cancelImage()">
+            <mat-icon class="rowDelete"> clear </mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="categoryField">
+        <div class="form-group">
+          <input class="btn btn-danger" (click)="updateBrand(brandName.value, brandTitle.value, brandDescription.value,
+             brandContent.value, brandStatus.value, metaTitle.value, metaDescription.value, metaContent.value)"
+            type="submit" value="Save">
+        </div>
+      </div>
+      <div class="categoryField">
+
+      </div>
+      <div class="categoryField">
+
+      </div>
+
+      <div class="categoryField">
+        <div class="form-group">
+          <input class="btn btn-primary" (click)="cancelBrand()" type="submit" value="cancel">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

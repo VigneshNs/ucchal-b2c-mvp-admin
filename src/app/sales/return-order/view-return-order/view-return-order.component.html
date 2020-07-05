@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th  class="text-center" scope="col">Date</th>
+            <th  class="text-center" scope="col">Order ID</th>
+            <th  class="text-center" scope="col">Return ID</th>
+            <th  class="text-center" scope="col">Status</th>
+            <th  class="text-center" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of holder">
+            <td class="text-center">{{data.creationDate | date}}</td>
+            <td class="text-center">{{data.orderId}}</td>
+            <td class="text-center">{{data.returnId}}</td>
+            <td class="text-center">{{data.returnStatus}}</td>
+            <td  class="text-center">
+              <div class=" vcenter form-group">
+                <button mat-mini-fab class="iconBtn"  [matMenuTriggerFor]="menu"> <mat-icon>more_vert</mat-icon></button>
+              
+              
+                <mat-menu #menu="matMenu">
+                    <a class="nav-link selectCursor" (click)="onView(data._id)">View</a>
+                  <a class="nav-link selectCursor">Delete</a>
+                </mat-menu>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

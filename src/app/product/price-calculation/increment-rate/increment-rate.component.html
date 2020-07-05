@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row pt-5">
+   
+      <div class="col-md-12 form-group">
+          <h4> Increment Rate</h4>
+        <div class="row">
+          <div class="col-md-6 form-group">
+          <span id="percent-sign">%</span>
+        <input type="number" #rate class="form-control"> 
+          </div>
+        <div class="col-md-4 form-group">
+            <button class="btn btn-primary" (click)="addRate(rate.value)">Add</button>
+          </div>
+          </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <label>Increment Percentage</label> <br>
+    {{holder?.incRate}} %
+    </div>
+    
+    <div class="col-md-4 form-group">
+      <label>Date</label> <br>
+    <!-- </div> -->
+    <!-- <div class="col-md-3 form-group"> -->
+      {{holder?.addedDate | date}}
+    </div>
+    <div class="col-md-3 form-group"></div>
+ 
+  </div>
+</div>

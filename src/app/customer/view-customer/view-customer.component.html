@@ -1,0 +1,172 @@
+<div *ngIf="!loader">
+    <img  src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader"/></div>
+    <div *ngIf="loader">
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+    <mat-card class="newNow"> 
+        <p > Customer > View  Customer</p>
+        </mat-card>
+
+  </div>
+<mat-card class="pageBoxLg" style="background: #f2f3f8;">
+
+<!--   <label  class="pageBoxLg-label pblabel">Customer</label> -->
+<!-- <div class="row pageBoxl">
+  <div class="col-md-6 text-center">
+    <label><h4>Total Customer</h4></label>
+    <h4>{{customerCount}}</h4>
+  </div>
+  <div class="col-md-6 text-center">
+    <label><h4>Current Customer</h4></label>
+    <h4>{{todayCustomerCount}}</h4>
+  </div>
+</div> -->
+
+    <div class="col-md-12  text-right">
+        <h1 style="text-align: end">
+         
+            <button class="addButtons" mat-flat-button  (click)="addCustomer()"> <i
+                class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> <a style="margin-left: 10px;">Add Customer</a> </button>
+        
+        </h1>
+      </div><br>
+
+  <!-- <div class="col-md-12 text-right">
+      <button type="button" class="btn btn-dark " (click)="addCustomer()" style="width: 200px">
+        <i class="fa fa-plus" aria-hidden="true"></i>   Add Customer</button>
+        <br>
+        <br> *ngFor="let data of holder"
+  </div> -->
+  <div class="categoryRow"  *ngIf="!showNoData">
+      <table mat-table [dataSource]="holder" class="container-fluid border text-strong table-hover">
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef><h5>Name</h5></th>
+          <td mat-cell *matCellDef="let element">
+              {{element.firstName}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Email-Id">
+          <th mat-header-cell *matHeaderCellDef><h5> Email-Id</h5></th>
+          <td mat-cell *matCellDef="let element">{{element.emailId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Mobile Number">
+          <th mat-header-cell *matHeaderCellDef><h5>Mobile Number</h5></th>
+          <td mat-cell *matCellDef="let element">
+              {{element.mobileNumber}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Status">
+          <th mat-header-cell *matHeaderCellDef><h5>Status</h5></th>
+          <td mat-cell *matCellDef="let element">
+              <label class="switch">
+                  <input type="checkbox" (change)="changeStatus($event, element._id)" [checked]="element.publish === true">
+                  <span class="slider round"></span>
+                </label>
+
+
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Date Of Registration">
+            <th mat-header-cell *matHeaderCellDef><h5>Date Of Registration</h5></th>
+            <td mat-cell *matCellDef="let element">
+                {{element.date | date }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Address">
+              <th mat-header-cell *matHeaderCellDef><h5>Address</h5></th>
+              <td mat-cell *matCellDef="let element"(click)="getAddressData(element)">
+                  <button mat-mini-fab class="iconBtn" ><i class="fa fa-address-card" aria-hidden="true"></i></button>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="Order">
+                <th mat-header-cell *matHeaderCellDef><h5>Order</h5></th>
+                <td mat-cell *matCellDef="let element"(click)="getOrderDetails(element._id)">
+                    <button mat-mini-fab class="iconBtnz" >  <i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+                </td>
+              </ng-container>
+  
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef><h5>Action</h5> </th>
+          <td mat-cell *matCellDef="let element"> 
+              <div class=" vcenter form-group">
+                  <button mat-mini-fab class="iconBtn"  [matMenuTriggerFor]="menu"> <mat-icon>more_vert</mat-icon></button>
+                
+                
+                  <mat-menu #menu="matMenu">
+                      <a class="nav-link selectCursor"(click)="viewCustomer(element)" >View</a>
+                    <a class="nav-link selectCursor"(click)="editCustomer(element)" >Edit</a>
+                    <a class="nav-link selectCursor" (click)="openDialog(element)">Delete</a>
+                  </mat-menu>
+                </div>
+              </td>
+        </ng-container>
+       
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 50, 100, 150]" [showFirstLastButtons]="true"
+      [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)"></mat-paginator>
+    </div>
+    <div *ngIf="showNoData" class="nodata"> No results found</div>
+
+
+</mat-card>
+</div>
+
+<!-- <div class="pageBoxLg">
+  <div class="row pageBoxl">
+    <div class="col-md-6 text-center">
+      <label><h4>Total Customer</h4></label>
+      <h4>{{customerCount}}</h4>
+    </div>
+    <div class="col-md-6 text-center">
+      <label><h4>Current Customer</h4></label>
+      <h4>{{todayCustomerCount}}</h4>
+    </div>
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-12 text-right">
+        <button type="button" class="btn btn-dark " (click)="addCustomer()" style="width: 200px">
+          <i class="fa fa-plus" aria-hidden="true"></i>   Add Customer</button>
+          <br>
+          <br>
+    </div>
+      <table class="table table-striped">
+          <thead>
+            <tr>
+
+               
+              <th scope="col" class="text-center">Name</th>
+              <th scope="col" class="text-center">Email_Id</th>
+              <th scope="col" class="text-center">Mobile Number</th>
+              <th scope="col" class="text-center">Status</th>
+              <th scope="col" class="text-center">Date Of Registration</th>
+              <th scope="col" class="text-center">Address</th>
+              <th scope="col" class="text-center">Order</th>
+              <th scope="col" class="text-center">Edit</th>
+              <th scope="col" class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let data of holder">
+            <tr>
+               
+              <th scope="row" class="text-center">{{data.firstName}}</th>
+              <td class="text-center">{{data.emailId}}</td>
+              <td class="text-center">{{data.mobileNumber}}</td>
+              <th scope="row" class="text-center">
+                  <label class="switch ">
+                      <input type="checkbox" (change)="changeStatus($event, data._id)" [checked]="data.publish === true">
+                      <span class="slider round"></span>
+                    </label>
+              </th>
+              <td class="text-center">{{data.date | date }}</td>
+              <td class="text-center" (click)="getAddressData(data)"><i class="fa fa-address-card" aria-hidden="true"></i></td>
+              <td class="text-center" (click)="getOrderDetails(data._id)"><i class="fa fa-shopping-basket" aria-hidden="true"></i></td>
+              <td class="text-center" (click)="editCustomer(data)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+              <td class="text-center" (click)="deleteCustomer(data)"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 50, 100, 150]" [showFirstLastButtons]="true"
+    [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)"></mat-paginator>
+  </div>
+</div> -->

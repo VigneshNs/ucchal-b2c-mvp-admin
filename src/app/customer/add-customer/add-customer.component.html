@@ -1,0 +1,127 @@
+<div style="background-color:rgba(255, 250, 250, 0.123);height: 40px;border: #000 " class="container-fluid">
+        <mat-card class="newNow"> 
+                <p > Customer > View  Customer > Add</p>
+                </mat-card>
+
+    </div>
+<mat-card class="pageBoxLg" style="padding: 15px;">
+    <div class="row">
+       <!--  <label class="pageBoxLg-label pblabel"><h6>Add Customer</h6></label> -->
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+        <h6 class="colorAll">Customer Details</h6>
+        <hr>
+      </div>
+      
+      <div class="col-md-3">
+          <label class="colorAll">First Name</label>
+          <input type="text" class="form-control" placeholder="First Name" #first>
+      </div>
+      <div class="col-md-3">
+          <label class="colorAll">Last Name</label>
+          <input type="text" class="form-control" placeholder="Last Name" #last>
+      </div>
+      <div class="col-md-3">
+          <label class="colorAll">Email_ID</label>
+          <input type="email" class="form-control" placeholder="Email-ID" #mail>
+         <p style="color: crimson">{{holder?.result }} </p>
+      </div>
+      <div class="col-md-3">
+          <label class="colorAll">Mobile Number</label>
+          <input type="number" class="form-control" placeholder="Mobile Number" #mob>
+      </div>
+    </div>
+    <div class="row pageBoxl">
+      <div class="col-md-12">
+          <h6 class="colorAll">More Information</h6>
+          <hr>
+      </div>
+      <div class="col-6">
+          <label class="colorAll">Password</label>
+          <input type="password" class="form-control" placeholder="Password" #pass>
+      </div>
+      <div class="col-md-6">
+          <label class="colorAll">Date of Birth</label>
+          <input type="date" class="form-control" placeholder="Date of birth" #dob>
+      </div>
+      <div class="col-md-6">
+          <label class="colorAll">Gender</label>
+          <select class="browser-default custom-select" #gen>
+              <option selected>Select Gender</option>
+              <option *ngFor="let data of genderValue">{{data}}</option>
+            </select>
+      </div>
+      <div class="col-md-6">
+          <label><b>Location</b></label>
+          <input type="text" class="form-control" placeholder="Location" #loc>
+      </div>
+      <div class="col-md-12 text-center">
+          <button type="button" mat-flat-button 
+          (click)="getCustomerValue(first, last, mail, mob, pass, dob, gen, loc)" class="addButtons" style="width: 100px; margin: 10px">Save</button>
+          <button type="button" mat-flat-button class="addButtons" (click)="cancel()" style="width: 100px">Cancel</button>
+      </div>
+    </div>
+</mat-card>
+
+
+
+<!-- <div class="pageBoxLg">
+  <div class="row">
+      <label class="pageBoxLg-label "><h6>Add Customer</h6></label>
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-12">
+      <h6>Customer Details</h6>
+      <hr>
+    </div>
+    
+    <div class="col-md-3">
+        <label><b>First Name</b></label>
+        <input type="text" class="form-control" placeholder="First Name" #first>
+    </div>
+    <div class="col-md-3">
+        <label><b>Last Name</b></label>
+        <input type="text" class="form-control" placeholder="Last Name" #last>
+    </div>
+    <div class="col-md-3">
+        <label><b>Email_ID</b></label>
+        <input type="email" class="form-control" placeholder="Email-ID" #mail>
+       <p style="color: crimson">{{holder?.result }} </p>
+    </div>
+    <div class="col-md-3">
+        <label><b>Mobile Number</b></label>
+        <input type="number" class="form-control" placeholder="Mobile Number" #mob>
+    </div>
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-12">
+        <h6>More Information</h6>
+        <hr>
+    </div>
+    <div class="col-6">
+        <label><b>Password</b></label>
+        <input type="password" class="form-control" placeholder="Password" #pass>
+    </div>
+    <div class="col-md-6">
+        <label><b>Date of Birth</b></label>
+        <input type="date" class="form-control" placeholder="Date of birth" #dob>
+    </div>
+    <div class="col-md-6">
+        <label><b>Gender</b></label>
+        <select class="browser-default custom-select" #gen>
+            <option selected>Select Gender</option>
+            <option *ngFor="let data of genderValue">{{data}}</option>
+          </select>
+    </div>
+    <div class="col-md-6">
+        <label><b>Location</b></label>
+        <input type="text" class="form-control" placeholder="Location" #loc>
+    </div>
+    <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-dark" 
+        (click)="getCustomerValue(first, last, mail, mob, pass, dob, gen, loc)" style="width: 200px; margin: 10px">Submit</button>
+        <button type="button" class="btn btn-dark " (click)="cancel()" style="width: 200px">Cancel</button>
+    </div>
+  </div>
+</div> -->

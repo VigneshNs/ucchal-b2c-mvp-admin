@@ -1,0 +1,90 @@
+        <div class="row gridRow m-5">
+          <div class="col-md-6">
+            <h5>Multi Images</h5>
+            <label>
+              <input type="file" (change)="handleFileInput($event.target.files)" multiple>
+            </label>
+            <!-- <div class="alert alert-danger" *ngIf="imageError">
+              <h4>Please Select the images</h4>
+            </div> -->
+            <div class="row">
+              <div class="col-md-6 pb-2" *ngFor="let url of urls">
+                <mat-card>
+                  <img class="img-fluid" [src]="url" />
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group  float-right">
+              <input class="btn btn-md btn-danger" (click)="uploadMultiImagesMulter()" type="button" value="save">
+            </div>
+          </div>
+        </div>
+
+        <div class="row gridRow m-5">
+          <div class="col-md-6">
+            <h5>Single Images</h5>
+            <label>
+              <input type="file" (change)="handleFileInputSingle($event.target.files)">
+            </label>
+
+            <!-- <div class="alert alert-danger" *ngIf="imageError">
+              <h4>Please Select the images</h4>
+            </div> -->
+            <div class="row">
+              <div class="col-md-6 pb-2" *ngFor="let test of urlSingle">
+                <mat-card>
+                  <img class="img-fluid" [src]="test" />
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group  float-right">
+              <input class="btn btn-md btn-danger" (click)="uploadSingleImagesMulter()" type="button" value="save">
+            </div>
+          </div>
+        </div>
+
+        <!-- <div [ngClass]="zoom?.displayClass" class="zoomPop"></div>
+<div [ngClass]="zoom?.displayClass" class="zoomPop" tabindex="-1" style="overflow: hidden auto;">
+  <div class="row m-4">
+    <button (click)="closed()" type="button" class="zoomClose">×</button>
+  </div>
+
+  <app-carousel-item>
+    <div appCarouselItem class="zoomScaler col-md-12 col-12"
+     *ngFor="let image of zoom?.imageUrl">
+      <img class="image-fluid" [src]="image">
+    </div>
+  </app-carousel-item>
+
+</div> -->
+
+        <div class="container pt-5">
+            <h5>Base 64 Convert Image</h5>
+
+          <div class="row">
+            <div class="col-md-4">
+              <img class="img-fluid" [src]="showImage">
+            </div>
+          </div>
+          <div class="form-group">
+            
+            <input type="file" id="file" (change)="handleFileInput64Base($event.target.files)">
+
+            <button mat-raised-button  type="button" (click)="uploadSingleImage()" color="accent">Save</button>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-4">
+            <img class="img-fluid" [src]="bannerTest.Location">
+          </div>
+        </div> -->
+
+        <label class="btn btn-default">
+          <input type="file" (change)="selectFile($event)">
+        </label>
+        
+        <button class="btn btn-success"  (click)="upload()">Upload</button>

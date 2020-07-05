@@ -1,0 +1,27 @@
+<div class="pageBoxLg">
+  <div class="row">
+    <label class="pageBoxLg-label ">
+      <h6>Document Upload</h6>
+    </label>
+  </div>
+  <div class="row pageBoxl">
+    <div class="col-md-6">
+      <div class="form-group">
+        <input type="file" class="form-control" (change)="onSubmit($event)" placeholder="Upload file">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <button class="btn btn-md btn-primary" (click)="onUpload()">Upload</button>
+      </div>
+      <p style="color: crimson">{{displayValue?.result}}</p>
+      <div *ngIf="this.showError"><p style="color: crimson">Enter Email-ID</p></div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <button class="btn btn-md btn-primary" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+   
+  </div>
+</div>

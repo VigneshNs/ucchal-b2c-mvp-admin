@@ -1,0 +1,519 @@
+<div *ngIf="!loader">
+    <img  src="../../../assets/images/0_E_hr3MNomDyYme5i.gif" style="width: 720px;" class="loader"/></div>
+<mat-card *ngIf="loader" class="pageBoxLg">
+<!--     <label  class="pageBoxLg-label pblabel">Products</label> -->
+  <div class="row">
+      <div class="col-md-12 row ">
+          <div class="col-md-3"></div>
+          <div class="col-md-1">
+              <div class="form-group ">
+                <h1 style="margin: 20px; position: relative; right: 200px !important;">
+                <input class="btn addButtons inputclass" (click)="uploadProduct()" type="submit" value="Upload Product">
+              </h1>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group ">
+                <input class="btn addButtons inputclass form-control" (click)="updateProduct()" type="submit" value="Update Product">
+              </div>
+            </div>
+            <div class="col-md-2 form-group">
+                <input class="btn addButtons inputclass form-control" (click)="downloadProduct()" type="submit" value="Download Product">
+            </div>
+          <div class="col-md-2 addproduct" >
+            
+              <button class="addButtons" mat-flat-button color="primary"  (click)="addProduct()" >
+                <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i><a style="margin-left: 10px;">Add Product</a>
+              
+              </button>
+            </div>
+            <div class="col-md-1 form-group">
+              <mat-form-field  class="example-full-width">
+                <mat-select (selectionChange)="selectCountryCode($event)" [(value)]='selectedCurrency' placeholder="Country Code">
+                  <mat-option *ngFor="let data  of countryWisePriceModel" [value]="data.currencyCode">
+                    {{data.currencyCode }}
+                  </mat-option>
+                </mat-select>
+              <!--   <mat-error *ngIf="selectStatus">
+                  select Status is
+                  <strong>required</strong>
+                </mat-error> -->
+
+                <!-- <div *ngIf="selectStatus">
+                  <small style="color: red">Select Status</small>
+                </div> -->
+              </mat-form-field>
+            </div>
+        </div>
+
+
+    <!-- <div class="col-md-2">
+      <div class="form-group p-2">
+        <input class="btn btn-sm btn-danger" (click)="addProduct()" type="submit" value="Add Product">
+      </div>
+      <button mat-fab style="margin: 10px;" (click)="setPublishads()">Publish</button>
+      <button mat-fab (click)="setUnPublishads()">UnPublish</button>
+    </div> -->
+
+
+    
+    <!-- <div class="col-md-2">
+      <div class="form-group p-2">
+        <input class="btn btn-primary" (click)="uploadProduct()" type="submit" value="Upload Product">
+      </div>
+    </div> -->
+    <form [formGroup]="productForm">
+    <div class="col-md-12">
+  
+        <div class="row">
+            <div class="col-md-1"></div>
+          <!-- <div class="col-md-2">
+            <mat-form-field>
+              <mat-label>Select an Color</mat-label>
+              <mat-select (selectionChange)="filterByOption($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of settingsColorData" [value]="data">{{data}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+          <!-- <div class="col-md-2">
+            <mat-form-field>
+              <mat-label>Select an Size</mat-label>
+              <mat-select (selectionChange)="filterByOption($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of settigsSizeData" [value]="data">{{data}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+          <!-- <div class="col-md-2">
+            <mat-form-field>
+              <mat-label>Select an Brand</mat-label>
+              <mat-select (selectionChange)="filterByOption($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of brandModel" [value]="data.brandName">{{data.brandName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+          <div class="col-md-5">
+            <mat-form-field>
+              <mat-label>Select an Category</mat-label>
+              <mat-select #category formControlName="category" (selectionChange)="filterByCategory($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of superCategoryModel" [value]="data">{{data.categoryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-5">
+            <mat-form-field>
+              <mat-label>Select an PriceRange</mat-label>
+              <mat-select #price formControlName="priceRange" (selectionChange)="filterByPriceRange($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of settingsModelData" [value]="data">{{data.minPrice / selectedPriceRate  | currency: selectedCurrency}} - {{data.maxPrice / selectedPriceRate  | currency: selectedCurrency}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-5">
+              <mat-form-field>
+                <mat-label>Select an Vendor</mat-label>
+                <mat-select #vendor formControlName="vendor" (selectionChange)="filterByVendor($event)">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let data of vendorModel" [value]="data">{{data.vendorName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          <!-- <div class="col-md-2">
+    </div> -->
+    <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+          <!-- <div class="col-md-1" class="parentChildLabel text-center">
+              <mat-form-field>
+                  <mat-label>Select</mat-label>
+                  <mat-select (selectionChange)="selectSearch($event)">
+                    <mat-option *ngFor="let data of searchName" [value]="data">{{data}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+    </div>
+          <div class="col-md-4" class="searchbar text-center" >
+            <mat-form-field>
+              <input matInput placeholder="Enter Style Code" (keyup)="applySearchFilter($event.target.value)">
+            </mat-form-field>
+          </div> -->
+          <!-- <div class="col-md-4" *ngIf="searchName.Child">
+              <mat-form-field>
+                <input matInput placeholder="Enter SKU Code" (keyup)="applySearchFilter($event.target.value)">
+              </mat-form-field>
+            </div> -->
+            <div class="col-md-1" class="parentChildLabel text-center">
+                
+                
+                  <mat-label></mat-label>
+                  <select matNativeControl #type id="mySelectId" (change)="filterBySearch($event)">
+                    <option value="Select" class="parentLabel">Select </option>
+                    <option value="Parent" class="parentLabel" >Parent</option>
+                    <option value="Child" class="childLabel">Child</option>
+                    
+                  </select>
+                
+          </div>    
+                     
+                    <div class="headerwrapper__searchbox">
+                      <input matInput type="text" formControlName="search" class="form-control" [readonly]="!isSelectedSearch" #inputValue  placeholder="Enter Style Code">
+                      <img src="../../../assets/images/55369.png" (click)="selectIconSearch(type.value,inputValue.value)"></div>
+                    
+
+                         
+
+
+            <!-- <div class="nav-search-scope nav-sprite">
+                <div class="nav-search-facade" data-value="search-alias=aps">
+                  <span class="nav-search-label" style="width: auto;">All</span>
+                  <i class="nav-icon"></i>
+                </div>
+               
+                <select aria-describedby="searchDropdownDescription" class="nav-search-dropdown searchSelect" data-nav-digest="R0Y6PpUvJhgOTk4cZYLpBnPuc6o=" data-nav-selected="0" id="searchDropdownBox" name="url" style="display: block; top: 2.5px;" tabindex="8" title="Search in">
+                    <option selected="selected" value="search-alias=aps">Parent</option>
+                    <option value="search-alias=alexa-skills">Child</option>
+                    
+                </select>
+              </div> -->
+
+
+
+            
+
+
+
+
+
+
+
+          <!-- <div class="col-md-2">
+            <mat-form-field>
+              <mat-label>Sort</mat-label>
+              <mat-select (selectionChange)="filterBySortProduct($event)">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let data of sortValue" [value]="data">{{data.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+        </div>
+  
+    </div>
+  </form>
+
+  </div>
+  <div class="row col-md-12">
+      
+      <div class="col-md-6">
+        <h1 style="text-align: start">
+        <button class="addButtons" color="primary" mat-flat-button (click)="setPublishads()">Publish</button>
+        <button class="addButtons categorycancelbutton" color="primary" mat-flat-button (click)="setUnPublishads()">Unpublish</button>
+        <button class="addButtons categorycancelbutton" color="primary" mat-flat-button (click)="deleteMultiProduct()">Delete</button>
+      </h1>
+      </div>
+    </div>
+  <div class="row" *ngIf="showParentData === true">
+    <table mat-table [dataSource]="productData" multiTemplateDataRows matSort class="container-fluid ">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="primeImage">
+        <th mat-header-cell *matHeaderCellDef>
+            <h5>Images</h5> 
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <!--  <a (click)="viewProduct(element)">
+            <img [src]="element.productImage[0].productImageName" 
+            style="width: 40px; height: 40px;" /></a> -->
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef><h5>Status</h5>  </th>
+        <td mat-cell *matCellDef="let element"> {{ element.publish === true ? 'Published' : 'UnPublish' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="styleCode">
+        <th mat-header-cell *matHeaderCellDef > <h5>Style Code</h5>
+        </th>
+        <td mat-cell *matCellDef="let element" > {{element.sku}} </td>
+      </ng-container>
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef> <h5>Product Name</h5> 
+        </th>
+        <td style="cursor: pointer;" mat-cell *matCellDef="let element" > 
+          {{element.productName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="variants">
+        <th mat-header-cell *matHeaderCellDef><h5>Variants</h5>
+        <td mat-cell *matCellDef="let element"> <a (click)="variantChild(element)">
+            <input type="checkbox" [checked]="element.selectedChild"  />
+          Variants ({{element.child.length}})
+          </a></td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef><h5>Price</h5>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.price / selectedPriceRate | currency: selectedCurrency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="INTsku">
+        <th mat-header-cell *matHeaderCellDef><h5>INTsku</h5>
+        </th>
+        <td mat-cell *matCellDef="let element"><!--  {{element.INTsku}} --> </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef><h5>Action</h5> </th>
+          <td mat-cell *matCellDef="let element"> 
+              <div class=" vcenter form-group">
+                  <button class="btnIcon" mat-mini-fab [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                <p class="hoverNow"><a class="nav-link selectCursor" (click)="viewUploadProductParent(element._id)">View Parent</a></p>
+                <a class="nav-link selectCursor"(click)="addChild(element._id)" >Add Child</a>
+                <p class="hoverNow"><a class="nav-link selectCursor" (click)="editProduct(element._id)">Edit</a></p>
+                <p class="hoverNow"><a class="nav-link selectCursor" (click)="openDialog(element._id)">Delete</a></p>
+                  </mat-menu>
+                </div>
+              </td>
+        </ng-container>
+
+
+      <!-- <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> <h5>Edit</h5>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button mat-sm-button color="primary" class="rowEdit" (click)="editProduct(element._id)">
+            <mat-icon>edit</mat-icon>
+          </button> </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef><h5>Delete</h5>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button mat-sm-button color="primary"
+           (click)="deleteProduct(element._id)">
+            <mat-icon class="rowDelete">delete</mat-icon>
+          </button> </td>
+      </ng-container> -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [hidden]="!element.selectedChild"
+          [attr.colspan]="displayedColumns.length">
+          <div class="row p-2" *ngFor="let childData  of element.child">
+            <div class="col-md-3" style="cursor: pointer;" >
+              {{childData.productName}}
+            </div>
+            <div class="col-md-2">
+              <img [src]="childData.productImage[0]?.productImageName"
+               style="width: 40px; height: 40px;" />
+            </div>
+            <div class="col-md-2">
+              {{childData.price / selectedPriceRate | currency: selectedCurrency}}
+            </div>
+            <div class="col-md-1">  
+              {{childData.INTsku}}
+            </div>
+            <div class="col-md-1">
+              {{childData.sku}}
+            </div>
+            <!-- <div class="col-md-1">
+                <button mat-icon-button mat-sm-button color="primary" class="rowEdit"
+                (click)=" viewUploadProductChild(element._id, childData._id)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </div>
+            <div class="col-md-1">
+              <button mat-icon-button mat-sm-button color="primary" class="rowEdit"
+               (click)="editChildProduct(element._id, childData._id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+            <div class="col-md-1">
+              <button mat-icon-button mat-sm-button color="ancent" class="rowDelete"
+               (click)="deletProductChild(element._id, childData._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div> -->
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <div class=" vcenter form-group">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <a class="nav-link selectCursor"(click)="viewUploadProductChild(element._id, childData._id)" >View Child</a>
+                      <a class="nav-link selectCursor"(click)="editChildProduct(element._id, childData._id)"  >Edit</a>
+                      <a class="nav-link selectCursor"(click)="deletProductChild(element._id, childData._id)">Delete</a>
+                    </mat-menu>
+                  </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" 
+      class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" 
+      class="example-detail-row"></tr>
+    </table>
+   <!--  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator> -->
+  </div>
+  <div class="row" *ngIf="showParentData === false">
+
+      <table mat-table [dataSource]="childData" multiTemplateDataRows matSort class="container-fluid ">
+       <!--  <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container> -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef>
+              <h5>Images</h5> 
+          </th>
+          <td mat-cell *matCellDef="let element">
+              <img [src]="element.productImage[0].productImageName"
+              style="width: 40px; height: 40px;" />
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef  ><h5>Product Name</h5>  </th>
+          <td mat-cell *matCellDef="let element" > {{ element.productName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> <h5>Price</h5>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.price / selectedPriceRate | currency: selectedCurrency}} </td>
+        </ng-container>
+        <ng-container matColumnDef="INTsku">
+          <th mat-header-cell *matHeaderCellDef> <h5>INT Sku</h5> 
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.INTsku}} </td>
+        </ng-container>
+        <ng-container matColumnDef="view" >
+          <th mat-header-cell *matHeaderCellDef> <h5>View </h5> 
+          </th>
+          <td mat-cell *matCellDef="let element" class="onHand"> 
+             <mat-icon color="accent"  (click)=" viewChild(element._id)">visibility</mat-icon> </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> <h5>Edit</h5> 
+          </th>
+          <td mat-cell *matCellDef="let element" class="onHand"> 
+             <mat-icon color="primary"  (click)="editChild(element._id)" >edit</mat-icon></td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef > <h5>Delete</h5> 
+          </th>
+          <td mat-cell *matCellDef="let element" class="onHand"> 
+            <mat-icon color="warn" (click)="deleteChild(element._id)">delete</mat-icon> </td>
+        </ng-container>
+
+
+
+        <!-- <div class="col-md-1">
+          <button mat-icon-button mat-sm-button color="primary" class="rowEdit"
+          (click)=" viewUploadProductChild(element._id, childData._id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
+      <div class="col-md-1">
+        <button mat-icon-button mat-sm-button color="primary" class="rowEdit"
+         (click)="editChildProduct(element._id, childData._id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div class="col-md-1">
+        <button mat-icon-button mat-sm-button color="ancent" class="rowDelete"
+         (click)="deletProductChild(element._id, childData._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div> -->
+        <!-- <ng-container matColumnDef="variants">
+          <th mat-header-cell *matHeaderCellDef><h5>Variants</h5>
+          <td mat-cell *matCellDef="let element"> <a (click)="variantChild(element)">
+              <input type="checkbox" [checked]="element.selectedChild"  />
+            Variants ({{element.child.length}})
+            </a></td>
+        </ng-container> -->
+       <!--  <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef><h5>Price</h5>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container> -->
+        <!-- <ng-container matColumnDef="INTsku">
+          <th mat-header-cell *matHeaderCellDef><h5>INTsku</h5>
+          </th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container> -->
+       <!--  <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef><h5>Action</h5> </th>
+            <td mat-cell *matCellDef="let element"> 
+                <div class=" vcenter form-group">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+            
+                      <a class="nav-link selectCursor"(click)="editProduct(element._id)"  >Edit</a>
+                      <a class="nav-link selectCursor"(click)="openDialog(element._id)">Delete</a>
+                    </mat-menu>
+                  </div>
+                </td>
+          </ng-container> -->
+  
+  
+        <!-- <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> <h5>Edit</h5>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button mat-sm-button color="primary" class="rowEdit" (click)="editProduct(element._id)">
+              <mat-icon>edit</mat-icon>
+            </button> </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef><h5>Delete</h5>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button mat-sm-button color="primary"
+             (click)="deleteProduct(element._id)">
+              <mat-icon class="rowDelete">delete</mat-icon>
+            </button> </td>
+        </ng-container> -->
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns1;" 
+       
+          >
+        </tr>
+        <!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" 
+        class="example-detail-row"></tr> -->
+      </table>
+     
+     <!--  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator> -->
+      
+    </div>
+    <ul class="pagination" *ngFor="let item of noOfPages">
+      <li (click)="nextPage(item)">{{item}}</li>
+    </ul>
+  </mat-card>

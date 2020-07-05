@@ -1,0 +1,17 @@
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #11172b;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.displayNone {
+    display: block;
+}.pageBoxLg {
+    border: 1px solid #c8ced3;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 13px;
+    background-color: #f2f3f8 !important;
+    margin: 25px;
+    margin-top: 58px;
+  }

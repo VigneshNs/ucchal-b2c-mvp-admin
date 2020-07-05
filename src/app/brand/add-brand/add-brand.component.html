@@ -1,0 +1,178 @@
+<form [formGroup]="brandForm" (ngSubmit)="addBrand(brandForm)" novalidate>
+  <div class="flex categoryRow">
+    <div class="card">
+      <div class="flex categoryBody">
+
+        <div class="brandField">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Brand Name</mat-label>
+              <input matInput placeholder="Brand Name" formControlName="brandName">
+              <mat-error *ngIf="!brandForm.controls['brandName'].errors?.required">
+                Brand Name
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Brand Title</mat-label>
+              <input matInput placeholder="Brand Title" formControlName="brandTitle">
+              <mat-error *ngIf="!brandForm.controls['brandTitle'].errors?.required">
+                Brand Title
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Brand Description</mat-label>
+              <input matInput placeholder="Brand Description" formControlName="brandDescription">
+              <mat-error *ngIf="!brandForm.controls['brandDescription'].errors?.required">
+                Brand Description
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Brand Content</mat-label>
+              <input matInput placeholder="Brand Content" formControlName="brandContent">
+              <mat-error *ngIf="!brandForm.controls['brandContent'].errors?.required">
+                Brand Content
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+            <!--  <mat-form-field appearance="outline">
+              <mat-label>Brand Status</mat-label>
+              <input matInput placeholder="Brand Status" formControlName="brandStatus">
+              <mat-error *ngIf="!brandForm.controls['brandStatus'].errors?.required">
+                Brand Status
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field> -->
+            <mat-form-field>
+              <mat-select (selectionChange)="statusValue($event)" placeholder="Please Select Status">
+                <mat-option *ngFor="let stat  of activeStatus" [value]="stat.value">
+                  {{stat.active }}
+                </mat-option>
+              </mat-select>
+
+              <div *ngIf="selectStatus">
+                <small style="color: red">Select Status</small>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Meta Title</mat-label>
+              <input matInput placeholder="Meta Title" formControlName="metaTitle">
+              <mat-error *ngIf="!brandForm.controls['metaTitle'].errors?.required">
+                Meta Title
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Meta Description</mat-label>
+              <input matInput placeholder="Meta Description" formControlName="metaDescription">
+              <mat-error *ngIf="!brandForm.controls['metaDescription'].errors?.required">
+                Meta Description
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Meta Content</mat-label>
+              <input matInput placeholder="Meta Content" formControlName="metaContent">
+              <mat-error *ngIf="!brandForm.controls['metaContent'].errors?.required">
+                Meta Content
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="brandField">
+          <div class="form-group">
+
+            <label>Brand Images</label>
+
+            <div>
+              <input type="file" name="file" class="btn btnPink btn-block" id="file"
+                (change)="handleFileInput($event.target.files)">
+            </div>
+            <div *ngIf="showImageNameError">
+              Image Name exists
+            </div>
+          </div>
+
+        </div>
+        <div class="brandField">
+
+          <div>
+            <img *ngFor="let url of urls" [src]="url" style="width: 280px; height: 245px;" />
+          </div>
+        </div>
+        <div class="categoryField col-md-12">
+            <div class="form-group text-center">
+                <button [disabled]="!brandForm.valid" mat-flat-button color="primary" class="savebutton" type="submit" 
+                value="Save">Save</button>
+                <!-- <button mat-raised-button type="button"  color="primary" type="submit" 
+                (click)="updateBrandImageName()"  >Save</button> -->
+                <!-- <button mat-raised-button type="button" (click)="cancelBrand()" color="primary" type="submit" 
+                  (click)="updateBrandImageName()"  >Cancel</button> -->
+                <button mat-raised-button type="button" (click)="cancelBrand()" color="primary" type="submit" 
+               class="categorycancelbutton"  >Cancel</button>
+              
+            </div>
+          </div>
+         
+      
+            <div class="categoryField col-md-2">
+              <div class="form-group ">
+            
+              </div>
+            </div>
+        <!-- <div class="categoryField">
+            <div class="form-group">
+              <input [disabled]="!brandForm.valid" class="btn btn-danger" type="submit" 
+              value="Save">
+            </div>
+          </div>
+          <div class="categoryField">
+
+            </div>
+            <div class="categoryField">
+      
+            </div>
+      
+            <div class="categoryField">
+              <div class="form-group">
+                <input class="btn btn-primary" (click)="cancelBrand()" type="submit" value="cancel">
+              </div>
+            </div> -->
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,118 @@
+<div class="row gridRow border p-5" *ngIf="!showEditBasic">
+  <div class="col-md-12 text-right">
+    <button class="btn btn-md btn-primary" (click)="editBasic()">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Vendor Authorised Representative</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendorAuth}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Date</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.vendDate | date}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Ucchal Authorised Representative</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.companyAuth}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Date</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.companyDate | date}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Registered by</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.regBy}}
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Registered Date</label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      : {{profileData?.regDate | date}}
+    </div>
+  </div>
+
+</div>
+<div class="row gridRow border p-5" *ngIf="showEditBasic">
+  <form [formGroup]="contractForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Vendor Authorised Representative</label>
+          <input type="text" class="form-control" [ngModel]="profileData.vendorAuth" #add1 formControlName="vendorAuth"
+            placeholder="Vendor Authorised Representative">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>date</label>
+          <input type="date" class="form-control" [ngModel]="profileData.vendDate | date:'yyyy-MM-dd' " #add2
+            (ngModelChange)="profileData.vendDate = $event" formControlName="vendDate">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Ucchal Authorised Representative</label>
+          <input type="text" class="form-control" [ngModel]="profileData.companyAuth" #city formControlName="companyAuth">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" [ngModel]="profileData.companyDate | date:'yyyy-MM-dd'" #state
+            (ngModelChange)="profileData.companyDate = $event" formControlName="companyDate">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Registered by</label>
+          <input type="text" class="form-control" [ngModel]="profileData.regBy" #pin formControlName="regBy"
+            placeholder="Registered by">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" [ngModel]="profileData.regDate | date:'yyyy-MM-dd'" #pin
+            (ngModelChange)="profileData.regDate = $event" formControlName="regDate">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-md btn-primary" style="margin: 10px"
+          (click)="update(add1, add2, city, state, pin)">Save</button>
+        <button class="btn btn-md btn-primary" (click)="cancelBasic()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
