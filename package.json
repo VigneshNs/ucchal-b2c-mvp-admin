@@ -28,7 +28,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-rc.4",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "material-icons": "^0.3.1",
     "pdfmake": "^0.1.60",
     "rxjs": "~6.4.0",
